@@ -143,19 +143,19 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // AcmeBlogBundle_homepage
+        // blog_home
         if ($pathinfo === '/blog') {
-            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::homeAction',  '_route' => 'AcmeBlogBundle_homepage',);
+            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::homeAction',  '_route' => 'blog_home',);
         }
 
-        // AcmeBlogBundle_index
+        // blog_index
         if (0 === strpos($pathinfo, '/blog') && preg_match('#^/blog/(?P<blog>[^/]+?)$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::indexAction',)), array('_route' => 'AcmeBlogBundle_index'));
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::indexAction',)), array('_route' => 'blog_index'));
         }
 
-        // AcmeBlogBundle_post
+        // post
         if (0 === strpos($pathinfo, '/blog') && preg_match('#^/blog/(?P<blog>[^/]+?)/(?P<post>[^/]+?)$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::postAction',)), array('_route' => 'AcmeBlogBundle_post'));
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::postAction',)), array('_route' => 'post'));
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

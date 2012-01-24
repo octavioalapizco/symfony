@@ -1,0 +1,17 @@
+{% extends "AcmeBlogBundle::layout.html.twig" %}
+
+{% block title "Blog - Post" %}
+
+{% block content_header '' %}
+
+{% block content %}
+		{% 
+			set rutaBlog = path('blog_index',{ 'blog':blog }) 
+		%}
+		<div>
+			<a href="{{ rutaBlog }}">{{ blog }} </a>  
+		</div> 
+	
+    <h1>{{ post.title }}</h1>
+	<div>{{post.content}}</div> 
+{% endblock %}

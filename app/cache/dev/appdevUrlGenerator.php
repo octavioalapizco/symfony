@@ -33,9 +33,9 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_home' => true,
        '_configurator_step' => true,
        '_configurator_final' => true,
-       'AcmeBlogBundle_homepage' => true,
-       'AcmeBlogBundle_index' => true,
-       'AcmeBlogBundle_post' => true,
+       'blog_home' => true,
+       'blog_index' => true,
+       'post' => true,
     );
 
     /**
@@ -159,17 +159,17 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (), array (  '_controller' => 'Sensio\\Bundle\\DistributionBundle\\Controller\\ConfiguratorController::finalAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/_configurator/final',  ),));
     }
 
-    private function getAcmeBlogBundle_homepageRouteInfo()
+    private function getblog_homeRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::homeAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/blog',  ),));
     }
 
-    private function getAcmeBlogBundle_indexRouteInfo()
+    private function getblog_indexRouteInfo()
     {
         return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::indexAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/blog',  ),));
     }
 
-    private function getAcmeBlogBundle_postRouteInfo()
+    private function getpostRouteInfo()
     {
         return array(array (  0 => 'blog',  1 => 'post',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::postAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'post',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  2 =>   array (    0 => 'text',    1 => '/blog',  ),));
     }

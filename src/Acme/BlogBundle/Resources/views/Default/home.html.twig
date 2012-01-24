@@ -1,0 +1,17 @@
+{% extends "AcmeBlogBundle::layout.html.twig" %}
+
+{% block title "Blog - Home" %}
+
+
+{% block content_header '' %}
+
+
+
+{% block content %}
+    <h1>Home</h1>
+	{% for blog in blogs %}        
+		<a href="{{ path('blog_index', { 'blog': blog.blogName }) }}">
+		  {{ blog.blogName }}
+		</a>
+    {% endfor %}
+{% endblock %}

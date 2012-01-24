@@ -1,1 +1,23 @@
-Hello {{ name }}!
+{% extends "AcmeBlogBundle::layout.html.twig" %}
+
+{% block title "{{ blog.blogName }}" %}
+
+{% block content_header '' %}
+{% block blog_name blog.blogName %}
+{% block content %}
+    <h1>{{ blog.blogName }}</h1>
+	
+	{% for post in posts %}    
+		{% 
+			set ruta = path('post',{
+				'blog': blog.blogName, 
+				'post': post.title
+			}) 
+		%}
+		<div>
+			<a href="{{ ruta }}">{{ post.title }} </a>  
+		</div>  
+		  
+		
+    {% endfor %}
+{% endblock %}

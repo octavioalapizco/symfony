@@ -1,11 +1,11 @@
-AcmeBlogBundle_homepage:
+blog_home:
     pattern:  /blog
-    defaults: { _controller: AcmeBlogBundle:Blog:home }
+    defaults: { _controller: AcmeBlogBundle:Default:home}
 
-AcmeBlogBundle_index:
+blog_index:
     pattern:  /blog/{blog}
-    defaults: { _controller: AcmeBlogBundle:Blog:index }
+    defaults: { _controller: AcmeBlogBundle:Default:index}
 
-AcmeBlogBundle_post:
+post:
     pattern:  /blog/{blog}/{post}
-    defaults: { _controller: AcmeBlogBundle:Blog:post }
+    defaults: { _controller: AcmeBlogBundle:Default:post}
