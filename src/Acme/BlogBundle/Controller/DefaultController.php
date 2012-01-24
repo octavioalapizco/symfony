@@ -15,6 +15,14 @@ class DefaultController extends Controller
 			->setParameter('blog', $blog)
             ->getResult();			
 			
+		if (empty($blogs[0])){
+			return $this->render('AcmeBlogBundle:Default:index.html.twig',
+				array(
+					'posts'=>array(),
+					'blog'=>array(),
+				) 
+			);
+		}
 		$blogId=$blogs[0]->getBlogId();
 		
 		$posts = $this->getDoctrine()->getEntityManager()
@@ -45,7 +53,7 @@ class DefaultController extends Controller
             ->createQuery('SELECT p FROM AcmeBlogBundle:Post p WHERE p.fk_blog_id=:blog_id')
 			->setParameter('blog_id', $blogId)
             ->getResult();
-		print_r($post);
+		
 		return $this->render('AcmeBlogBundle:Default:post.html.twig', array(
 			'blog' => $blog,
 			'post'=>$post[0]
