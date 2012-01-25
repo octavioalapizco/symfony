@@ -9,14 +9,18 @@
     <body>
         <div id="symfony-wrapper">
             <div id="symfony-header">
-                <a href="{{ path('blog_home') }}">
-                    <img src="{{ asset('bundles/acmedemo/images/logo.gif') }}" alt="Symfony">
-                </a>
-				
-				<div>
+			<div style="">
+				<h1>
 				{% block blog_name %}
 				{% endblock %}
+				</h1>
 				</div>
+                <a href="{{ path('blog_home') }}">
+                    <img src="{{ asset('bundles/HTML5_Badge_64.png') }}" alt="Symfony" >
+                </a>
+				
+				
+				<div style="clear:both;"></div>
                 <form id="symfony-search" method="GET" action="http://symfony.com/search">
                     <label for="symfony-search-field"><span>Search on Symfony Website</span></label>
                     <input name="q" id="symfony-search-field" type="search" placeholder="Search on Symfony website" class="medium_txt">
