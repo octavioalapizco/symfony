@@ -6,6 +6,18 @@ blog_index:
     pattern:  /blog/{blog}
     defaults: { _controller: AcmeBlogBundle:Default:index}
 
-post:
+blog_post:
     pattern:  /blog/{blog}/{post}
     defaults: { _controller: AcmeBlogBundle:Default:post}
+
+blog_admin:
+    pattern:  /blog_admin
+    defaults: { _controller: AcmeBlogBundle:Default:admin_}
+
+blog_admin_blog:
+    pattern:  /blog_admin/{blog}
+    defaults: { _controller: AcmeBlogBundle:Default:admin_blog_}
+
+blog_admin_post:
+    pattern:  /blog_admin/{blog}/{post}
+    defaults: { _controller: AcmeBlogBundle:Default:admin_post_}	

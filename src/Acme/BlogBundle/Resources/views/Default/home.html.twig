@@ -2,13 +2,15 @@
 
 {% block title "Blog - Home" %}
 
+{% block blog_name %}	
+	<div><h1>Home</h1>  </div> 
+{% endblock %}
 
 {% block content_header '' %}
 
 
 
-{% block content %}
-    <h1>Home</h1>
+{% block content %}    
 	{% for blog in blogs %}        
 		<a href="{{ path('blog_index', { 'blog': blog.blogName }) }}">
 		  {{ blog.blogName }}

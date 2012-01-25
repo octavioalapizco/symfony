@@ -7,7 +7,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    
+    function admin_Action(){
+		return $this->render( 'AcmeBlogBundle:Default:default.html.twig', array('mensaje'=>"Blog Main Panel") );
+	}
+	
+	function admin_post_Action(){
+		return new Response("post admin");
+	}
+	
+	function admin_blog_Action(){
+		return new Response("blog admin");
+	}
+	
     public function indexAction($blog='blog Name')
     {				
 		$blogs = $this->getDoctrine()->getEntityManager()
