@@ -163,6 +163,11 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_Action',  '_route' => 'blog_admin',);
         }
 
+        // blog_save
+        if ($pathinfo === '/blog_new') {
+            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::task_Action',  '_route' => 'blog_save',);
+        }
+
         // blog_admin_blog
         if (0 === strpos($pathinfo, '/blog_admin') && preg_match('#^/blog_admin/(?P<blog>[^/]+?)$#xs', $pathinfo, $matches)) {
             return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_blog_Action',)), array('_route' => 'blog_admin_blog'));
@@ -171,6 +176,11 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // blog_admin_post
         if (0 === strpos($pathinfo, '/blog_admin') && preg_match('#^/blog_admin/(?P<blog>[^/]+?)/(?P<post>[^/]+?)$#xs', $pathinfo, $matches)) {
             return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_post_Action',)), array('_route' => 'blog_admin_post'));
+        }
+
+        // blog_new
+        if ($pathinfo === '/blog_new') {
+            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::task_Action',  '_route' => 'blog_new',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

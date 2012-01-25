@@ -4,6 +4,8 @@ namespace Acme\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Acme\BlogBundle\Entity\Blog;
 
 class DefaultController extends Controller
 {
@@ -78,4 +80,39 @@ class DefaultController extends Controller
 		
 		return $this->render('AcmeBlogBundle:Default:home.html.twig',array('blogs'=>$blogs) );
 	}
+	
+	public function task_Action(Request $request){
+		$task = new Blog();
+        $task->setBlogName('Write a blog');
+        
+
+        $form = $this->createFormBuilder($task)
+            ->add('blog_name', 'text')            
+            ->getForm();
+	
+		 if ($request->getMethod() == 'POST') {
+			$form->bindRequest($request);
+
+			if ($form->isValid()) {
+				// perform some action, such as saving the task to the database
+				$em = $this->getDoctrine()->getEntityManager();
+				$em->persist($task);
+				$em->flush();
+				
+				return $this->render('AcmeBlogBundle:Default:default.html.twig',array('mensaje'=>'Blog guardado:'.$task->getBlogName()) );
+			}
+		}
+		
+		return $this->render('AcmeBlogBundle:Default:task.html.twig', array(
+            'form' => $form->createView(),
+			'mensaje'=>'asd'
+        ));
+	}
+	
+	public function blog_save_Action(){
+		return new Response("Save en construccion");
+	}
+	
+	
 }
+?>

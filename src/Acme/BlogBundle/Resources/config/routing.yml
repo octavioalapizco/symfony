@@ -14,6 +14,10 @@ blog_admin:
     pattern:  /blog_admin
     defaults: { _controller: AcmeBlogBundle:Default:admin_}
 
+blog_save:
+    pattern:  /blog_save
+    defaults: { _controller: AcmeBlogBundle:Default:blog_save_}
+
 blog_admin_blog:
     pattern:  /blog_admin/{blog}
     defaults: { _controller: AcmeBlogBundle:Default:admin_blog_}
@@ -21,3 +25,11 @@ blog_admin_blog:
 blog_admin_post:
     pattern:  /blog_admin/{blog}/{post}
     defaults: { _controller: AcmeBlogBundle:Default:admin_post_}	
+
+blog_new:	
+    pattern:  /blog_new
+    defaults: { _controller: AcmeBlogBundle:Default:task_}	
+
+blog_save:	
+    pattern:  /blog_new
+    defaults: { _controller: AcmeBlogBundle:Default:task_}	

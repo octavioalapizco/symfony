@@ -37,8 +37,10 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        'blog_index' => true,
        'blog_post' => true,
        'blog_admin' => true,
+       'blog_save' => true,
        'blog_admin_blog' => true,
        'blog_admin_post' => true,
+       'blog_new' => true,
     );
 
     /**
@@ -182,6 +184,11 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_Action',), array (), array (  0 =>   array (    0 => 'text',    1 => '/blog_admin',  ),));
     }
 
+    private function getblog_saveRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::task_Action',), array (), array (  0 =>   array (    0 => 'text',    1 => '/blog_new',  ),));
+    }
+
     private function getblog_admin_blogRouteInfo()
     {
         return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_blog_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/blog_admin',  ),));
@@ -190,5 +197,10 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
     private function getblog_admin_postRouteInfo()
     {
         return array(array (  0 => 'blog',  1 => 'post',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_post_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'post',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  2 =>   array (    0 => 'text',    1 => '/blog_admin',  ),));
+    }
+
+    private function getblog_newRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::task_Action',), array (), array (  0 =>   array (    0 => 'text',    1 => '/blog_new',  ),));
     }
 }
