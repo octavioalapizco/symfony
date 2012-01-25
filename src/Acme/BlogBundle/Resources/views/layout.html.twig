@@ -9,15 +9,16 @@
     <body>
         <div id="symfony-wrapper">
             <div id="symfony-header">
-			<div style="">
+				
+                <a href="{{ path('blog_home') }}" style="float:left;">
+                    <img src="{{ asset('images/HTML5_Badge_64.png') }}" alt="Symfony" style="width:60px;">
+                </a>
+				<div style="margin-top:0px;margin-left:74px;">
 				<h1>
 				{% block blog_name %}
 				{% endblock %}
 				</h1>
 				</div>
-                <a href="{{ path('blog_home') }}">
-                    <img src="{{ asset('bundles/HTML5_Badge_64.png') }}" alt="Symfony" >
-                </a>
 				<div style="clear:both;"></div>
                 <form id="symfony-search" method="GET" action="http://symfony.com/search">
                     <label for="symfony-search-field"><span>Search on Symfony Website</span></label>
