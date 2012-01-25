@@ -1,15 +1,21 @@
 {% extends "AcmeBlogBundle::layout.html.twig" %}
 
-{% block title "{{ blog.blogName }}" %}
+{% block title  blog.blogName  %}
 
 {% block content_header '' %}
-{% block blog_name blog.blogName %}
+
+{% block blog_name %}
+	{%	set rutaBlog = path('blog_index',{ 'blog':blog.blogName }) %}
+	<div><a href="{{ rutaBlog }}">{{ blog.blogName }} </a>  </div> 
+{% endblock %}
+
+
 {% block content %}
-    <h1>{{ blog.blogName }}</h1>
+    <h3 style="border-color: PapayaWhip;border-style: solid;border-width: 0 0 1px;">Posts:</h3>
 	
 	{% for post in posts %}    
 		{% 
-			set ruta = path('post',{
+			set ruta = path('blog_post',{
 				'blog': blog.blogName, 
 				'post': post.title
 			}) 
