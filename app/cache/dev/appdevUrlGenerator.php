@@ -34,13 +34,21 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_step' => true,
        '_configurator_final' => true,
        'blog_home' => true,
-       'blog_index' => true,
-       'blog_post' => true,
+       'view_post' => true,
        'blog_admin' => true,
-       'blog_save' => true,
        'blog_admin_blog' => true,
        'blog_admin_post' => true,
-       'blog_new' => true,
+       'new_post' => true,
+       'nuevo_post' => true,
+       'save_post' => true,
+       'edit_post' => true,
+       'delete_post' => true,
+       'view_blog' => true,
+       'index_blog' => true,
+       'new_blog' => true,
+       'save_blog' => true,
+       'edit_blog' => true,
+       'delete_blog' => true,
     );
 
     /**
@@ -169,24 +177,14 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::homeAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/blog',  ),));
     }
 
-    private function getblog_indexRouteInfo()
+    private function getview_postRouteInfo()
     {
-        return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::indexAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/blog',  ),));
-    }
-
-    private function getblog_postRouteInfo()
-    {
-        return array(array (  0 => 'blog',  1 => 'post',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::postAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'post',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  2 =>   array (    0 => 'text',    1 => '/blog',  ),));
+        return array(array (  0 => 'blog',  1 => 'post',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::postAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'post',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  2 =>   array (    0 => 'text',    1 => '/blog',  ),));
     }
 
     private function getblog_adminRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_Action',), array (), array (  0 =>   array (    0 => 'text',    1 => '/blog_admin',  ),));
-    }
-
-    private function getblog_saveRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::task_Action',), array (), array (  0 =>   array (    0 => 'text',    1 => '/blog_new',  ),));
     }
 
     private function getblog_admin_blogRouteInfo()
@@ -199,8 +197,58 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (  0 => 'blog',  1 => 'post',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_post_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'post',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  2 =>   array (    0 => 'text',    1 => '/blog_admin',  ),));
     }
 
-    private function getblog_newRouteInfo()
+    private function getnew_postRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::task_Action',), array (), array (  0 =>   array (    0 => 'text',    1 => '/blog_new',  ),));
+        return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::new_post_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/new_post',  ),));
+    }
+
+    private function getnuevo_postRouteInfo()
+    {
+        return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::new_post_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/nuevo_post',  ),));
+    }
+
+    private function getsave_postRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::new_post_Action',), array (), array (  0 =>   array (    0 => 'text',    1 => '/save_post',  ),));
+    }
+
+    private function getedit_postRouteInfo()
+    {
+        return array(array (  0 => 'blog',  1 => 'title',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::edit_post_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'title',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  2 =>   array (    0 => 'text',    1 => '/edit_post',  ),));
+    }
+
+    private function getdelete_postRouteInfo()
+    {
+        return array(array (  0 => 'post_id',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::delete_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'post_id',  ),  1 =>   array (    0 => 'text',    1 => '/edit_post',  ),));
+    }
+
+    private function getview_blogRouteInfo()
+    {
+        return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::index_blog_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/view_blog',  ),));
+    }
+
+    private function getindex_blogRouteInfo()
+    {
+        return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::indexAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/blog',  ),));
+    }
+
+    private function getnew_blogRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::new_blog_Action',), array (), array (  0 =>   array (    0 => 'text',    1 => '/new_blog',  ),));
+    }
+
+    private function getsave_blogRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::save_Action',), array (), array (  0 =>   array (    0 => 'text',    1 => '/save_blog',  ),));
+    }
+
+    private function getedit_blogRouteInfo()
+    {
+        return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::edit_blog_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/edit_blog',  ),));
+    }
+
+    private function getdelete_blogRouteInfo()
+    {
+        return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::delete_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/delete_blog',  ),));
     }
 }

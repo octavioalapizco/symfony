@@ -148,24 +148,14 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::homeAction',  '_route' => 'blog_home',);
         }
 
-        // blog_index
-        if (0 === strpos($pathinfo, '/blog') && preg_match('#^/blog/(?P<blog>[^/]+?)$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::indexAction',)), array('_route' => 'blog_index'));
-        }
-
-        // blog_post
+        // view_post
         if (0 === strpos($pathinfo, '/blog') && preg_match('#^/blog/(?P<blog>[^/]+?)/(?P<post>[^/]+?)$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::postAction',)), array('_route' => 'blog_post'));
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::postAction',)), array('_route' => 'view_post'));
         }
 
         // blog_admin
         if ($pathinfo === '/blog_admin') {
             return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_Action',  '_route' => 'blog_admin',);
-        }
-
-        // blog_save
-        if ($pathinfo === '/blog_new') {
-            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::task_Action',  '_route' => 'blog_save',);
         }
 
         // blog_admin_blog
@@ -178,9 +168,59 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_post_Action',)), array('_route' => 'blog_admin_post'));
         }
 
-        // blog_new
-        if ($pathinfo === '/blog_new') {
-            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::task_Action',  '_route' => 'blog_new',);
+        // new_post
+        if (0 === strpos($pathinfo, '/new_post') && preg_match('#^/new_post/(?P<blog>[^/]+?)$#xs', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::new_post_Action',)), array('_route' => 'new_post'));
+        }
+
+        // nuevo_post
+        if (0 === strpos($pathinfo, '/nuevo_post') && preg_match('#^/nuevo_post/(?P<blog>[^/]+?)$#xs', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::new_post_Action',)), array('_route' => 'nuevo_post'));
+        }
+
+        // save_post
+        if ($pathinfo === '/save_post') {
+            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::new_post_Action',  '_route' => 'save_post',);
+        }
+
+        // edit_post
+        if (0 === strpos($pathinfo, '/edit_post') && preg_match('#^/edit_post/(?P<blog>[^/]+?)/(?P<title>[^/]+?)$#xs', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::edit_post_Action',)), array('_route' => 'edit_post'));
+        }
+
+        // delete_post
+        if (0 === strpos($pathinfo, '/edit_post') && preg_match('#^/edit_post/(?P<post_id>[^/]+?)$#xs', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::delete_Action',)), array('_route' => 'delete_post'));
+        }
+
+        // view_blog
+        if (0 === strpos($pathinfo, '/view_blog') && preg_match('#^/view_blog/(?P<blog>[^/]+?)$#xs', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::index_blog_Action',)), array('_route' => 'view_blog'));
+        }
+
+        // index_blog
+        if (0 === strpos($pathinfo, '/blog') && preg_match('#^/blog/(?P<blog>[^/]+?)$#xs', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::indexAction',)), array('_route' => 'index_blog'));
+        }
+
+        // new_blog
+        if ($pathinfo === '/new_blog') {
+            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::new_blog_Action',  '_route' => 'new_blog',);
+        }
+
+        // save_blog
+        if ($pathinfo === '/save_blog') {
+            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::save_Action',  '_route' => 'save_blog',);
+        }
+
+        // edit_blog
+        if (0 === strpos($pathinfo, '/edit_blog') && preg_match('#^/edit_blog/(?P<blog>[^/]+?)$#xs', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::edit_blog_Action',)), array('_route' => 'edit_blog'));
+        }
+
+        // delete_blog
+        if (0 === strpos($pathinfo, '/delete_blog') && preg_match('#^/delete_blog/(?P<blog>[^/]+?)$#xs', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::delete_Action',)), array('_route' => 'delete_blog'));
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
