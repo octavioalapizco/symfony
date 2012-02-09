@@ -40,6 +40,11 @@ class Post
     {
         return $this->id;
     }
+	
+	public function setId($id)
+    {
+        return $this->id=$id;
+    }
 
     /**
      * Set title

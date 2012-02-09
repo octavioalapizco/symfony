@@ -4,8 +4,30 @@
 
 {% block content_header '' %}
 
+{% block menu %}
+
+<div>
+	
+	{% set ruta=path('edit_blog',{ 'blog': blog.getBlogId() }) 
+	
+	%}
+	<a href="{{ ruta }}">
+		  Editar Blog
+	</a>
+	<a href="{{ path('delete_blog',{ 'blog': blog.getBlogId()} ) }}">
+		  Borrar Blog
+	</a>
+	<a href="{{ path('new_post',{ 'blog': blog.getBlogId()} ) }}">
+		  Nuevo Post
+	</a>
+	
+	
+</div>
+
+{% endblock %}
+
 {% block blog_name %}
-	{%	set rutaBlog = path('blog_index',{ 'blog':blog.blogName }) %}
+	{%	set rutaBlog = path('index_blog',{ 'blog':blog.blogName }) %}
 	<div><a href="{{ rutaBlog }}">{{ blog.blogName }} </a>  </div> 
 {% endblock %}
 
@@ -15,7 +37,7 @@
 	
 	{% for post in posts %}    
 		{% 
-			set ruta = path('blog_post',{
+			set ruta = path('view_post',{
 				'blog': blog.blogName, 
 				'post': post.title
 			}) 

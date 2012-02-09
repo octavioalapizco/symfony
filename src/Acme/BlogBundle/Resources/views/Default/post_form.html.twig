@@ -1,11 +1,11 @@
-{% extends "AcmeBlogBundle::layout.html.twig" %}
+{% extends "AcmeBlogBundle::admin_layout.html.twig" %}
 
 {% block title "Blog - Index" %}
 
 {% block content_header '' %}
 
 {% block content %}
-    <form action="{{ path('save_blog') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('save_post') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
 
     <input type="submit" />

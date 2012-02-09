@@ -33,6 +33,10 @@ class Blog
     {
         return $this->blog_id;
     }
+	public function setBlogId($blog_id)
+    {
+         $this->blog_id=$blog_id;
+    }
 
     /**
      * Set blog_name
@@ -53,4 +57,8 @@ class Blog
     {
         return $this->blog_name;
     }
+	
+	public function getPosts(){
+		return array();
+	}
 }

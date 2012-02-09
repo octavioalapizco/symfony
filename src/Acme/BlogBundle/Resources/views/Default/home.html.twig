@@ -9,10 +9,19 @@
 {% block content_header '' %}
 
 
+{% block menu %}
+
+<div>
+	<a href="{{ path('new_blog') }}">
+		  Nuevo Blog
+	</a>
+</div>
+
+{% endblock %}
 
 {% block content %}    
 	{% for blog in blogs %}        
-		<a href="{{ path('blog_index', { 'blog': blog.blogName }) }}">
+		<a href="{{ path('index_blog', { 'blog': blog.blogName }) }}">
 		  {{ blog.blogName }}
 		</a>
     {% endfor %}

@@ -3,14 +3,36 @@
 {% block title "Blog - Post" %}
 
 {% block content_header '' %}
+
+{% block menu %}
+
+<div>
+	
+	{% set ruta=path('edit_post',{ 'blog': blog,'title':post.getTitle() }) 
+	
+	%}
+	<a href="{{ ruta }}">
+		  Editar Post
+	</a>
+	
+	<a href="{{ path('delete_post',{ 'post_id': post.getId() } ) }}">
+		  Eliminar Post
+	</a>
+	
+	<a href="{{ path('index_blog',{ 'blog': blog_id } ) }}">
+		  Ver Posts
+	</a>
+</div>
+
+{% endblock %}
+
+
 {% block blog_name %}
-	{%	set rutaBlog = path('blog_index',{ 'blog':blog }) %}
+	{%	set rutaBlog = path('index_blog',{ 'blog':blog_id }) %}
 	<div><a href="{{ rutaBlog }}">{{ blog }} </a>  </div> 
 {% endblock %}
 	
-{% block content %}
-		
-	
-    <h1>{{ post.title }}</h1>
-	<div>{{post.content}}</div> 
+{% block content %}			    
+	<h1 style="border-color: PapayaWhip;border-style: solid;border-width: 0 0 1px;">{{ post.title }}</h1>
+	<div>{{post.content|raw}}</div> 
 {% endblock %}

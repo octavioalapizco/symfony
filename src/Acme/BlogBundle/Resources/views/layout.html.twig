@@ -25,6 +25,7 @@
                     <input name="q" id="symfony-search-field" type="search" placeholder="Search on Symfony website" class="medium_txt">
                     <input type="submit" class="symfony-button-grey" value="OK" />
                 </form>
+				{% block menu %}<div>Menu</div>{% endblock %}
             </div>
 
             {% if app.session.flash('notice') %}
