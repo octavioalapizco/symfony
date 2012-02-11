@@ -25,9 +25,9 @@
 	};
 	$(document).ready(function() {  
 		$('a.link').click(function () {  
-			$('#wrapper').scrollTo($(this).attr('href'), 800);
-			setPosition($(this).attr('href'), '#cloud1', '0px', '400px', '800px', '1200px');
-			setPosition($(this).attr('href'), '#cloud2', '0px', '800px', '1600px', '2400px');
+			$('#wrapper').scrollTo($(this).attr('href'), 1400);
+			setPosition($(this).attr('href'), '#barda1', '0px', '200px', '400px', '600px');
+			setPosition($(this).attr('href'), '#cloud2', '0px', '600px', '1200px', '1800px');
 			return false;  
 		});  
 	});
@@ -35,12 +35,8 @@
 	</script>
 </head>
 <body>
-	<div id="cloud1" class="clouds">
-		<div id="clouds-small"></div>
-	</div><!-- end clouds -->
-	<div id="cloud2" class="clouds">
-		<div id="clouds-big"></div>
-	</div><!-- end clouds -->
+	
+	
 	<div id="header">
    		<h1 id="logo">Scrolling Clouds</h1>
     	<ul id="menu">
@@ -71,5 +67,17 @@
             </li><!-- end box4 -->
         </ul><!-- end mask -->
     </div><!-- end wrapper -->
+	
+	<div id="nubes" class="clouds">
+		<div id="clouds-small"></div>
+	</div><!-- end clouds -->
+	
+	<div id="barda1" class="clouds">
+		<div id="barda"></div>
+	</div><!-- end clouds -->
+	
+	<div id="cloud2" class="clouds">
+		<div id="clouds-big"></div>
+	</div><!-- end clouds -->
 </body>
 </html>

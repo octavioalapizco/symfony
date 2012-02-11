@@ -41,6 +41,8 @@ border-radius:10px;
 
 /*** Clouds ***/
 .clouds		{ width:100%; height:262px; overflow:hidden; }
-#clouds-small	{ width:3000px; height:100%; background:url(../images/bg-clouds-small.png) repeat-x;}
-#cloud2		{ position:relative; top:-262px; }
-#clouds-big	{ width:4000px; height:100%; background:url(../images/bg-clouds-big.png) repeat-x;}
+#clouds-small	{ position;absolute; top:220px; width:3000px; height:100%; background:url(../images/wood_207.jpg) repeat-x;}
+#barda	{ position;absolute; top:220px; width:3000px; height:100%; background:url(../images/wood_207.jpg) repeat-x;}
+#barda1		{ position:absolute; top:299px; }
+#cloud2		{ position:relative; top:175px; }
+#clouds-big	{  width:4000px; height:100%; background:url(../images/grass.png) repeat-x;}
