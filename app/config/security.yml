@@ -16,8 +16,7 @@ security:
         secured_area:
             pattern:  ^/
             anonymous: ~
-            http_basic:
-                realm: "Secured Demo Area"
+            form_login: ~               
             logout:
                 path:   /logout
                 target: /blog

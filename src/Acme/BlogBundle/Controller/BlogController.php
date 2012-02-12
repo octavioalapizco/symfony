@@ -20,7 +20,7 @@ class BlogController extends Controller
 			->setParameter('blog_id', $blogId)
             ->getResult();			
 		
-		return $this->render('AcmeBlogBundle:Default:index.html.twig',
+		return $this->render('AcmeBlogBundle:Blog:index.html.twig',
 			array(
 				'posts'=>$posts,
 				'blog'=>$blog,
@@ -46,7 +46,7 @@ class BlogController extends Controller
 				
 				$posts=$blog->getPosts();
 				
-				return $this->render('AcmeBlogBundle:Blog:index.html.twig',,
+				return $this->render('AcmeBlogBundle:Blog:index.html.twig',
 					array(
 						'blog'=>$blog,
 						'post'=>$posts
