@@ -143,6 +143,16 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // login
+        if ($pathinfo === '/login') {
+            return array (  '_controller' => 'Acme\\SecurityBundle\\Controller\\SecurityController::loginAction',  '_route' => 'login',);
+        }
+
+        // login_check
+        if ($pathinfo === '/login_check') {
+            return array('_route' => 'login_check');
+        }
+
         // blog_home
         if ($pathinfo === '/blog') {
             return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::homeAction',  '_route' => 'blog_home',);
@@ -151,21 +161,6 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // view_post
         if (0 === strpos($pathinfo, '/blog') && preg_match('#^/blog/(?P<blog>[^/]+?)/(?P<post>[^/]+?)$#xs', $pathinfo, $matches)) {
             return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::postAction',)), array('_route' => 'view_post'));
-        }
-
-        // blog_admin
-        if ($pathinfo === '/blog_admin') {
-            return array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_Action',  '_route' => 'blog_admin',);
-        }
-
-        // blog_admin_blog
-        if (0 === strpos($pathinfo, '/blog_admin') && preg_match('#^/blog_admin/(?P<blog>[^/]+?)$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_blog_Action',)), array('_route' => 'blog_admin_blog'));
-        }
-
-        // blog_admin_post
-        if (0 === strpos($pathinfo, '/blog_admin') && preg_match('#^/blog_admin/(?P<blog>[^/]+?)/(?P<post>[^/]+?)$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_post_Action',)), array('_route' => 'blog_admin_post'));
         }
 
         // new_post
@@ -189,7 +184,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // delete_post
-        if (0 === strpos($pathinfo, '/edit_post') && preg_match('#^/edit_post/(?P<post_id>[^/]+?)$#xs', $pathinfo, $matches)) {
+        if (0 === strpos($pathinfo, '/delete_post') && preg_match('#^/delete_post/(?P<post_id>[^/]+?)$#xs', $pathinfo, $matches)) {
             return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::delete_Action',)), array('_route' => 'delete_post'));
         }
 
@@ -200,7 +195,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         // index_blog
         if (0 === strpos($pathinfo, '/blog') && preg_match('#^/blog/(?P<blog>[^/]+?)$#xs', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::indexAction',)), array('_route' => 'index_blog'));
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::index_Action',)), array('_route' => 'index_blog'));
         }
 
         // new_blog

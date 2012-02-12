@@ -10,6 +10,10 @@
     </head>
     <body>
         <div id="symfony-wrapper">
+			{% if app.user is not null  %}			
+				<p>Username: {{ app.user.username }}</p>
+			{% endif %}
+			
             <div id="symfony-header">
 				
                 <a href="{{ path('blog_home') }}" style="float:left;">

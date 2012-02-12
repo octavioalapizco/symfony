@@ -6,12 +6,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Acme\UserBundle\Entity\User;
 use Acme\BlogBundle\Entity\Blog;
 
 class BlogController extends Controller
 {
 	public function index_Action($blog='blog Name')
     {				
+	//==========================================================================
+		/*$factory = $this->get('security.encoder_factory');
+$user = new User();
+
+$encoder = $factory->getEncoder($user);
+$password = $encoder->encodePassword('ryanpass', $user->getSalt());
+$user->setUsername('ryan');
+$user->setEmail('ryan@email.com');
+$user->setPassword($password);
+$em = $this->getDoctrine()->getEntityManager();
+    $em->persist($user);
+    $em->flush();*/
+	//==========================================================================
 		$blog=$this->getBlogFromParam($blog);		
 		$blogId=$blog->getBlogId();
 		
@@ -20,7 +34,7 @@ class BlogController extends Controller
 			->setParameter('blog_id', $blogId)
             ->getResult();			
 		
-		return $this->render('AcmeBlogBundle:Default:index.html.twig',
+		return $this->render('AcmeBlogBundle:Blog:index.html.twig',
 			array(
 				'posts'=>$posts,
 				'blog'=>$blog,
@@ -46,7 +60,7 @@ class BlogController extends Controller
 				
 				$posts=$blog->getPosts();
 				
-				return $this->render('AcmeBlogBundle:Blog:index.html.twig',,
+				return $this->render('AcmeBlogBundle:Blog:index.html.twig',
 					array(
 						'blog'=>$blog,
 						'post'=>$posts

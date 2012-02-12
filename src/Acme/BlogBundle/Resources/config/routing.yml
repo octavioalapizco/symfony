@@ -1,59 +1,71 @@
+#===================================================================================
+#			AUTHENTICATION ACTIONS
+#===================================================================================
+login:
+    pattern:   /login
+    defaults:  { _controller: AcmeSecurityBundle:Security:login }
+login_check:
+    pattern:   /login_check
+#===================================================================================
 blog_home:
     pattern:  /blog
     defaults: { _controller: AcmeBlogBundle:Default:home}
-#----------------------------------------------------------------------------------
+#===================================================================================
+#			POST ACTIONS
+#===================================================================================
 view_post:
     pattern:  /blog/{blog}/{post}
     defaults: { _controller: AcmeBlogBundle:Post:post}
-	
+
 new_post:
     pattern:  /new_post/{blog}
-    defaults: { _controller: AcmeBlogBundle:Post:new_post_}	
+    defaults: { _controller: AcmeBlogBundle:Post:new_post_}
 
 nuevo_post:
     pattern:  /nuevo_post/{blog}
-    defaults: { _controller: AcmeBlogBundle:Post:new_post_}	
+    defaults: { _controller: AcmeBlogBundle:Post:new_post_}
 
 save_post:
     pattern:  /save_post
-    defaults: { _controller: AcmeBlogBundle:Post:new_post_}	
-
+    defaults: { _controller: AcmeBlogBundle:Post:new_post_}
 edit_post:
     pattern:  /edit_post/{blog}/{title}
-    defaults: { _controller: AcmeBlogBundle:Post:edit_post_}		
+    defaults: { _controller: AcmeBlogBundle:Post:edit_post_}
 
 delete_post:
     pattern:  /delete_post/{post_id}
-    defaults: { _controller: AcmeBlogBundle:Post:delete_}		
-#----------------------------------------------------------------------------------
+    defaults: { _controller: AcmeBlogBundle:Post:delete_}
+#===================================================================================
+#			BLOG ACTIONS
+#===================================================================================
 view_blog:
     pattern:  /view_blog/{blog}
-    defaults: { _controller: AcmeBlogBundle:Blog:index_blog_}	
+    defaults: { _controller: AcmeBlogBundle:Blog:index_blog_}
 
 #---------------------------------------------------------------------------------
 index_blog:
     pattern:  /blog/{blog}
-    defaults: { _controller: AcmeBlogBundle:Blog:index}
+    defaults: { _controller: AcmeBlogBundle:Blog:index_}
 #GET:
 # Muestra el formulario listo para crear un nuevo blog
 new_blog:
     pattern:  /new_blog
-    defaults: { _controller: AcmeBlogBundle:Blog:new_blog_}	
+    defaults: { _controller: AcmeBlogBundle:Blog:new_blog_}
 
 # (POST METHOD)
 # Crear y actualizar el blog
-save_blog:	
+save_blog:
     pattern:  /save_blog
-    defaults: { _controller: AcmeBlogBundle:Blog:save_}	
+    defaults: { _controller: AcmeBlogBundle:Blog:save_}
 
 #GET
 #Muestra el formulario con los datos del blog, listos para editarse
-edit_blog:	
+edit_blog:
     pattern:  /edit_blog/{blog}
-    defaults: { _controller: AcmeBlogBundle:Blog:edit_blog_}		
+    defaults: { _controller: AcmeBlogBundle:Blog:edit_blog_}
 
 #
 #
-delete_blog:	
+delete_blog:
     pattern:  /delete_blog/{blog}
-    defaults: { _controller: AcmeBlogBundle:Blog:delete_}		
+    defaults: { _controller: AcmeBlogBundle:Blog:delete_}

@@ -33,11 +33,10 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_home' => true,
        '_configurator_step' => true,
        '_configurator_final' => true,
+       'login' => true,
+       'login_check' => true,
        'blog_home' => true,
        'view_post' => true,
-       'blog_admin' => true,
-       'blog_admin_blog' => true,
-       'blog_admin_post' => true,
        'new_post' => true,
        'nuevo_post' => true,
        'save_post' => true,
@@ -172,6 +171,16 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (), array (  '_controller' => 'Sensio\\Bundle\\DistributionBundle\\Controller\\ConfiguratorController::finalAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/_configurator/final',  ),));
     }
 
+    private function getloginRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Acme\\SecurityBundle\\Controller\\SecurityController::loginAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/login',  ),));
+    }
+
+    private function getlogin_checkRouteInfo()
+    {
+        return array(array (), array (), array (), array (  0 =>   array (    0 => 'text',    1 => '/login_check',  ),));
+    }
+
     private function getblog_homeRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::homeAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/blog',  ),));
@@ -180,21 +189,6 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
     private function getview_postRouteInfo()
     {
         return array(array (  0 => 'blog',  1 => 'post',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::postAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'post',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  2 =>   array (    0 => 'text',    1 => '/blog',  ),));
-    }
-
-    private function getblog_adminRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_Action',), array (), array (  0 =>   array (    0 => 'text',    1 => '/blog_admin',  ),));
-    }
-
-    private function getblog_admin_blogRouteInfo()
-    {
-        return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_blog_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/blog_admin',  ),));
-    }
-
-    private function getblog_admin_postRouteInfo()
-    {
-        return array(array (  0 => 'blog',  1 => 'post',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\DefaultController::admin_post_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'post',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  2 =>   array (    0 => 'text',    1 => '/blog_admin',  ),));
     }
 
     private function getnew_postRouteInfo()
@@ -219,7 +213,7 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getdelete_postRouteInfo()
     {
-        return array(array (  0 => 'post_id',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::delete_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'post_id',  ),  1 =>   array (    0 => 'text',    1 => '/edit_post',  ),));
+        return array(array (  0 => 'post_id',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\PostController::delete_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'post_id',  ),  1 =>   array (    0 => 'text',    1 => '/delete_post',  ),));
     }
 
     private function getview_blogRouteInfo()
@@ -229,7 +223,7 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getindex_blogRouteInfo()
     {
-        return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::indexAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/blog',  ),));
+        return array(array (  0 => 'blog',), array (  '_controller' => 'Acme\\BlogBundle\\Controller\\BlogController::index_Action',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'blog',  ),  1 =>   array (    0 => 'text',    1 => '/blog',  ),));
     }
 
     private function getnew_blogRouteInfo()
