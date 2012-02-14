@@ -1,0 +1,7 @@
+new_user:
+    pattern:  /new_user
+    defaults: { _controller: AcmeUserBundle:User:new_user_}
+
+save_user:
+    pattern:  /save_user
+    defaults: { _controller: AcmeUserBundle:User:save_user_}

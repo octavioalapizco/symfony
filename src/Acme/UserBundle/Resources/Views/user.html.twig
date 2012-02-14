@@ -1,0 +1,14 @@
+{% extends "AcmeBlogBundle::layout.html.twig" %}
+
+{% block title "User Form" %}
+
+{% block content_header '' %}
+
+{% block content %}
+    <form action="{{ path('new_user') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+	</form>
+		
+{% endblock %}
