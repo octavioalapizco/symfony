@@ -69,7 +69,7 @@ $em = $this->getDoctrine()->getEntityManager();
 			}
 		}
 		
-		return $this->render('AcmeBlogBundle:Default:task.html.twig', array(
+		return $this->render('AcmeBlogBundle:Blog:blog_form.html.twig', array(
             'form' => $form->createView(),
 			'mensaje'=>'asd'
         ));

@@ -1,0 +1,34 @@
+{% extends 'form_div_layout.html.twig' %}
+
+
+{% block generic_label %}
+{% spaceless %}
+    {% if required %}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
+    {% endif %}
+   <li> <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %} >{{ label|trans }}</label>
+{% endspaceless %}
+{% endblock %}
+
+{% block field_widget %}
+	{% set type = type|default('text') %}
+	<input class="itext" type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" /></li>
+{% endblock field_widget %}
+
+{% block form_widget %}
+{% spaceless %}
+    
+        {{ block('field_rows') }}
+        {{ form_rest(form) }}
+    
+{% endspaceless %}
+{% endblock form_widget %}
+
+{% block field_row %}
+{% spaceless %}
+            {{ form_label(form, label|default(null)) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    
+{% endspaceless %}
+{% endblock field_row %}

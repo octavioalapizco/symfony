@@ -1,13 +1,19 @@
 {% extends "AcmeBlogBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/form_faary.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
 {% block title "Blog - Index" %}
 
 {% block content_header '' %}
 
 {% block content %}
-    <form action="{{ path('save_blog') }}" method="post" {{ form_enctype(form) }}>
+    <form class="iform" action="{{ path('save_blog') }}" method="post" {{ form_enctype(form) }}>
+	<ul>
     {{ form_widget(form) }}
-
+	</ul>
     <input type="submit" />
 	</form>
 		

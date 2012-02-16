@@ -1,16 +1,28 @@
 {% extends "AcmeBlogBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/form_faary.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+
+
+
 {% block title "User Form" %}
 
 {% block content_header '' %}
 
-{% block content %}
-	<h1>Registrarse</h1>
-    <form action="{{ path('new_user') }}" method="post" {{ form_enctype(form) }}>
-	
-    {{ form_widget(form) }}
 
-    <input type="submit" />
+{% block content %}
+	
+    <form class="iform" action="{{ path('new_user') }}" method="post" {{ form_enctype(form) }}>
+	<ul>	
+	<li class="iheader">Registro de Usuario</li>
+    {{ form_widget(form) }}
+	</ul>
+    <input class="ibutton" type="submit" value="Send a Message!"/>
 	</form>
-		
+
 {% endblock %}
+
