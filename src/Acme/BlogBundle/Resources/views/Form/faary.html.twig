@@ -1,5 +1,13 @@
 {% extends 'form_div_layout.html.twig' %}
 
+{% block form_widget %}
+{% spaceless %}
+    {# <div {{ block('widget_container_attributes') }}> #}
+        {{ block('field_rows') }}
+        {{ form_rest(form) }}
+    {# </div> #}
+{% endspaceless %}
+{% endblock form_widget %}
 
 {% block generic_label %}
 {% spaceless %}
@@ -15,14 +23,6 @@
 	<input class="itext" type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" /></li>
 {% endblock field_widget %}
 
-{% block form_widget %}
-{% spaceless %}
-    
-        {{ block('field_rows') }}
-        {{ form_rest(form) }}
-    
-{% endspaceless %}
-{% endblock form_widget %}
 
 {% block field_row %}
 {% spaceless %}

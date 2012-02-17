@@ -1,0 +1,30 @@
+{% extends 'form_div_layout.html.twig' %}
+{% block content %}
+<form>
+          <div class="box">
+            <h1>Contact Form :</h1>
+            <label>
+               <span>Full name</span>
+               <input type="text" class="input_text" name="name" id="name"/>
+            </label>
+             <label>
+               <span>Email</span>
+               <input type="text" class="input_text" name="email" id="email"/>
+            </label>
+             <label>
+                <span>Subject</span>
+                <input type="text" class="input_text" name="subject" id="subject"/>
+            </label>
+            <label>
+                <span>Message</span>
+                <textarea class="message" name="feedback" id="feedback"></textarea>
+                <input type="button" class="button" value="Submit Form" />
+            </label>
+            
+            
+         </div>
+    </form	
+{% endblock content %}
+
+
+

@@ -22,7 +22,8 @@ twig:
     strict_variables: %kernel.debug%
     form:
         resources:
-            - 'AcmeBlogBundle:Form:faary.html.twig'
+#            - 'AcmeBlogBundle:Form:faary.html.twig'
+            - 'AcmeBlogBundle:Form:form_without_table.html.twig'
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
