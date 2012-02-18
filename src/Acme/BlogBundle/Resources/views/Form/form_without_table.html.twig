@@ -1,5 +1,24 @@
 {% extends 'form_div_layout.html.twig' %}
+
+{% block form_widget %}
+{% spaceless %}
+
+   {# <div {{ block('widget_container_attributes') }}> #}
+        {{ block('field_rows') }}
+        {{ form_rest(form) }}
+    {# </div> #}
+
+{% endspaceless %}
+{% endblock form_widget %}
+
 {% block content %}
+<form class="iform" action="{{ path('save_blog') }}" method="post" {{ form_enctype(form) }}>
+	<ul>
+	{{ form_widget(form) }}
+	</ul>
+	<input type="submit" />
+</form>
+
 <form>
           <div class="box">
             <h1>Contact Form :</h1>

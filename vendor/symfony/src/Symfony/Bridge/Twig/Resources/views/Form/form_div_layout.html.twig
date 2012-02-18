@@ -2,10 +2,10 @@
 
 {% block form_widget %}
 {% spaceless %}
-    <div {{ block('widget_container_attributes') }}>
+   {# <div {{ block('widget_container_attributes') }}> #}
         {{ block('field_rows') }}
         {{ form_rest(form) }}
-    </div>
+    {# </div> #}
 {% endspaceless %}
 {% endblock form_widget %}
 

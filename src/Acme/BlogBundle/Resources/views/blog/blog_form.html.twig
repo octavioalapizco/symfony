@@ -10,13 +10,16 @@
 
 {% block content_header '' %}
 
+
+{% block MyForm %}
+
+{% endblock MyForm %}
+
 {% block content %}
-    <form class="iform" action="{{ path('save_blog') }}" method="post" {{ form_enctype(form) }}>
+<form class="iform" action="{{ path('save_blog') }}" method="post" {{ form_enctype(form) }}>
 	<ul>
-    {{ form_widget(form) }}
+	{{ form_widget(form) }}
 	</ul>
-    <input type="submit" />
-	</form>
-
-
+	<input type="submit" />
+</form>
 {% endblock %}
