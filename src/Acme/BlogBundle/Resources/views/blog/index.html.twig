@@ -5,21 +5,72 @@
 {% block content_header '' %}
 
 {% block menu %}
+<style type="text/css">
+.menu{
+	margin-left: 125px;
+}
 
+.menu_item{
+	float: left;
+    margin-right: 30px;
+    text-align: center;
+    width: 50px;
+	margin-bottom:10px;
+}
+
+.delete_blog_img{
+	background-image:url('/symfony/web/images/delete.png');
+	height: 48px;
+	width: 48px;
+}
+
+.edit_blog_img{
+	background-image:url('/symfony/web/images/pencil.png');
+	height: 48px;
+	width: 48px;
+}
+	 
+
+.new_post_img{
+	background-image:url('/symfony/web/images/gnome_emblem_documents.png');
+	height: 48px;
+	width: 48px;
+}
+.new_post{
+	width:81px;
+}
+.new_post_img{
+margin-left:18px;
+}
+</style>
 <div>
+<div class="menu">
+		<div class="menu_item">
+			{% set ruta=path('edit_blog',{ 'blog': blog.getBlogId() }) 	%}
+			<a href="{{ ruta }}">
+				<div class="edit_blog_img"></div>
+				<div class="menu_item_label">Editar</div>		  
+			</a>
+		</div>
+		
+		<div class="menu_item">
+			<a href="{{ path('delete_blog',{ 'blog': blog.getBlogId()} ) }}">
+				<div class="delete_blog_img"></div>
+				<div class="menu_item_label">Eliminar</div>		  
+			</a>
+		</div>
+		
+		<div class="menu_item new_post" >
+			<a href="{{ path('new_post',{ 'blog': blog.getBlogId()} ) }}">
+				<div class="new_post_img"></div>
+				<div class="menu_item_label">Nuevo Post</div>		  
+			</a>
+		</div>
+	</div>
 	
-	{% set ruta=path('edit_blog',{ 'blog': blog.getBlogId() }) 
 	
-	%}
-	<a href="{{ ruta }}">
-		  Editar Blog
-	</a>
-	<a href="{{ path('delete_blog',{ 'blog': blog.getBlogId()} ) }}">
-		  Borrar Blog
-	</a>
-	<a href="{{ path('new_post',{ 'blog': blog.getBlogId()} ) }}">
-		  Nuevo Post
-	</a>
+		  
+	
 	
 	
 </div>
@@ -33,8 +84,8 @@
 
 
 {% block content %}
-    <h3 style="border-color: PapayaWhip;border-style: solid;border-width: 0 0 1px;">Posts:</h3>
-	
+    <div class="posts_page_title" >Posts:</div>
+
 	{% for post in posts %}    
 		{% 
 			set ruta = path('view_post',{

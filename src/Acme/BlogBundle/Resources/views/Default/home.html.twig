@@ -3,18 +3,43 @@
 {% block title "Blog - Home" %}
 
 {% block blog_name %}	
-	<div><h1>Home</h1>  </div> 
+	Home
 {% endblock %}
 
 {% block content_header '' %}
 
 
 {% block menu %}
+<style type="text/css">
+.menu{
+	margin-left: 125px;
+	float:left;
+}
 
-<div>
-	<a href="{{ path('new_blog') }}">
-		  Nuevo Blog
-	</a>
+.menu_item{
+	float: left;
+    margin-right: 30px;
+    text-align: center;
+    width: 50px;
+	margin-bottom:10px;
+}
+
+.new_blog_img{
+	background-image:url('/symfony/web/images/Address_Book.png');
+	height: 48px;
+	width: 48px;
+}
+
+
+</style>
+<div class="menu">
+	
+	<div class="menu_item">			
+		<a href="{{ path('new_blog') }}">
+			<div class="new_blog_img"></div>
+			<div class="menu_item_label">Nuevo Blog</div>		  
+		</a>
+	</div>
 </div>
 
 {% endblock %}

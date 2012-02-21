@@ -65,11 +65,13 @@ class PostController extends Controller
 			$form->bindRequest($request);
 
 			if ($form->isValid()) {
-				// perform some action, such as saving the task to the database
+				// perform some acti	on, such as saving the task to the database
 				$em = $this->getDoctrine()->getEntityManager();
 				$id=$post->getId();
 				if (!empty($id)){
 					$post=$em->merge($post);
+				}else{
+					$post->setCreatedAt(date_create());
 				}
 				$em->persist($post);
 				$blog=$this->getBlogFromParam( $post->getFkBlogId() );

@@ -1,6 +1,42 @@
 {% extends "AcmeBlogBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+<style type="text/css">
+.menu{
+	margin-left: 125px;
+	float:left;
+}
+
+.menu_item{
+	float: left;
+    margin-right: 30px;
+    text-align: center;
+    width: 50px;
+	margin-bottom:10px;
+}
+
+.delete_post_img{
+	background-image:url('/symfony/web/images/delete.png');
+	height: 48px;
+	width: 48px;
+}
+
+.edit_post_img{
+	background-image:url('/symfony/web/images/pencil.png');
+	height: 48px;
+	width: 48px;
+}
+	 
+
+.view_posts_img{
+	background-image:url('/symfony/web/images/gnome_emblem_documents.png');
+	height: 48px;
+	width: 48px;
+}
+</style>
+{% endblock %}
 {% block title "Blog - Post" %}
+
 
 {% block content_header '' %}
 
@@ -8,20 +44,29 @@
 
 <div>
 	
-	{% set ruta=path('edit_post',{ 'blog': blog,'title':post.getTitle() }) 
-	
-	%}
-	<a href="{{ ruta }}">
-		  Editar Post
-	</a>
-	
-	<a href="{{ path('delete_post',{ 'post_id': post.getId() } ) }}">
-		  Eliminar Post
-	</a>
-	
-	<a href="{{ path('index_blog',{ 'blog': blog_id } ) }}">
-		  Ver Posts
-	</a>
+	<div class="menu">
+		<div class="menu_item">
+			{% set ruta=path('edit_post',{ 'blog': blog,'title':post.getTitle() }) 	%}
+			<a href="{{ ruta }}">
+				<div class="edit_post_img"></div>
+				<div class="menu_item_label">Editar</div>		  
+			</a>
+		</div>
+		
+		<div class="menu_item">
+			<a href="{{ path('delete_post',{ 'post_id': post.getId() } ) }}">
+				<div class="delete_post_img"></div>
+				<div class="menu_item_label">Eliminar</div>		  
+			</a>
+		</div>
+		
+		<div class="menu_item">
+			<a href="{{ path('index_blog',{ 'blog': blog_id } ) }}">
+				<div class="view_posts_img"></div>
+				<div class="menu_item_label">Ver Posts</div>		  
+			</a>
+		</div>
+	</div>
 </div>
 
 {% endblock %}
@@ -33,6 +78,27 @@
 {% endblock %}
 	
 {% block content %}			    
-	<h1 style="border-color: PapayaWhip;border-style: solid;border-width: 0 0 1px;">{{ post.title }}</h1>
+	<script type="text/javascript">
+  
+    var ultimaFecha;
+    function escribe_fecha(d){
+        if (d == '') {
+                d = ultimaFecha;
+         }
+        var da = d.split(' ');
+        dia = "<div class='post-day'>"+da[0]+"<\/div>";
+        mes = "<div class='post-month'>"+da[1].slice(0,3)+"<\/div>";
+        document.write(mes+dia);
+        ultimaFecha = d;		
+    }
+  
+  </script>
+	<div class="post-sidebar">
+		<div class="post-date">
+			<div><script type="text/javascript">escribe_fecha('{{ post.getCreatedAt()|date('d F Y')|escape }}')</script> </div>
+		</div>
+	</div>
+	<div class='page_title'>{{ post.title }}</div>
+	
 	<div>{{post.content|raw}}</div> 
 {% endblock %}

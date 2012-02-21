@@ -9,7 +9,9 @@ login_check:
 #===================================================================================
 blog_home:
     pattern:  /blog
-    defaults: { _controller: AcmeBlogBundle:Default:home}
+#    defaults: { _controller: AcmeBlogBundle:Default:home}
+    defaults: { _controller: AcmeBlogBundle:Blog:index_, blog:'pendientes'}
+
 #===================================================================================
 #			POST ACTIONS
 #===================================================================================
@@ -38,11 +40,6 @@ delete_post:
 #===================================================================================
 #			BLOG ACTIONS
 #===================================================================================
-view_blog:
-    pattern:  /view_blog/{blog}
-    defaults: { _controller: AcmeBlogBundle:Blog:index_blog_}
-
-#---------------------------------------------------------------------------------
 index_blog:
     pattern:  /blog/{blog}
     defaults: { _controller: AcmeBlogBundle:Blog:index_}

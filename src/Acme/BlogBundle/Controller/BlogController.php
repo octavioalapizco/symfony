@@ -119,11 +119,11 @@ $em = $this->getDoctrine()->getEntityManager();
 	}
 	
 	public function save_Action(Request $request){
-		$task = new Blog();
-        $task->setBlogName('Write a blog');
+		$blog = new Blog();
+        $blog ->setBlogName('Write a blog');
         
 
-        $form = $this->createFormBuilder($task)
+        $form = $this->createFormBuilder($blog)
             ->add('blog_name', 'text')
 			->add('blog_id', 'text')            
             ->getForm();
@@ -132,16 +132,19 @@ $em = $this->getDoctrine()->getEntityManager();
 			$form->bindRequest($request);
 
 			if ($form->isValid()) {
-				// perform some action, such as saving the task to the database
+				// perform some action, such as saving the blog  to the database
 				$em = $this->getDoctrine()->getEntityManager();
-				$id=$task->getBlogId();
-				if (!empty($id)){
-					$task=$em->merge($task);
+				$id=$blog ->getBlogId();
+				if (empty($id)){
+					
+					//$blog->setCreatedAt(time());
+				}else{
+					$blog =$em->merge($blog );
 				}
-				$em->persist($task);
+				$em->persist($blog );
 				$em->flush();
 				
-				return $this->render('AcmeBlogBundle:Default:default.html.twig',array('mensaje'=>'Blog guardado:'.$task->getBlogName()) );
+				return $this->render('AcmeBlogBundle:Default:default.html.twig',array('mensaje'=>'Blog guardado:'.$blog ->getBlogName()) );
 			}
 		}
 		
