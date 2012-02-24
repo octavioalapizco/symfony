@@ -1,3 +1,7 @@
+AcmeHealthyBundle:
+    resource: "@AcmeHealthyBundle/Resources/config/routing.yml"
+    prefix:   /
+
 AcmeBlogBundle:
     resource: "@AcmeBlogBundle/Resources/config/routing.yml"
     prefix:   /

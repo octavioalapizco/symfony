@@ -8,6 +8,12 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+			//===============================================================			
+			new Sonata\jQueryBundle\SonatajQueryBundle(),
+			new Sonata\BluePrintBundle\SonataBluePrintBundle(),
+			new Sonata\AdminBundle\SonataAdminBundle(),
+			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+			//===============================================================
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -19,7 +25,9 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Acme\BlogBundle\AcmeBlogBundle(),
 			new Acme\SecurityBundle\AcmeSecurityBundle(),
-			new Acme\UserBundle\AcmeUserBundle()
+			new Acme\UserBundle\AcmeUserBundle(),
+            new Acme\HealthyBundle\AcmeHealthyBundle(),
+			
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
