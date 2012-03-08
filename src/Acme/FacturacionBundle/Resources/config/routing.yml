@@ -1,0 +1,3 @@
+AcmeFacturacionBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: AcmeFacturacionBundle:Default:index }

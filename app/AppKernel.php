@@ -9,10 +9,10 @@ class AppKernel extends Kernel
     {
         $bundles = array(
 			//===============================================================			
-			new Sonata\jQueryBundle\SonatajQueryBundle(),
+			/*new Sonata\jQueryBundle\SonatajQueryBundle(),
 			new Sonata\BluePrintBundle\SonataBluePrintBundle(),
 			new Sonata\AdminBundle\SonataAdminBundle(),
-			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+			new Knp\Bundle\MenuBundle\KnpMenuBundle(),*/
 			//===============================================================
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
@@ -25,9 +25,10 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Acme\BlogBundle\AcmeBlogBundle(),
 			new Acme\SecurityBundle\AcmeSecurityBundle(),
-			new Acme\UserBundle\AcmeUserBundle(),
-            new Acme\HealthyBundle\AcmeHealthyBundle(),
-			
+			new Acme\UserBundle\AcmeUserBundle()
+          //  new Acme\HealthyBundle\AcmeHealthyBundle(),
+,
+            new Acme\FacturacionBundle\AcmeFacturacionBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

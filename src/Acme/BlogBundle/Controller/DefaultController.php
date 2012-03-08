@@ -14,6 +14,7 @@ class DefaultController extends Controller
 	
 	*/
 	public function homeAction(){
+		exit;
 		$blogs = $this->getDoctrine()->getEntityManager()
             ->createQuery('SELECT p FROM AcmeBlogBundle:Blog p ')
             ->getResult();

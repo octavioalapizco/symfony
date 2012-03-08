@@ -4,11 +4,12 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 $loader = new UniversalClassLoader();
+
 $loader->registerNamespaces(array(
-	'Sonata'           => __DIR__.'/../src',	
-	'Knp'			   => __DIR__.'/../src',
-	'Knp\Bundle' => __DIR__.'/../vendor/bundles',
-    'Knp\Menu'   => __DIR__.'/../vendor/KnpMenu/src',
+	//'Sonata'           => __DIR__.'/../src',	
+	//'Knp'			   => __DIR__.'/../src',
+	//'Knp\Bundle' => __DIR__.'/../vendor/bundles',
+    //'Knp\Menu'   => __DIR__.'/../vendor/KnpMenu/src',
     'Symfony'          => array(__DIR__.'/../vendor/symfony/src', __DIR__.'/../vendor/bundles'),
     'Sensio'           => __DIR__.'/../vendor/bundles',
     'JMS'              => __DIR__.'/../vendor/bundles',
@@ -35,6 +36,9 @@ $loader->registerNamespaceFallbacks(array(
     __DIR__.'/../src',
 ));
 $loader->register();
+
+// You can search the include_path as a last resort.
+
 
 AnnotationRegistry::registerLoader(function($class) use ($loader) {
     $loader->loadClass($class);
