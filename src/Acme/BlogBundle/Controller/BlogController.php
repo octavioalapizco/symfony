@@ -9,17 +9,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Acme\UserBundle\Entity\User;
 use Acme\BlogBundle\Entity\Blog;
 
-use FacturacionBundle\FacturaPDF;
-require ("../facturapdf.php");
+use Acme\FacturacionBundle as FB;
+
 class BlogController extends Controller
 {
 	public function index_Action($blog='blog Name')
     {				
 	//==========================================================================
-		$date = new \DateTime();
-		print_r($date);
-		$facturapdf = new FacturaPdf();
-		
+		//$date = new \DateTime();
+		//print_r($date);
+		$facturapdf = new FB\FacturaPDF();
+		$facturapdf->hola();
 		exit;
 		/*$factory = $this->get('security.encoder_factory');
 $user = new User();
