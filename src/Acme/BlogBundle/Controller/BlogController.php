@@ -9,8 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Acme\UserBundle\Entity\User;
 use Acme\BlogBundle\Entity\Blog;
 
-use Acme\FacturacionBundle as FB;
-use fpdf;
+
+
 
 class BlogController extends Controller
 {
@@ -22,15 +22,12 @@ class BlogController extends Controller
 		//$facturapdf = new FB\FacturaPDF();
 		//require_once('../vendor/fpdf/namespacetest.php');
 		//define('FPDF_FONTPATH','../vendor/fpdf');
-		//$pdf = new FB\FacturaPDF('P','mm','A4');
-		$pdf = new fpdf\FPDF('P','mm','A4');
 		
-		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',16);
-		$pdf->Cell(40,10,'¡Hola, Mundo!');
-		$pdf->Output("asd.pdf");
+		//$pdf = new fpdf\FPDF('P','mm','A4');
+		
+		
 		//$facturapdf->hola();
-		exit;
+		
 		/*$factory = $this->get('security.encoder_factory');
 $user = new User();
 
