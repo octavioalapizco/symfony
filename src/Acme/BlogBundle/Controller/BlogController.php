@@ -10,6 +10,7 @@ use Acme\UserBundle\Entity\User;
 use Acme\BlogBundle\Entity\Blog;
 
 use Acme\FacturacionBundle as FB;
+use fpdf;
 
 class BlogController extends Controller
 {
@@ -18,8 +19,17 @@ class BlogController extends Controller
 	//==========================================================================
 		//$date = new \DateTime();
 		//print_r($date);
-		$facturapdf = new FB\FacturaPDF();
-		$facturapdf->hola();
+		//$facturapdf = new FB\FacturaPDF();
+		require_once('../vendor/fpdf/namespacetest.php');
+		//define('FPDF_FONTPATH','../vendor/fpdf');
+		//$pdf = new FB\FacturaPDF('P','mm','A4');
+		$pdf = new fpdf\FPDF('P','mm','A4');
+		
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','B',16);
+		$pdf->Cell(40,10,'¡Hola, Mundo!');
+		$pdf->Output("asd.pdf");
+		//$facturapdf->hola();
 		exit;
 		/*$factory = $this->get('security.encoder_factory');
 $user = new User();
