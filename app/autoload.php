@@ -11,6 +11,7 @@ $loader->registerNamespaces(array(
 	//'Knp\Bundle' => __DIR__.'/../vendor/bundles',
     //'Knp\Menu'   => __DIR__.'/../vendor/KnpMenu/src',
 	//'FacturacionBundle'   => __DIR__.'/../src/Acme/FacturacionBundle/FacturaPDF',
+	'fpdf'           => __DIR__.'/../vendor',
     'Symfony'          => array(__DIR__.'/../vendor/symfony/src', __DIR__.'/../vendor/bundles'),
     'Sensio'           => __DIR__.'/../vendor/bundles',
     'JMS'              => __DIR__.'/../vendor/bundles',
