@@ -1,0 +1,102 @@
+imports:
+    - { resource: parameters.ini }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    #translator:      { fallback: %locale% }
+    translator: ~
+    secret:          %secret%
+    charset:         UTF-8
+    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
+    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    session:
+        default_locale: %locale%
+        auto_start:     true
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    form:
+        resources:
+#            - 'AcmeBlogBundle:Form:faary.html.twig'
+            - 'AcmeBlogBundle:Form:form_without_table.html.twig'
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    # java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        # closure:
+        #     jar: %kernel.root_dir%/java/compiler.jar
+        # yui_css:
+        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+
+jms_security_extra:
+    secure_controllers:  true
+    secure_all_services: false
+
+sonata_admin:
+    title:      dizsurf BO
+    title_logo: /bundles/sonataadmin/logo_title.png
+    templates:
+        # default global templates
+        layout:  SonataAdminBundle::standard_layout.html.twig
+        ajax:    SonataAdminBundle::ajax_layout.html.twig
+        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+
+        # default actions templates, should extend a global templates
+        list:    SonataAdminBundle:CRUD:list.html.twig
+        show:    SonataAdminBundle:CRUD:show.html.twig
+        edit:    SonataAdminBundle:CRUD:edit.html.twig
+    # dashboard_groups:
+    #     default: ~
+    dashboard:
+        blocks:
+            # display a dashboard block
+            - { position: left, type: sonata.admin.block.admin_list }
+
+            # Customize this part to add new block configuration
+            - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Welcome to the Sonata Admin</h2> <p>This is a <code>sonata.block.service.text</code> from the Block Bundle, you can create and add new block in these area by configuring the <code>sonata_admin</code> section.</p> <br /> For instance, here a RSS feed parser (<code>sonata.block.service.rss</code>):"} }
+            - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
+        groups:
+            default: ~
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+        #sonata.admin_doctrine_orm.block.audit:
+        #    contexts:   [admin]
+
+        sonata.block.service.text:
+        sonata.block.service.action:
+        sonata.block.service.rss:
