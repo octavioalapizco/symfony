@@ -15,7 +15,7 @@ class AppKernel extends Kernel
 			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 			////===============================================================			
 			new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-			new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
+			//new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
 			//===============================================================			
 			/*new Sonata\jQueryBundle\SonatajQueryBundle(),
 			new Sonata\BluePrintBundle\SonataBluePrintBundle(),

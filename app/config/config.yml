@@ -75,3 +75,14 @@ sonata_block:
         sonata.block.service.text:
         sonata.block.service.action:
         sonata.block.service.rss:
+services:
+   acme.blog.admin.blog:
+      class: Acme\BlogBundle\Admin\BlogAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Blog, label: Blog }
+      arguments: [null, Acme\BlogBundle\Entity\Blog, AcmeBlogBundle:BlogAdmin]
+   acme.blog.admin.post:
+      class: Acme\BlogBundle\Admin\PostAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Blog, label: Post }
+      arguments: [null, Acme\BlogBundle\Entity\Post, AcmeBlogBundle:PostAdmin]
