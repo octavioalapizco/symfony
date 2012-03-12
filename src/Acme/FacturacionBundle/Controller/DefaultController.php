@@ -15,7 +15,7 @@ class DefaultController extends Controller
 		$facturaObj = new \SimpleXMLElement($xmlstr);		
 		//echo "<pre>";print_r($facturaObj);echo "</pre>";exit;
 		//============================================================================
-		$pdf = new FB\FacturaPDF('P','mm','A4');
+		$pdf = new FB\FacturaPDF('P','mm','letter');
 		$pdfName='factura.pdf';				
 		$pdf->generarPdf($facturaObj,$pdfName);
 		echo '<html><body style="margin: 0; padding: 0;"><object data="'.$pdfName.'" type="application/pdf" width="100%"  height="100%">
