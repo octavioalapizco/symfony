@@ -14,6 +14,7 @@ $loader->registerNamespaces(array(
 	//------------------------------------------------------------------------
 	 'SimpleThings'      => __DIR__.'/../vendor/bundles',
 	//======================================================================== 
+	'FOS'     => __DIR__.'/../vendor/bundles/',
 	//'Sonata'           => __DIR__.'/../src',	
 	//'Knp'			   => __DIR__.'/../src',
 	//'Knp\Bundle' => __DIR__.'/../vendor/bundles',

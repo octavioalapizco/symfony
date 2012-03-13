@@ -8,14 +8,24 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+			
+			//===============================================================			
 			new Sonata\AdminBundle\SonataAdminBundle(),
 			new Sonata\BlockBundle\SonataBlockBundle(),
 			new Sonata\CacheBundle\SonataCacheBundle(),
 			new Sonata\jQueryBundle\SonatajQueryBundle(),
 			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-			////===============================================================			
+			//===============================================================			
+			new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+			//===============================================================			
 			new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
 			//new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
+			//===============================================================			
+		#	new Sonata\NewsBundle\SonataNewsBundle(),
+		#	new Sonata\UserBundle\SonataUserBundle(),
+		#	new Sonata\MediaBundle\SonataMediaBundle(),
+			new FOS\UserBundle\FOSUserBundle(),
+			
 			//===============================================================			
 			/*new Sonata\jQueryBundle\SonatajQueryBundle(),
 			new Sonata\BluePrintBundle\SonataBluePrintBundle(),
