@@ -11,10 +11,10 @@ class PostAdmin extends Admin
 	protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
+            ->add('id','integer',array('required'=>false) )
             ->add('title')
 			->add('content')
-			->add('fk_blog_id')
+			->add('fk_blog_id',null,array( 'multiple' => true))
 			->add('created_at')			
         ;
     }
