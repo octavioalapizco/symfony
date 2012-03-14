@@ -15,6 +15,7 @@ class PostAdmin extends Admin
             ->add('title')
 			->add('content')
 			->add('fk_blog_id')
+			->add('fk_categoria_id')
 			//->add('fk_blog_id','sonata_type_model', array(), array('edit' => 'list'))
 			->add('created_at')			
         ;

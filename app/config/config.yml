@@ -80,6 +80,11 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: Blog, label: Blog }
       arguments: [null, Acme\BlogBundle\Entity\Blog, AcmeBlogBundle:BlogAdmin]
+   acme.blog.admin.categoria:
+      class: Acme\BlogBundle\Admin\CategoriaAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Blog, label: Categoria }
+      arguments: [null, Acme\BlogBundle\Entity\Categoria, AcmeBlogBundle:CategoriaAdmin]
    acme.blog.admin.post:
       class: Acme\BlogBundle\Admin\PostAdmin
       tags:
