@@ -1,3 +1,11 @@
 AcmeFacturacionBundle_homepage:
     pattern:  /factura
     defaults: { _controller: AcmeFacturacionBundle:Default:index }
+
+AcmeFacturacionBundle_template:
+    pattern:  /template
+    defaults: { _controller: AcmeFacturacionBundle:Default:template }
+
+AcmeFacturacionBundle_getTemplatesJson:
+    pattern:  /templates/getTemplatesJson
+    defaults: { _controller: AcmeFacturacionBundle:Default:getTemplatesJson}

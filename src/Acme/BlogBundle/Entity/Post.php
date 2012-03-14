@@ -25,12 +25,13 @@ class Post
      * @ORM\Column(type="text")
      */
     protected $content;
-	
+			
 	/**
      * @ORM\ManyToOne(targetEntity="Blog", inversedBy="posts")
      * @ORM\JoinColumn(name="fk_blog_id", referencedColumnName="blog_id")
      */
     protected $fk_blog_id;
+
 
     /**
      * @ORM\Column(type="datetime")	 
@@ -135,5 +136,19 @@ class Post
     public function getFkBlogId()
     {
         return $this->fk_blog_id;
+    }
+    public function __construct()
+    {
+        $this->fk_blog_id = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add fk_blog_id
+     *
+     * @param Acme\BlogBundle\Entity\Blog $fkBlogId
+     */
+    public function addBlog(\Acme\BlogBundle\Entity\Blog $fkBlogId)
+    {
+        $this->fk_blog_id[] = $fkBlogId;
     }
 }
