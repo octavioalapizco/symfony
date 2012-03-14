@@ -23,7 +23,10 @@ class Blog
 
     
 	
-	
+	/**
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="blog")
+     */
+    protected $products;
     /**
      * Get blog_id
      *

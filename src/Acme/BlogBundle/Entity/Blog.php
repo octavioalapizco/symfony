@@ -23,7 +23,10 @@ class Blog
 
     
 	
-	
+	/**
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="blog")
+     */
+    protected $products;
     /**
      * Get blog_id
      *
@@ -60,5 +63,32 @@ class Blog
 	
 	public function getPosts(){
 		return array();
+	}
+    public function __construct()
+    {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add products
+     *
+     * @param Acme\BlogBundle\Entity\Post $products
+     */
+    public function addPost(\Acme\BlogBundle\Entity\Post $products)
+    {
+        $this->products[] = $products;
+    }
+
+    /**
+     * Get products
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+	function __toString(){
+		return $this->blog_name;
 	}
 }

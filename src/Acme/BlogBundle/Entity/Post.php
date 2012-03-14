@@ -27,7 +27,8 @@ class Post
     protected $content;
 	
 	/**
-     * @ORM\Column(type="integer")	 
+     * @ORM\ManyToOne(targetEntity="Blog", inversedBy="posts")
+     * @ORM\JoinColumn(name="fk_blog_id", referencedColumnName="blog_id")
      */
     protected $fk_blog_id;
 
@@ -91,25 +92,8 @@ class Post
         return $this->content;
     }
 
-    /**
-     * Set fk_blog_id
-     *
-     * @param integer $fkBlogId
-     */
-    public function setFkBlogId($fkBlogId)
-    {
-        $this->fk_blog_id = $fkBlogId;
-    }
-
-    /**
-     * Get fk_blog_id
-     *
-     * @return integer 
-     */
-    public function getFkBlogId()
-    {
-        return $this->fk_blog_id;
-    }
+    
+    
 	
 	
 
@@ -131,5 +115,25 @@ class Post
     public function getCreatedAt()
     {
         return $this->created_at;
+    }
+
+    /**
+     * Set fk_blog_id
+     *
+     * @param Acme\BlogBundle\Entity\Blog $fkBlogId
+     */
+    public function setFkBlogId(\Acme\BlogBundle\Entity\Blog $fkBlogId)
+    {
+        $this->fk_blog_id = $fkBlogId;
+    }
+
+    /**
+     * Get fk_blog_id
+     *
+     * @return Acme\BlogBundle\Entity\Blog 
+     */
+    public function getFkBlogId()
+    {
+        return $this->fk_blog_id;
     }
 }
