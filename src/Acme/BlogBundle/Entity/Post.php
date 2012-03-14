@@ -31,6 +31,12 @@ class Post
      * @ORM\JoinColumn(name="fk_blog_id", referencedColumnName="blog_id")
      */
     protected $fk_blog_id;
+	
+	/**
+     * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="posts")
+     * @ORM\JoinColumn(name="fk_categoria_id", referencedColumnName="id")
+     */
+    protected $fk_categoria_id;
 
 
     /**
@@ -150,5 +156,25 @@ class Post
     public function addBlog(\Acme\BlogBundle\Entity\Blog $fkBlogId)
     {
         $this->fk_blog_id[] = $fkBlogId;
+    }
+
+    /**
+     * Set fk_categoria_id
+     *
+     * @param Acme\BlogBundle\Entity\Categoria $fkCategoriaId
+     */
+    public function setFkCategoriaId(\Acme\BlogBundle\Entity\Categoria $fkCategoriaId)
+    {
+        $this->fk_categoria_id = $fkCategoriaId;
+    }
+
+    /**
+     * Get fk_categoria_id
+     *
+     * @return Acme\BlogBundle\Entity\Categoria 
+     */
+    public function getFkCategoriaId()
+    {
+        return $this->fk_categoria_id;
     }
 }
