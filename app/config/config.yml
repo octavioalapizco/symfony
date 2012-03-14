@@ -85,3 +85,7 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: Blog, label: Post }
       arguments: [null, Acme\BlogBundle\Entity\Post, AcmeBlogBundle:PostAdmin]
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Acme\UserBundle\Entity\User

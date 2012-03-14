@@ -1,3 +1,7 @@
-[KnpMenuBundle]
-    git=http://github.com/KnpLabs/KnpMenuBundle.git
-    target=/bundles/Knp/Bundle/MenuBundle
+[SonataMediaBundle]
+    git=http://github.com/sonata-project/SonataMediaBundle.git
+    target=/bundles/Sonata/MediaBundle
+
+[EasyExtendsBundle]
+    git=http://github.com/sonata-project/SonataEasyExtendsBundle.git
+    target=/bundles/Sonata/EasyExtendsBundle

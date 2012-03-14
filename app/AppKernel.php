@@ -8,21 +8,19 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+			// ...
 			new Sonata\AdminBundle\SonataAdminBundle(),
 			new Sonata\BlockBundle\SonataBlockBundle(),
 			new Sonata\CacheBundle\SonataCacheBundle(),
 			new Sonata\jQueryBundle\SonatajQueryBundle(),
 			new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-			////===============================================================			
+			//new Sonata\BluePrintBundle\SonataBluePrintBundle(),
+			// ...
 			new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
 			//new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
-			//===============================================================			
-			/*new Sonata\jQueryBundle\SonatajQueryBundle(),
-			new Sonata\BluePrintBundle\SonataBluePrintBundle(),
-			new Sonata\AdminBundle\SonataAdminBundle(),
-			new Knp\Bundle\MenuBundle\KnpMenuBundle(),*/
-			
-			//===============================================================
+			// ...
+			new FOS\UserBundle\FOSUserBundle(),			
+			// ...
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -34,9 +32,9 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Acme\BlogBundle\AcmeBlogBundle(),
 			new Acme\SecurityBundle\AcmeSecurityBundle(),
-			new Acme\UserBundle\AcmeUserBundle()
+			new Acme\UserBundle\AcmeUserBundle(),
           //  new Acme\HealthyBundle\AcmeHealthyBundle(),
-,
+
             new Acme\FacturacionBundle\AcmeFacturacionBundle(),
         );
 
