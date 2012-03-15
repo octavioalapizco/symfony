@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50508
 File Encoding         : 65001
 
-Date: 2012-03-13 22:57:47
+Date: 2012-03-14 23:52:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,7 +47,7 @@ CREATE TABLE `blog` (
   `blog_name` char(255) DEFAULT NULL COMMENT 'nombre del blog',
   PRIMARY KEY (`blog_id`),
   KEY `blog_id` (`blog_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog
@@ -158,6 +158,28 @@ CREATE TABLE `comment` (
 INSERT INTO `comment` VALUES ('5', null, 'mi nombre', 'email@test.com', 'www.asd.com', 'Un mensaj');
 INSERT INTO `comment` VALUES ('6', null, 'zxczxczc', 'zxzxc@asd.com', 'www.asd.com', 'zxczxczxczc');
 INSERT INTO `comment` VALUES ('7', null, 'zxczxczc', 'zxzxc@asd.com', 'www.asd.com', 'zxczxczxczc');
+
+-- ----------------------------
+-- Table structure for `fb_factura`
+-- ----------------------------
+DROP TABLE IF EXISTS `fb_factura`;
+CREATE TABLE `fb_factura` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `rfc_e` char(20) NOT NULL,
+  `rfc_r` char(20) NOT NULL,
+  `fecha_emision` datetime NOT NULL,
+  `serie` char(10) DEFAULT NULL,
+  `folio` int(11) NOT NULL,
+  `total_antes_dimpuestos` decimal(18,4) unsigned NOT NULL,
+  `i_traladados` decimal(18,4) unsigned DEFAULT NULL,
+  `i_retenidos` decimal(18,4) unsigned DEFAULT NULL,
+  `total` decimal(18,4) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of fb_factura
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `fos_user`
