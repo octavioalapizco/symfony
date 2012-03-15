@@ -143,6 +143,7 @@ class Post
     {
         return $this->fk_blog_id;
     }
+	
     public function __construct()
     {
         $this->fk_blog_id = new \Doctrine\Common\Collections\ArrayCollection();

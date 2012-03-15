@@ -7,3 +7,6 @@
 [submodule "vendor/bundles/FOS/UserBundle"]
 	path = vendor/bundles/FOS/UserBundle
 	url = git://github.com/FriendsOfSymfony/FOSUserBundle.git
+[submodule "bundles/Knp/Bundle/MenuBundle"]
+	path = bundles/Knp/Bundle/MenuBundle
+	url = https://github.com/KnpLabs/KnpMenuBundle.git

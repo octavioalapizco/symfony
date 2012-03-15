@@ -90,6 +90,12 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: Blog, label: Post }
       arguments: [null, Acme\BlogBundle\Entity\Post, AcmeBlogBundle:PostAdmin]
+# Facturacion
+   acme.blog.admin.factura:
+      class: Acme\FacturacionBundle\Admin\FacturaAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Facturacion, label: Factura }
+      arguments: [null, Acme\FacturacionBundle\Entity\Factura, AcmeFacturacionBundle:FacturaAdmin]
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
