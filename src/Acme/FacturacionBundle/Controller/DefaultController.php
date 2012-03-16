@@ -7,7 +7,35 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 //use Acme\FacturacionBundle as FB;
 class DefaultController extends Controller
 {
-    
+	public function importarAction(){
+		
+		 if (!empty($_FILES['comprobante']['name'])) {
+			$respuesta= $this->importar();
+			if ($respuesta===false){
+				echo "<br/>Importacion ha fallado<br/>";
+			}else{				
+				echo "<br/>Archivo subido a ".$respuesta."<br/>";
+			}
+			exit;
+
+		}else{			
+			return $this->render('AcmeFacturacionBundle:Default:importar.html.twig');
+		}
+		
+	}
+	
+	private function moveUploadedCert($ruta_temp="../tmp/importaciones/"){
+        
+		$CertfileInfo = $_FILES['comprobante'];
+		$tempPathFileCer = $ruta_temp . $CertfileInfo['name'];
+		$cerTempName = $CertfileInfo['tmp_name'];
+		
+		if (!move_uploaded_file($cerTempName, $tempPathFileCer)) {                
+			 throw new \Exception('Error al subir el certificado:'.$CertfileInfo['name']);
+		}
+		return  $ruta_temp.$CertfileInfo['name'];
+        
+    }
     public function indexAction()
     {
 		//============================================================================

@@ -8,6 +8,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 
 class FacturaAdmin extends Admin
 {
+
+
+
 	protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -20,7 +23,7 @@ class FacturaAdmin extends Admin
 			->add('total_antes_dimpuestos')
 			->add('i_traladados')			
 			->add('i_retenidos')			
-			->add('total')
+			->add('total')			
         ;
 		
     }
@@ -37,10 +40,20 @@ class FacturaAdmin extends Admin
 			->add('i_traladados')			
 			->add('i_retenidos')			
 			->add('total')
+			->add('_action', 'actions', array( 'actions' => 
+				array(   
+					 'verpdf' => array('template' =>'AcmeFacturacionBundle:Admin:action_unpublish.html.twig'))));
         ;
     }
 
-    protected $maxPerPage = 5;
+	public function verpdfAction(){
+		
+	}
+   /* protected function configureRoutes(RouteCollection $collection) {
+		$collection->add('verpdf',
+		$this->getRouterIdParameter().'/verpdf'); 
+	}*/
+	
 
 }
 ?>
