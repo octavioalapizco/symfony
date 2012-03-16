@@ -10,3 +10,6 @@
 [submodule "bundles/Knp/Bundle/MenuBundle"]
 	path = bundles/Knp/Bundle/MenuBundle
 	url = https://github.com/KnpLabs/KnpMenuBundle.git
+[submodule "vendor/AdminBundle"]
+	path = vendor/AdminBundle
+	url = http://github.com/sonata-project/SonataAdminBundle.git
