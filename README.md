@@ -11,6 +11,7 @@ En este sprint se van a entregar facturas imprimibles con todos los elementos ne
 Las facturas en PDF se administrarán como templates, los usuarios podrán tener templates personalizados, compartirlos o privatizarlos.
 El objetivo de este sprint también es el de conocer a profundidad los elementos de las facturas CFD, CFDI y factura de papel.
 
+Importacion de XMLS y presentacion en PDF, WEB y mobil.
 
 ### De los XMLs y la base de datos
 
