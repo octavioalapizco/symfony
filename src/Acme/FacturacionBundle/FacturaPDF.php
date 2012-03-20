@@ -7,7 +7,7 @@ class FacturaPdf extends fpdf\FPDF{
 	
 	function generarPdf($facturaObj,$filename='factura.pdf'){
 		$this->facturaObj=$facturaObj;
-		$this->yFooter=190;
+		$this->yFooter=170;
 		$this->SetFont('Arial','B',16);
 		$this->SetAutoPageBreak(true,75);
 		$this->AddPage();
@@ -60,8 +60,11 @@ class FacturaPdf extends fpdf\FPDF{
 		$this->rect($this->getX(),$this->getY()+3.3,190,.6,'F');
 		$this->Cell(50,4,'CERTIFICADO DIGITAL',0,1,'L',true);
 		$this->addY(.5);		
-		$this->setTextColor(0,0,0);$this->SetFont('Courier','',7);		$this->SetFillColor(255,255,255);
-		$this->MultiCell(190,2,$this->facturaObj['certificado'],0,1,'L',false);
+		$this->setTextColor(0,0,0);$this->SetFont('Courier','',6);		$this->SetFillColor(255,255,255);
+		$elMensaje=preg_replace("/\s+/"," ",$this->facturaObj['certificado']);
+		//$elMensaje=str_replace('\n','--',$this->facturaObj['certificado']);
+		//echo $elMensaje;exit;
+		$this->MultiCell(190,2,$elMensaje,0,1,'L',false);
 		//-------------------------------------------------------------------------------------------------------------
 		$this->addY(2);
 		$this->SetFillColor(139,0,0);

@@ -74,6 +74,10 @@ sonata_block:
         sonata.block.service.text:
         sonata.block.service.action:
         sonata.block.service.rss:
+# app/config/config.yml
+sonata_admin:
+    dashboard:
+        
 services:
    acme.blog.admin.blog:
       class: Acme\BlogBundle\Admin\BlogAdmin
@@ -90,7 +94,7 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: Blog, label: Post }
       arguments: [null, Acme\BlogBundle\Entity\Post, AcmeBlogBundle:PostAdmin]
-# Facturacion
+   #------------------------------------------------- Facturacion
    acme.blog.admin.factura:
       class: Acme\FacturacionBundle\Admin\FacturaAdmin
       tags:

@@ -19,6 +19,7 @@ file that was distributed with this source code.
             {% for block in blocks %}
                 {% if block.position == 'left' %}
                     {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
+					
                 {% endif %}
             {% endfor %}
         </div>

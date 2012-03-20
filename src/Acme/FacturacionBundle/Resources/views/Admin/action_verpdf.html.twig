@@ -1,0 +1,6 @@
+<div class="sonata-actions">
+	<ul>
+		{% set ruta=path('AcmeFacturacionBundle_verpdf',{ 'factura_id': object.getId() }) 	%}
+		<li class="btn"><a href="{{ ruta }}" target="_blank">Ver PDF</a></li>
+	</ul>
+</div>

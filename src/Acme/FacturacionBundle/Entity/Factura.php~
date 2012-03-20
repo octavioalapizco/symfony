@@ -61,7 +61,10 @@ class Factura
      */
     protected $total;
 	
-	
+	/**
+     * @ORM\Column(type="string", length=10)
+     */
+    protected $tipo_comprobante;
 
     /**
      * Get id
@@ -71,6 +74,11 @@ class Factura
     public function getId()
     {
         return $this->id;
+    }
+	
+	public function setId($id)
+    {
+        $this->id=$id;
     }
 
     /**
