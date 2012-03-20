@@ -8,7 +8,7 @@ AcmeFacturacionBundle_verpdf:
 
 AcmeFacturacionBundle_importar:
     pattern:  /factura/importar
-    defaults: { _controller: AcmeFacturacionBundle:Default:importar}
+    defaults: { _controller: AcmeFacturacionBundle:FacturaAdmin:importar, _sonata_admin: acme.blog.admin.factura}
 
 AcmeFacturacionBundle_template:
     pattern:  /template
