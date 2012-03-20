@@ -5,6 +5,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class FacturaAdmin extends Admin
 {
@@ -42,18 +43,23 @@ class FacturaAdmin extends Admin
 			->add('total')
 			->add('_action', 'actions', array( 'actions' => 
 				array(   
-					 'verpdf' => array('template' =>'AcmeFacturacionBundle:Admin:action_unpublish.html.twig'))));
+					 'verpdf' => array('template' =>'AcmeFacturacionBundle:Admin:action_verpdf.html.twig'))));
         ;
     }
 
 	public function verpdfAction(){
 		
 	}
-   /* protected function configureRoutes(RouteCollection $collection) {
-		$collection->add('verpdf',
-		$this->getRouterIdParameter().'/verpdf'); 
-	}*/
 	
+	 protected function configureRoutes(RouteCollection $collection)
+    {
+		$collection->add('importar'); 
+    }
+	/*
+	protected function configureRoutes(RouteCollection $collection) {
+		//$collection->add('importar'); 
+		$collection->remove('create');
+	}*/	
 
 }
 ?>

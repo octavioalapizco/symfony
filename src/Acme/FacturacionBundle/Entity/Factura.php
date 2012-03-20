@@ -61,7 +61,10 @@ class Factura
      */
     protected $total;
 	
-	
+	/**
+     * @ORM\Column(type="string", length=10)
+     */
+    protected $tipo_comprobante;
 
     /**
      * Get id
@@ -256,5 +259,25 @@ class Factura
     public function getRfcR()
     {
         return $this->rfc_r;
+    }
+
+    /**
+     * Set tipo_comprobante
+     *
+     * @param string $tipoComprobante
+     */
+    public function setTipoComprobante($tipoComprobante)
+    {
+        $this->tipo_comprobante = $tipoComprobante;
+    }
+
+    /**
+     * Get tipo_comprobante
+     *
+     * @return string 
+     */
+    public function getTipoComprobante()
+    {
+        return $this->tipo_comprobante;
     }
 }

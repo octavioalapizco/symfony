@@ -61,7 +61,9 @@ class FacturaPdfOtra extends fpdf\FPDF{
 		$this->Cell(50,4,'CERTIFICADO DIGITAL',0,1,'L',true);
 		$this->addY(.5);		
 		$this->setTextColor(0,0,0);$this->SetFont('Courier','',7);		$this->SetFillColor(255,255,255);
-		$this->MultiCell(190,2,$this->facturaObj['certificado'],0,1,'L',false);
+		$certificadoSinSaltos=preg_replace("/\s+/"," ",$this->facturaObj['certificado']);		
+		$this->MultiCell(190,2,$certificadoSinSaltos,0,1,'L',false);
+		
 		//-------------------------------------------------------------------------------------------------------------
 		$this->addY(2);
 		$this->SetFillColor(139,0,0);

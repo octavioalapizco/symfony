@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50508
 File Encoding         : 65001
 
-Date: 2012-03-14 23:52:20
+Date: 2012-03-19 20:55:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -174,12 +174,16 @@ CREATE TABLE `fb_factura` (
   `i_traladados` decimal(18,4) unsigned DEFAULT NULL,
   `i_retenidos` decimal(18,4) unsigned DEFAULT NULL,
   `total` decimal(18,4) unsigned NOT NULL,
+  `tipo_comprobante` enum('CFDI','CFD') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of fb_factura
 -- ----------------------------
+INSERT INTO `fb_factura` VALUES ('1', 'ssdfg', 'affgdsfg', '2007-01-01 00:00:00', 'asdf', '113', '2345.0000', '234.0000', '234.0000', '234.0000', null);
+INSERT INTO `fb_factura` VALUES ('2', 'AAA010101AAA', 'BIAC810820TH2', '2012-02-17 18:52:12', 'A', '360', '96500.0000', null, null, '96500.0000', null);
+INSERT INTO `fb_factura` VALUES ('3', 'AAA010101AAA', 'BIAC810820TH2', '2012-02-17 18:52:46', 'A', '361', '2200.0000', null, null, '2200.0000', null);
 
 -- ----------------------------
 -- Table structure for `fos_user`

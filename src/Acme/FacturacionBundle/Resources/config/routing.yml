@@ -2,6 +2,10 @@ AcmeFacturacionBundle_homepage:
     pattern:  /factura
     defaults: { _controller: AcmeFacturacionBundle:Default:index }
 
+AcmeFacturacionBundle_verpdf:
+    pattern:  /factura/verpdf/{factura_id}/
+    defaults: { _controller: AcmeFacturacionBundle:Default:verpdf}
+
 AcmeFacturacionBundle_importar:
     pattern:  /factura/importar
     defaults: { _controller: AcmeFacturacionBundle:Default:importar}
