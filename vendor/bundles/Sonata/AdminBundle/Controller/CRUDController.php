@@ -81,7 +81,7 @@ class CRUDController extends Controller
     public function configure()
     {
         $adminCode = $this->container->get('request')->get('_sonata_admin');
-
+		
         if (!$adminCode) {
             throw new \RuntimeException(sprintf('There is no `_sonata_admin` defined for the controller `%s` and the current route `%s`', get_class($this), $this->container->get('request')->get('_route')));
         }

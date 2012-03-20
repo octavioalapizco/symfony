@@ -8,75 +8,6 @@ use Acme\FacturacionBundle\Entity\Factura;
 //use Acme\FacturacionBundle as FB;
 class DefaultController extends Controller
 {
-	public function importarAction(){
-		
-		 if (!empty($_FILES['comprobante']['name'])) {
-			$respuesta= $this->moveUploadedCert();
-			if ($respuesta===false){
-				echo "<br/>Importacion ha fallado<br/>";
-			}else{				
-				echo "<br/>¡Archivo importado ".$respuesta."!<br/>";
-				return $this->render('AcmeFacturacionBundle:Default:importar.html.twig');
-			}
-			exit;
-
-		}else{			
-			return $this->render('AcmeFacturacionBundle:Default:importar.html.twig');
-		}
-		
-	}
-	
-	private function moveUploadedCert($ruta_temp="../tmp/importaciones/"){
-      
-		//============================================================================
-		$CertfileInfo = $_FILES['comprobante'];
-		$xmlstr= file_get_contents($CertfileInfo['tmp_name']) ;		
-		$facturaObj = new \SimpleXMLElement($xmlstr);		
-		//echo "<pre>";print_r($facturaObj);echo "</pre>";exit;
-		//================ Guardar en BDD  ===========================================
-		$facturaE=new Factura();
-		$facturaE->setRfcE($facturaObj->Emisor['rfc']);
-		$facturaE->setRfcR($facturaObj->Receptor['rfc']);
-		$fecha=\DateTime::createFromFormat ( 'Y-m-d H:i:s',str_replace('T',' ',$facturaObj['fecha']) );
-		
-		$facturaE->setFechaEmision( $fecha );
-		$facturaE->setSerie($facturaObj['serie']);
-		$facturaE->setFolio($facturaObj['folio']);
-		$facturaE->setTotalAntesDimpuestos($facturaObj['subTotal']);
-		$facturaE->setTotal($facturaObj['total']);
-		switch($facturaObj['version']){
-			case "2.2":
-			case "2.0":
-				$tipo_cd="CFD";
-			break;
-			case "3.2":
-			case "3.0":
-				$tipo_cd="CFDI";
-			break;		
-		}
-		$facturaE->setTipoComprobante($tipo_cd);
-		$em = $this->getDoctrine()->getEntityManager();
-		$em->persist($facturaE);
-		$em->flush();				
-		//============================================================================		
-		$ruta="comprobantes/$tipo_cd/".$facturaObj->Emisor['rfc'].'/'.$fecha->format('y').'/'.$fecha->format('m').'/';
-		
-		@mkdir ( $ruta , $mode = 0777 , $recursive = true );
-		//==============================================
-		$CertfileInfo = $_FILES['comprobante'];
-		$tempPathFileCer = $ruta . $CertfileInfo['name'];
-		$cerTempName = $CertfileInfo['tmp_name'];
-		
-		
-		if (!move_uploaded_file($cerTempName, $tempPathFileCer)) {                
-			 throw new \Exception('Error al subir el certificado:'.$CertfileInfo['name']);
-		}
-		return  $CertfileInfo['name'];        
-    }
-	
-	private function leerXml(){
-	
-	}
 	
 	public function verpdfAction($factura_id)
     {
@@ -116,7 +47,7 @@ class DefaultController extends Controller
 		echo '<html><body style="margin: 0; padding: 0;"><object data="../../../'.$pdfName.'" type="application/pdf" width="100%"  height="100%">
 			</object></body></html>';
 		exit;
-        //return $this->render('AcmeFacturacionBundle:Default:index.html.twig', array('name' => $name));
+        //return $this->render('AcmeFacturacionBundle:Default:pdf.html.twig', array('ruta' => $ruta));
     }
 	
     public function indexAction()

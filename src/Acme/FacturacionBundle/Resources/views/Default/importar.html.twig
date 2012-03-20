@@ -1,6 +1,12 @@
-<h1>Importar Comprobante en XML</h1>
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+{% block title %}
+   Importar Comprobante en XML
+{% endblock%}
+{% block form %}
 
-<form method="POST" enctype="multipart/form-data" >
-	<input type="file" name="comprobante" />
+
+<form method="POST" enctype="multipart/form-data" action="{{ path('AcmeFacturacionBundle_importar') }}" >
+	<input type="file" name="comprobante" /><br/>
 	<input type="submit" value="importar"	/>
 </form>
+{% endblock %}
