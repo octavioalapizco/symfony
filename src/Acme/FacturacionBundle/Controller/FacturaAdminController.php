@@ -25,11 +25,7 @@ class FacturaAdminController extends Controller
 				 $this->get('session')->setFlash('sonata_flash_success', 'flash_edit_success');				
 				$object=array();
 				$this->admin->setSubject($object);
-				return $this->render('AcmeFacturacionBundle:Default:importar.html.twig',array(
-            'action' => 'edit',
-            'form'   => array(),
-            'object' => $object,
-        ));
+				return $this->render('AcmeFacturacionBundle:Default:importar.html.twig');
 			}
 			exit;
 

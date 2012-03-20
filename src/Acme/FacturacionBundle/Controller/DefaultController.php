@@ -33,16 +33,16 @@ class DefaultController extends Controller
 		$dia=$fecha->format('d');
 		$ruta="../web/comprobantes/$tipo_cd/".$factura->getRfcE().'/'.$año.'/'.$mes.'/';
 		//rfc_emisor_serie_folio_aammdd.xml
-		$filename=$factura->getRfcE().'_'.$factura->getSerie().'_'.$factura->getFolio()."_$año$mes$dia.xml";
+		$filename=$factura->getRfcE().'_'.$factura->getSerie().'_'.$factura->getFolio()."_$año$mes$dia";
 		//============================================================================
-		$xmlstr= file_get_contents($ruta.$filename) ;		
+		$xmlstr= file_get_contents($ruta.$filename.'.xml') ;		
 		$facturaObj = new \SimpleXMLElement($xmlstr);		
 		//echo "<pre>";print_r($facturaObj);echo "</pre>";exit;
 		//============================================================================
 		$clasName='Acme\FacturacionBundle\FacturaPdf';
 		
 		$pdf = new $clasName('P','mm','letter');
-		$pdfName=$filename;	
+		$pdfName=$filename.'.pdf';	
 		$pdf->generarPdf($facturaObj,$pdfName);
 		echo '<html><body style="margin: 0; padding: 0;"><object data="../../../'.$pdfName.'" type="application/pdf" width="100%"  height="100%">
 			</object></body></html>';
