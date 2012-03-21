@@ -1,5 +1,5 @@
 <?php
-namespace Acme\FacturacionBundle;
+namespace Acme\FacturacionBundle\Resources\views_pdf;
 use fpdf;
 class FacturaPdf extends fpdf\FPDF{
 	var  $formato=false;
