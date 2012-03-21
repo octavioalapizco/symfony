@@ -37,8 +37,7 @@ class FacturaPdf extends fpdf\FPDF{
 		$this->addY(5);//$y=this->getY(); $this->setY($y+5);
 		$this->setX(167);
 		$this->Cell(40,3,'Efectos fiscales al pago',0,1);
-		$this->imprimeEncabezados();
-		
+		$this->imprimeEncabezados();		
 	}
 	function footer(){
 		$this->setY($this->yFooter);
