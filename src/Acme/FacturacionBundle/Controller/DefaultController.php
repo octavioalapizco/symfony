@@ -39,12 +39,12 @@ class DefaultController extends Controller
 		$facturaObj = new \SimpleXMLElement($xmlstr);		
 		//echo "<pre>";print_r($facturaObj);echo "</pre>";exit;
 		//============================================================================
-		$clasName='Acme\FacturacionBundle\FacturaPdf';
+		$clasName='Acme\FacturacionBundle\Resources\views_pdf\FacturaPdf';
 		
 		$pdf = new $clasName('P','mm','letter');
-		$pdfName=$filename.'.pdf';	
+		$pdfName='tmp/'.$filename.'.pdf';	
 		$pdf->generarPdf($facturaObj,$pdfName);
-		echo '<html><body style="margin: 0; padding: 0;"><object data="../../../'.$pdfName.'" type="application/pdf" width="100%"  height="100%">
+		echo '<html><body style="margin: 0; padding: 0;"><object data="/'.$pdfName.'" type="application/pdf" width="100%"  height="100%">
 			</object></body></html>';
 		exit;
         //return $this->render('AcmeFacturacionBundle:Default:pdf.html.twig', array('ruta' => $ruta));
