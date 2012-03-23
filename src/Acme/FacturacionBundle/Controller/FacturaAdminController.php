@@ -14,15 +14,21 @@ class FacturaAdminController extends Controller
      * @param  $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
+	function validarAction(){
+	
+	}
+	
     public function importarAction($id = null)
     {
 		 if (!empty($_FILES['comprobante']['name'])) {
 			$respuesta= $this->moveUploadedCert();
+
 			if ($respuesta===false){
 				//echo "<br/>Importacion ha fallado<br/>";
 				$this->get('session')->setFlash('sonata_flash_error', 'flash_edit_error');
 			}else{				
-				 $this->get('session')->setFlash('sonata_flash_success', 'flash_edit_success');				
+				 $this->get('session')->setFlash('sonata_flash_success', 'flash_edit_success');		
+					
 				$object=array();
 				$this->admin->setSubject($object);
 				return $this->render('AcmeFacturacionBundle:Default:importar.html.twig');
@@ -94,6 +100,48 @@ class FacturaAdminController extends Controller
         ));
     }
 	
+	public function validate($xml_realpath) {
+		
+		$domXml=new \DOMDocument();
+		$domXml->load($xml_realpath);
+		$dtd_realpath='../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
+		$valido=@$domXml->schemaValidate($dtd_realpath);
+		if ($valido){
+			echo "valido";
+		}else{
+			echo ":( invalido ";
+			print_r($domXml);
+		}
+		exit;
+		// Inject DTD inside DOCTYPE line:
+		
+		$dtd_lines = file($dtd_realpath);
+
+		$new_lines = array();
+		foreach ($xml_lines as $x) {
+			// Assume DOCTYPE SYSTEM "blah blah" format:
+			if (preg_match('/DOCTYPE/', $x)) {
+				$y = preg_replace('/SYSTEM "(.*)"/', " [\n" . implode("\n", $dtd_lines) . "\n]", $x);
+				$new_lines[] = $y;
+			} else {
+				$new_lines[] = $x;
+			}
+		}
+		$doc->loadXML(implode("\n", $new_lines));
+		
+		// Enable user error handling
+		libxml_use_internal_errors(true);
+		if (@$doc->validate()) {
+			echo "Valid!\n";
+		} else {
+			echo "Not valid:\n";
+			$errors = libxml_get_errors();
+			foreach ($errors as $error) {
+				print_r($error, true);
+			}
+		}
+	}
+	
 	private function moveUploadedCert($ruta_temp="../tmp/importaciones/"){
       
 		//============================================================================
@@ -101,6 +149,10 @@ class FacturaAdminController extends Controller
 		$xmlstr= file_get_contents($CertfileInfo['tmp_name']) ;		
 		$facturaObj = new \SimpleXMLElement($xmlstr);		
 		//echo "<pre>";print_r($facturaObj);echo "</pre>";exit;
+		//================ VALIDAR CONTRA EL DTD  ===========================================
+				
+		$this->validate($_FILES['comprobante']['tmp_name']);
+		
 		//================ Guardar en BDD  ===========================================
 		$facturaE=new Factura();
 		$facturaE->setRfcE($facturaObj->Emisor['rfc']);
@@ -139,7 +191,11 @@ class FacturaAdminController extends Controller
 		if (!move_uploaded_file($cerTempName, $tempPathFileCer)) {                
 			  throw new NotFoundHttpException(sprintf('No pude morver el archivo'));
 		}
-		return  $CertfileInfo['name'];        
+
+		return  array(
+			'fullpath'	=>$ruta . $CertfileInfo['name'],
+			'name'		=>$CertfileInfo['name']
+		);
     }
    
 }
