@@ -1,0 +1,15 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+{% block notice %}
+<div class="alert-message error">Errores en la estructura del xml</div>   
+{% endblock%}
+
+{% block title %}
+{% endblock%}
+
+{% block content %}
+
+{% for error in errores %}
+    {{ error|raw }}
+{% endfor %}
+
+{% endblock %}

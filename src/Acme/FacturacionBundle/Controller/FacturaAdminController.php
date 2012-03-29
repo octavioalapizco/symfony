@@ -17,6 +17,37 @@ class FacturaAdminController extends Controller
 	function validarAction(){
 	
 	}
+	function libxml_display_error($error) { 
+		$return = "<br/>\n"; 
+		switch ($error->level) { 
+			case LIBXML_ERR_WARNING: 
+			$return .= "<b>Warning $error->code</b>: "; 
+			break; 
+			case LIBXML_ERR_ERROR: 
+			$return .= "<b>Error $error->code</b>: "; 
+			break; 
+			case LIBXML_ERR_FATAL: 
+			$return .= "<b>Fatal Error $error->code</b>: "; 
+			break; 
+		} 
+		$return .= trim($error->message); 
+		if ($error->file) { 
+			$return .= " in <b>$error->file</b>"; 
+		} 
+		$return .= " on line <b>$error->line</b>\n"; 
+
+		return $return; 
+	} 
+
+	function libxml_display_errors() { 
+		$errors = libxml_get_errors(); 
+		$errores=array();
+		foreach ($errors as $error) { 
+			$errores[]=$this->libxml_display_error($error); 
+		} 
+		libxml_clear_errors(); 
+		return $errores;
+	}
 	
     public function importarAction($id = null)
     {
@@ -25,7 +56,13 @@ class FacturaAdminController extends Controller
 
 			if ($respuesta===false){
 				//echo "<br/>Importacion ha fallado<br/>";
-				$this->get('session')->setFlash('sonata_flash_error', 'flash_edit_error');
+				//$this->get('session')->setFlash('sonata_flash_error', 'flash_edit_error');
+				return $this->render('AcmeFacturacionBundle:Default:importar_errores.html.twig',
+					array( 
+						'errores'=>$this->libxml_display_errors() ,
+						'action' => 'importar'
+					)
+				);
 			}else{				
 				 $this->get('session')->setFlash('sonata_flash_success', 'flash_edit_success');		
 					
@@ -33,7 +70,7 @@ class FacturaAdminController extends Controller
 				$this->admin->setSubject($object);
 				return $this->render('AcmeFacturacionBundle:Default:importar.html.twig');
 			}
-			exit;
+			
 
 		}else{			
 			 // set the theme for the current Admin Form
@@ -42,16 +79,15 @@ class FacturaAdminController extends Controller
 			
 			$this->get('twig')->getExtension('form')->setTheme($view, $this->admin->getFormTheme());
 			return $this->render('AcmeFacturacionBundle:Default:importar.html.twig',array(
-            'action' => 'importar',
-            'form'   => $form,
-            'object' => array(),
-        ));
+				'action' => 'importar',
+				'form'   => $form,
+				'object' => array(),
+			));
 		}
 	
 	
 	//===========================================================================
         $id = $this->get('request')->get($this->admin->getIdParameter());
-
         $object = $this->admin->getObject($id);
 
         if (!$object) {
@@ -69,7 +105,6 @@ class FacturaAdminController extends Controller
 
         if ($this->get('request')->getMethod() == 'POST') {
             $form->bindRequest($this->get('request'));
-
             if ($form->isValid()) {
                 $this->admin->update($object);
                 $this->get('session')->setFlash('sonata_flash_success', 'flash_edit_success');
@@ -80,14 +115,12 @@ class FacturaAdminController extends Controller
                         'objectId'  => $this->admin->getNormalizedIdentifier($object)
                     ));
                 }
-
                 // redirect to edit mode
                 return $this->redirectTo($object);
             }
 
             $this->get('session')->setFlash('sonata_flash_error', 'flash_edit_error');
         }
-
         $view = $form->createView();
 
         // set the theme for the current Admin Form
@@ -101,45 +134,16 @@ class FacturaAdminController extends Controller
     }
 	
 	public function validate($xml_realpath) {
-		
+		libxml_use_internal_errors(true);
 		$domXml=new \DOMDocument();
 		$domXml->load($xml_realpath);
 		$dtd_realpath='../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
 		$valido=@$domXml->schemaValidate($dtd_realpath);
 		if ($valido){
-			echo "valido";
+			return true;
 		}else{
-			echo ":( invalido ";
-			print_r($domXml);
-		}
-		exit;
-		// Inject DTD inside DOCTYPE line:
-		
-		$dtd_lines = file($dtd_realpath);
-
-		$new_lines = array();
-		foreach ($xml_lines as $x) {
-			// Assume DOCTYPE SYSTEM "blah blah" format:
-			if (preg_match('/DOCTYPE/', $x)) {
-				$y = preg_replace('/SYSTEM "(.*)"/', " [\n" . implode("\n", $dtd_lines) . "\n]", $x);
-				$new_lines[] = $y;
-			} else {
-				$new_lines[] = $x;
-			}
-		}
-		$doc->loadXML(implode("\n", $new_lines));
-		
-		// Enable user error handling
-		libxml_use_internal_errors(true);
-		if (@$doc->validate()) {
-			echo "Valid!\n";
-		} else {
-			echo "Not valid:\n";
-			$errors = libxml_get_errors();
-			foreach ($errors as $error) {
-				print_r($error, true);
-			}
-		}
+			return false;
+		}				
 	}
 	
 	private function moveUploadedCert($ruta_temp="../tmp/importaciones/"){
@@ -151,7 +155,8 @@ class FacturaAdminController extends Controller
 		//echo "<pre>";print_r($facturaObj);echo "</pre>";exit;
 		//================ VALIDAR CONTRA EL DTD  ===========================================
 				
-		$this->validate($_FILES['comprobante']['tmp_name']);
+		$resp=$this->validate($_FILES['comprobante']['tmp_name']);
+		if ($resp===false) return false;
 		
 		//================ Guardar en BDD  ===========================================
 		$facturaE=new Factura();
