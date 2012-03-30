@@ -14,20 +14,63 @@ class FacturaAdminController extends Controller
      * @param  $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
+	function validarAction(){
+	
+	}
+	function libxml_display_error($error) { 
+		$return = "<br/>\n"; 
+		switch ($error->level) { 
+			case LIBXML_ERR_WARNING: 
+			$return .= "<b>Warning $error->code</b>: "; 
+			break; 
+			case LIBXML_ERR_ERROR: 
+			$return .= "<b>Error $error->code</b>: "; 
+			break; 
+			case LIBXML_ERR_FATAL: 
+			$return .= "<b>Fatal Error $error->code</b>: "; 
+			break; 
+		} 
+		$return .= trim($error->message); 
+		if ($error->file) { 
+			$return .= " in <b>$error->file</b>"; 
+		} 
+		$return .= " on line <b>$error->line</b>\n"; 
+
+		return $return; 
+	} 
+
+	function libxml_display_errors() { 
+		$errors = libxml_get_errors(); 
+		$errores=array();
+		foreach ($errors as $error) { 
+			$errores[]=$this->libxml_display_error($error); 
+		} 
+		libxml_clear_errors(); 
+		return $errores;
+	}
+	
     public function importarAction($id = null)
     {
 		 if (!empty($_FILES['comprobante']['name'])) {
 			$respuesta= $this->moveUploadedCert();
+
 			if ($respuesta===false){
 				//echo "<br/>Importacion ha fallado<br/>";
-				$this->get('session')->setFlash('sonata_flash_error', 'flash_edit_error');
+				//$this->get('session')->setFlash('sonata_flash_error', 'flash_edit_error');
+				return $this->render('AcmeFacturacionBundle:Default:importar_errores.html.twig',
+					array( 
+						'errores'=>$this->libxml_display_errors() ,
+						'action' => 'importar'
+					)
+				);
 			}else{				
-				 $this->get('session')->setFlash('sonata_flash_success', 'flash_edit_success');				
+				 $this->get('session')->setFlash('sonata_flash_success', 'flash_edit_success');		
+					
 				$object=array();
 				$this->admin->setSubject($object);
 				return $this->render('AcmeFacturacionBundle:Default:importar.html.twig');
 			}
-			exit;
+			
 
 		}else{			
 			 // set the theme for the current Admin Form
@@ -36,16 +79,15 @@ class FacturaAdminController extends Controller
 			
 			$this->get('twig')->getExtension('form')->setTheme($view, $this->admin->getFormTheme());
 			return $this->render('AcmeFacturacionBundle:Default:importar.html.twig',array(
-            'action' => 'importar',
-            'form'   => $form,
-            'object' => array(),
-        ));
+				'action' => 'importar',
+				'form'   => $form,
+				'object' => array(),
+			));
 		}
 	
 	
 	//===========================================================================
         $id = $this->get('request')->get($this->admin->getIdParameter());
-
         $object = $this->admin->getObject($id);
 
         if (!$object) {
@@ -63,7 +105,6 @@ class FacturaAdminController extends Controller
 
         if ($this->get('request')->getMethod() == 'POST') {
             $form->bindRequest($this->get('request'));
-
             if ($form->isValid()) {
                 $this->admin->update($object);
                 $this->get('session')->setFlash('sonata_flash_success', 'flash_edit_success');
@@ -74,14 +115,12 @@ class FacturaAdminController extends Controller
                         'objectId'  => $this->admin->getNormalizedIdentifier($object)
                     ));
                 }
-
                 // redirect to edit mode
                 return $this->redirectTo($object);
             }
 
             $this->get('session')->setFlash('sonata_flash_error', 'flash_edit_error');
         }
-
         $view = $form->createView();
 
         // set the theme for the current Admin Form
@@ -94,6 +133,19 @@ class FacturaAdminController extends Controller
         ));
     }
 	
+	public function validate($xml_realpath) {
+		libxml_use_internal_errors(true);
+		$domXml=new \DOMDocument();
+		$domXml->load($xml_realpath);
+		$dtd_realpath='../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
+		$valido=@$domXml->schemaValidate($dtd_realpath);
+		if ($valido){
+			return true;
+		}else{
+			return false;
+		}				
+	}
+	
 	private function moveUploadedCert($ruta_temp="../tmp/importaciones/"){
       
 		//============================================================================
@@ -101,6 +153,11 @@ class FacturaAdminController extends Controller
 		$xmlstr= file_get_contents($CertfileInfo['tmp_name']) ;		
 		$facturaObj = new \SimpleXMLElement($xmlstr);		
 		//echo "<pre>";print_r($facturaObj);echo "</pre>";exit;
+		//================ VALIDAR CONTRA EL DTD  ===========================================
+				
+		$resp=$this->validate($_FILES['comprobante']['tmp_name']);
+		if ($resp===false) return false;
+		
 		//================ Guardar en BDD  ===========================================
 		$facturaE=new Factura();
 		$facturaE->setRfcE($facturaObj->Emisor['rfc']);
@@ -139,7 +196,11 @@ class FacturaAdminController extends Controller
 		if (!move_uploaded_file($cerTempName, $tempPathFileCer)) {                
 			  throw new NotFoundHttpException(sprintf('No pude morver el archivo'));
 		}
-		return  $CertfileInfo['name'];        
+
+		return  array(
+			'fullpath'	=>$ruta . $CertfileInfo['name'],
+			'name'		=>$CertfileInfo['name']
+		);
     }
    
 }
