@@ -1,3 +1,4 @@
+
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
@@ -77,7 +78,9 @@ sonata_block:
 # app/config/config.yml
 sonata_admin:
     dashboard:
-        
+    title: Expresso!
+    templates:
+              layout:  AcmeFacturacionBundle::standard_layout.html.twig
 services:
    acme.blog.admin.blog:
       class: Acme\BlogBundle\Admin\BlogAdmin
