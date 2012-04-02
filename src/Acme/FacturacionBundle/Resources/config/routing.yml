@@ -1,3 +1,7 @@
+AcmeFacturacionBundle_validar:
+    pattern:  /facturacion/validar
+    defaults: { _controller: AcmeFacturacionBundle:Default:validar }
+
 AcmeFacturacionBundle_homepage:
     pattern:  /factura
     defaults: { _controller: AcmeFacturacionBundle:Default:index }

@@ -9,6 +9,11 @@ use Acme\FacturacionBundle\Entity\Factura;
 class DefaultController extends Controller
 {
 	
+	public function validarAction(){
+		//return  new Response('response content');
+	
+		return $this->render('AcmeFacturacionBundle:default:validar.html.twig');
+	}
 	public function verpdfAction($factura_id)
     {
 		//====================Trae los datos de la bdd ===============================

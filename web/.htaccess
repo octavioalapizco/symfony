@@ -1,5 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+	RewriteRule ^facturacion.html /bussiness/facturacion.html [NC,L] # Handle requests for "pet-care	
 	RewriteRule ^Productos.html /bussiness/Productos.html [NC,L] # Handle requests for "pet-care	
 	RewriteRule ^index.html /bussiness/index.html [NC,L] # Handle requests for "pet-care	
 	RewriteRule ^Contacts.html /bussiness/Contacts.html [NC,L] # Handle requests for "pet-care	
