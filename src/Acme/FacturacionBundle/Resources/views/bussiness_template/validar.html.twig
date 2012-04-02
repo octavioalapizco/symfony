@@ -1,0 +1,36 @@
+{% extends 'AcmeFacturacionBundle:bussiness_template:_layout.html.twig' %}
+{% block header %}
+
+<div class="text1"></div>
+<div class="text2">Validar comprobante digital</div>			
+<br>
+				<form >
+					<div class="fileinputs">
+						<input type="file" class="file" />
+						<div class="fakefile">
+							<input />
+							<img src="{{ asset('/bussiness/images/input_bg.gif') }}" />
+						</div>
+						</div>
+					<input type="file" value="Seleccionar">
+					<div class="wrapper">
+								<div class="bg"><input type="text" class="input"></div>Seleccionar archivo:<br>
+								<div class="bg"><input type="file" class="input"></div>Seleccionar archivo:<br>
+							</div>
+					<br>
+					<br>
+
+					<a href="facturacion/validar" class="button" style="height:65px;"><span><span>Validar</span></span></a>
+					<br>
+				</form>
+{% endblock %}
+
+{% block modulos %}
+{% endblock %}
+
+{% block noticia %}
+						<h2>Facturacion Expresso</h2>
+						
+						
+							<a href="#">Contribuir</a>
+						{% endblock %}

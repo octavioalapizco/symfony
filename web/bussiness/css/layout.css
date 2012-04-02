@@ -17,3 +17,23 @@
 #page5 .col1 .col2 {width:80px;letter-spacing:-1px}
 #page5 .col1 .col3 {width:140px}
 /* page6 */
+
+div.fileinputs {
+	position: relative;
+}
+
+div.fakefile {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+
+input.file {
+	position: relative;
+	text-align: right;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+}
