@@ -4,15 +4,30 @@ namespace Acme\FacturacionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\FacturacionBundle\Entity\Factura;
-
+use Symfony\Component\HttpFoundation\Request;
 //use Acme\FacturacionBundle as FB;
 class DefaultController extends Controller
 {
 	
-	public function validarAction(){
+	public function validarAction(Request $request){
+		return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig');
 		//return  new Response('response content');
-	
-		return $this->render('AcmeFacturacionBundle:default:validar.html.twig');
+	$defaultData = array('message' => 'Type your message here');
+    $form = $this->createFormBuilder($defaultData)
+        ->add('name', 'text')
+        ->add('email', 'email')
+        ->add('message', 'textarea')
+        ->getForm();
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+
+            // data is an array with "name", "email", and "message" keys
+            $data = $form->getData();
+        }
+
+    // ... render the form
+		return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig',array('form' => $form->createView()));
 	}
 	public function verpdfAction($factura_id)
     {
