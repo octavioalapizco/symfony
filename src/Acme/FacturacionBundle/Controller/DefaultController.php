@@ -9,8 +9,62 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
 	
+	function libxml_display_error($error) { 
+		$return = "<br/>\n"; 
+		switch ($error->level) { 
+			case LIBXML_ERR_WARNING: 
+			$return .= "<b>Warning $error->code</b>: "; 
+			break; 
+			case LIBXML_ERR_ERROR: 
+			$return .= "<b>Error $error->code</b>: "; 
+			break; 
+			case LIBXML_ERR_FATAL: 
+			$return .= "<b>Fatal Error $error->code</b>: "; 
+			break; 
+		} 
+		$return .= trim($error->message); 
+		if ($error->file) { 
+			$return .= " in <b>$error->file</b>"; 
+		} 
+		$return .= " on line <b>$error->line</b>\n"; 
+
+		return $return; 
+	} 
+	function libxml_display_errors() { 
+		$errors = libxml_get_errors(); 
+		$errores=array();
+		foreach ($errors as $error) { 
+			$errores[]=$this->libxml_display_error($error); 
+		} 
+		libxml_clear_errors(); 
+		return $errores;
+	}
+	
+	public function validar() {
+		$xml_realpath=$_FILES['comprobante']['tmp_name'];
+		libxml_use_internal_errors(true);
+		$domXml=new \DOMDocument();
+		$domXml->load($xml_realpath);
+		$dtd_realpath='../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
+		$valido=@$domXml->schemaValidate($dtd_realpath);
+		if ($valido){
+			return true;
+		}else{
+			return false;
+		}				
+	}
 	public function validarAction(Request $request){
-		return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig');
+		if (empty($_FILES['comprobante']['name'])) {
+			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig');
+		}else{
+			$respuesta=$this->validar();
+			if ($respuesta===false){
+				$errores=$this->libxml_display_errors();
+				print_r($errores);
+			}else{
+				echo ("xml válido");
+			}
+		}
 		//return  new Response('response content');
 	$defaultData = array('message' => 'Type your message here');
     $form = $this->createFormBuilder($defaultData)

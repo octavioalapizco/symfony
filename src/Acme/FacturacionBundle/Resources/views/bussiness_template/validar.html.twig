@@ -1,33 +1,32 @@
 {% extends 'AcmeFacturacionBundle:bussiness_template:_layout.html.twig' %}
 {% block header %}
-
-<div class="text1"></div>
-<div class="text2">Validar comprobante digital</div>			
-<br>
-				<form >
-					<div class="fileinputs">
-						<input type="file" class="file" />
-						<div class="fakefile">
-							<input />
-							
-							<img src="{{ asset('/bussiness/images/file-explorer.png') }}" style="margin-top:-4px;" />
-						</div>
-					</div>
-					
-					<br>
-					<br>
-
-					<a href="facturacion/validar" class="button" style="height:65px;"><span><span>Validar</span></span></a>
-					<br>
-				</form>
+	<div class="text1"></div>
+	<div class="text2">Validar comprobante digital</div>			
+	<br>
+	<form name="myform" action="{{ path('AcmeFacturacionBundle_validar')}}" method="POST" enctype="multipart/form-data">
+		<div class="fileinputs">
+			<input name="comprobante" type="file" class="file" />
+			<div class="fakefile">
+				<input />			
+				<img src="{{ asset('/bussiness/images/file-explorer.png') }}" style="margin-top:-4px;" />
+			</div>
+		</div>	
+		<br>
+		<br>
+		<a href="javascript: submitform()" class="button" style="height:65px;"><span><span>Validar</span></span></a>
+		<br>					
+	</form>
+	<script type="text/javascript">
+	function submitform(){
+	  document.myform.submit();
+	}
+	</script>
 {% endblock %}
 
 {% block modulos %}
 {% endblock %}
 
 {% block noticia %}
-						<h2>Facturacion Expresso</h2>
-						
-						
-							<a href="#">Contribuir</a>
-						{% endblock %}
+	<h2>Facturacion Expresso</h2>
+	<a href="#">Contribuir</a>
+{% endblock %}
