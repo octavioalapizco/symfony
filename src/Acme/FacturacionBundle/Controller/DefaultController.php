@@ -124,7 +124,13 @@ class DefaultController extends Controller
         //return $this->render('AcmeFacturacionBundle:Default:pdf.html.twig', array('ruta' => $ruta));
     }
 	
-    public function indexAction()
+	public function indexAction()
+    {
+		
+        return $this->render('AcmeFacturacionBundle:Bussiness_template:home.html.twig');
+    }
+	
+    /*public function indexAction()
     {
 		//============================================================================
 		$xmlstr= file_get_contents('../src/Acme/FacturacionBundle/example.xml') ;		
@@ -140,7 +146,7 @@ class DefaultController extends Controller
 			</object></body></html>';
 		exit;
         //return $this->render('AcmeFacturacionBundle:Default:index.html.twig', array('name' => $name));
-    }
+    }*/
 	
 	public function templateAction(){
 		return $this->render('AcmeFacturacionBundle:templates:template.html.twig');

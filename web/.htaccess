@@ -6,7 +6,7 @@
 	RewriteRule ^Contacts.html /bussiness/Contacts.html [NC,L] # Handle requests for "pet-care	
 	RewriteRule ^About.html /bussiness/About.html [NC,L] # Handle requests for "pet-care	
 	RewriteRule ^Sitemap.html /bussiness/Sitemap.html [NC,L] # Handle requests for "pet-care		
-	RewriteRule ^/?$ /bussiness/index.html [NC,L] # Handle requests for "pet-care		
+	
 	RewriteRule ^js/?$ /bussiness/js/ [NC,L] # Handle requests for "pet-care	
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ app.php [QSA,L]
