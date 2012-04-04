@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Home</title>
-<meta charset="utf-8">
-
-<!--<img src="{{ asset('images/logo.png') }}" alt="Symfony!" />-->
- <link href="{{ asset('/bussiness/css/reset.css') }}" type="text/css" rel="stylesheet" media="all"/>
-<link rel="stylesheet" href="{{ asset('/bussiness/css/layout.css') }}" type="text/css" media="all">
-<link rel="stylesheet" href="{{ asset('/bussiness/css/style.css') }}"  type="text/css" media="all">
-<script type="text/javascript" src="{{ asset('/bussiness/js/jquery-1.4.2.js') }} " ></script>
-<script type="text/javascript" src="{{ asset('/bussiness/js/cufon-yui.js') }} "></script>
-<script type="text/javascript" src="{{ asset('/bussiness/js/cufon-replace.js') }} "></script>	
-<script type="text/javascript" src="{{ asset('/bussiness/js/Myriad_Pro_300.font.js') }}"></script>
-<!--[if lt IE 9]>
-	<script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
-	<script type="text/javascript" src="js/html5.js"></script>
-<![endif]-->
-
+	<title>Home</title>
+	<meta charset="utf-8">
+	<!--<img src="{{ asset('images/logo.png') }}" alt="Symfony!" />-->
+	<link href="{{ asset('/bussiness/css/reset.css') }}" type="text/css" rel="stylesheet" media="all"/>
+	<link rel="stylesheet" href="{{ asset('/bussiness/css/layout.css') }}" type="text/css" media="all">
+	<link rel="stylesheet" href="{{ asset('/bussiness/css/style.css') }}"  type="text/css" media="all">
+	<script type="text/javascript" src="{{ asset('/bussiness/js/jquery-1.4.2.js') }} " ></script>
+	<script type="text/javascript" src="{{ asset('/bussiness/js/cufon-yui.js') }} "></script>
+	<script type="text/javascript" src="{{ asset('/bussiness/js/cufon-replace.js') }} "></script>	
+	<script type="text/javascript" src="{{ asset('/bussiness/js/Myriad_Pro_300.font.js') }}"></script>
+	<!--[if lt IE 9]>
+		<script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
+		<script type="text/javascript" src="js/html5.js"></script>
+	<![endif]-->
 </head>
 <body id="page1">
 <div class="body3" style="background: none;"><div class="body3_img"></div></div>
@@ -36,18 +34,25 @@
 					<li					><a href=#">Noticias						 </a></li>				
 					<li style="background:none;"><a href=#">Sistema					 </a></li>
 				</ul>
-			</nav>
+			</nav>			
+			
 			<div class="wrapper">
+					
 				{% block header %}
-				<div class="text1">Servicios de facturaci&oacute;n</div>
+				<div class="text1">Servicios de facturaci&oacute;n</div>				
 				<div class="text2">En la nube, instalable, ensamblable!</div>
+					{% if app.session.hasFlash('notice') %}
+						<div class="flash-notice">
+							{{ app.session.flash('notice') }}
+						</div>
+					{% endif %}
+					
 				<ul id="icons">
 					<li><span>Siguenos!</span></li>
 					<li><a href="#"><img src="{{ asset('/bussiness/images/icon1.jpg') }}" alt=""></a></li>
 					<li><a href="#"><img src="{{ asset('/bussiness/images/icon2.jpg') }}" alt=""></a></li>
 					<li><a href="#"><img src="{{ asset('/bussiness/images/icon3.jpg') }}" alt=""></a></li>
-				</ul>
-			</div><div class="">More <a href="http://www.templatemonster.com/">Website Templates</a> at TemplateMonster.com!</div>
+				</ul>			
 				{% endblock %}
 		</header>
 <!-- / header -->
