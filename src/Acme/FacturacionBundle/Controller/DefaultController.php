@@ -46,7 +46,7 @@ class DefaultController extends Controller
 		return $errores;
 	}
 	
-	public function validar() {
+	public function validarEstructura() {
 		$xml_realpath=$_FILES['comprobante']['tmp_name'];
 		libxml_use_internal_errors(true);
 		$domXml=new \DOMDocument();
@@ -70,25 +70,36 @@ class DefaultController extends Controller
 		//==================================================	
 		//
 		//==================================================	
-		$respuesta=$this->validar();
+		$respuesta=$this->validarEstructura();
 		if ($respuesta===false){
 			$errores=$this->libxml_display_errors();			
 			
 			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig', 
 				array(
 					'errores' => $errores,			
-					'error' => "El comprobante contiene errores!"	
+					'error' => "El comprobante contiene errores en su estructura!"	
 				)
 			);
 		}else{			
+			$xsl='../src/Acme/FacturacionBundle/Resources/dtds/cadenaoriginal_2_0.xslt.xml';
+			$cadena=$this->transform($_FILES['comprobante']['tmp_name'],$xsl);
 			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig',array(					
-					'notice' => "El comprobante es valido!"	
+					'notice' => "El comprobante es valido!".$cadena	
 				));
 		}
 		
 		
 		
 		
+	}
+	function transform($xmlPath, $xslPath) {
+	   $xslt = new \XSLTProcessor();
+		$xmlstr= file_get_contents($xslPath) ;		
+		$xsl = new \SimpleXMLElement($xmlstr);
+		$xmlFile=file_get_contents($xmlPath) ;		
+		$xml = new \SimpleXMLElement($xmlFile);
+	   $xslt->importStylesheet($xsl);
+	   return $xslt->transformToXml($xml);
 	}
 	public function verpdfAction($factura_id)
     {
