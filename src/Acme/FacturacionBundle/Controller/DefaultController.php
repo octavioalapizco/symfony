@@ -10,25 +10,31 @@ class DefaultController extends Controller
 {
 	
 	function libxml_display_error($error) { 
-		$return = "<br/>\n"; 
+		
 		switch ($error->level) { 
 			case LIBXML_ERR_WARNING: 
-			$return .= "<b>Warning $error->code</b>: "; 
+				$tipo='WARNING';
 			break; 
 			case LIBXML_ERR_ERROR: 
-			$return .= "<b>Error $error->code</b>: "; 
+				$tipo='ERROR';
 			break; 
 			case LIBXML_ERR_FATAL: 
-			$return .= "<b>Fatal Error $error->code</b>: "; 
+				$tipo='FATAL';
 			break; 
 		} 
-		$return .= trim($error->message); 
+		
+		$error_Atribs=array(
+			'tipo'	 =>$tipo,
+			'code'	 =>$error->code,
+			'message'=>$error->message,
+			'line'	 =>$error->line
+		);
+				
 		if ($error->file) { 
-			$return .= " in <b>$error->file</b>"; 
+			$error_Atribs['file']=$error->file;		
 		} 
-		$return .= " on line <b>$error->line</b>\n"; 
-
-		return $return; 
+		
+		return $error_Atribs; 
 	} 
 	function libxml_display_errors() { 
 		$errors = libxml_get_errors(); 
@@ -53,35 +59,36 @@ class DefaultController extends Controller
 			return false;
 		}				
 	}
+	
 	public function validarAction(Request $request){
-		if (empty($_FILES['comprobante']['name'])) {
-			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig');
-		}else{
-			$respuesta=$this->validar();
-			if ($respuesta===false){
-				$errores=$this->libxml_display_errors();
-				print_r($errores);
-			}else{
-				echo ("xml válido");
-			}
+		//==================================================
+		//
+		//==================================================
+		if ( empty($_FILES['comprobante']['name']) ) {			
+			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig' );
 		}
-		//return  new Response('response content');
-	$defaultData = array('message' => 'Type your message here');
-    $form = $this->createFormBuilder($defaultData)
-        ->add('name', 'text')
-        ->add('email', 'email')
-        ->add('message', 'textarea')
-        ->getForm();
-
-        if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
-
-            // data is an array with "name", "email", and "message" keys
-            $data = $form->getData();
-        }
-
-    // ... render the form
-		return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig',array('form' => $form->createView()));
+		//==================================================	
+		//
+		//==================================================	
+		$respuesta=$this->validar();
+		if ($respuesta===false){
+			$errores=$this->libxml_display_errors();			
+			
+			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig', 
+				array(
+					'errores' => $errores,			
+					'error' => "El comprobante contiene errores!"	
+				)
+			);
+		}else{			
+			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig',array(					
+					'notice' => "El comprobante es valido!"	
+				));
+		}
+		
+		
+		
+		
 	}
 	public function verpdfAction($factura_id)
     {

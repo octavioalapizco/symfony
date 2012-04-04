@@ -1,26 +1,51 @@
 {% extends 'AcmeFacturacionBundle:bussiness_template:_layout.html.twig' %}
 {% block header %}
-	<div class="text1"></div>
-	<div class="text2">Validar comprobante digital</div>			
-	<br>
-	<form name="myform" action="{{ path('AcmeFacturacionBundle_validar')}}" method="POST" enctype="multipart/form-data">
-		<div class="fileinputs">
-			<input name="comprobante" type="file" class="file" />
-			<div class="fakefile">
-				<input />			
-				<img src="{{ asset('/bussiness/images/file-explorer.png') }}" style="margin-top:-4px;" />
+	<!--=========	MENSAJES DE SESSION	============	-->
+	
+	<!--========= FIN DE MENSAJES DE SESSION ==========	-->
+	<div>
+		<div class="text1"></div>				
+		<div class="text2">Validar comprobante digital</div>					
+		<br>
+		<form name="myform" action="{{ path('AcmeFacturacionBundle_validar')}}" method="POST" enctype="multipart/form-data" style="width:200px;float:left;margin-left:245px;">
+			<div class="fileinputs">
+				<input name="comprobante" type="file" class="file" />
+				<div class="fakefile">
+					<input />			
+					<img src="{{ asset('/bussiness/images/file-explorer.png') }}" style="margin-top:-4px;" />
+				</div>
+			</div>	
+			<br>
+			<br>
+			<a href="javascript: submitform()" class="button" style="height:65px;margin-left:107px;" ><span><span>Validar</span></span></a>
+			<br>					
+		</form>
+		{% if notice is defined %}
+			<div class="flash-notice" style="float:left;">
+				{{ notice }}
 			</div>
-		</div>	
-		<br>
-		<br>
-		<a href="javascript: submitform()" class="button" style="height:65px;"><span><span>Validar</span></span></a>
-		<br>					
-	</form>
+		{% endif %}
+		
+		{% if error is defined %}
+			<div class="flash-error" style="float:left;color:red;">
+				{{ error }}
+			</div>
+		{% endif %}
+	</div>
 	<script type="text/javascript">
-	function submitform(){
-	  document.myform.submit();
-	}
+		function submitform(){
+		  document.myform.submit();
+		}
 	</script>
+	{% if errores is defined %}
+		<div style="clear:both;margin-top:-10px;margin-left:105px;">
+			<h1 style="margin-left:-142px;">Lista de errores</h1><br>
+		{% for error in errores %}			 			 
+			 {{ error.message	 }}<br>
+			 <br>
+		{% endfor %}
+		</div>
+	{% endif %}
 {% endblock %}
 
 {% block modulos %}
