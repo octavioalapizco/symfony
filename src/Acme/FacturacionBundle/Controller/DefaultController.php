@@ -83,8 +83,10 @@ class DefaultController extends Controller
 		}else{			
 			$xsl='../src/Acme/FacturacionBundle/Resources/dtds/cadenaoriginal_2_0.xslt.xml';
 			$cadena=$this->transform($_FILES['comprobante']['tmp_name'],$xsl);
+			
 			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig',array(					
-					'notice' => "El comprobante es valido!".$cadena	
+					'notice' => "El comprobante es valido!",
+					'cadena' => $cadena,					
 				));
 		}
 		

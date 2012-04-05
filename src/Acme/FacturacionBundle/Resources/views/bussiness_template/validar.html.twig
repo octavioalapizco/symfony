@@ -46,6 +46,13 @@
 		{% endfor %}
 		</div>
 	{% endif %}
+	{% if cadena is defined %}
+		<div style="clear:both;margin-top:-10px;margin-left:105px;">
+			<h1 style="margin-left:-142px;">Cadena Original:</h1><br>		
+			 {{ cadena	 }}<br>
+			 <br>		
+		</div>
+	{% endif %}
 {% endblock %}
 
 {% block modulos %}
