@@ -27,7 +27,8 @@ class DefaultController extends Controller
 			'tipo'	 =>$tipo,
 			'code'	 =>$error->code,
 			'message'=>$error->message,
-			'line'	 =>$error->line
+			'line'	 =>$error->line,
+			'column'	 =>$error->column
 		);
 				
 		if ($error->file) { 
@@ -36,6 +37,22 @@ class DefaultController extends Controller
 		
 		return $error_Atribs; 
 	} 
+	
+	function validarCertificado(){
+		/*
+		
+		1.-Obtiene el certificado 
+			a) ubicado dentro del xml.
+			b) desde un archivo. 
+		2.-Con la cadena original y el certificado se genera el sello
+		3.-Se compara el sello del xml y el generado por el sistema, 
+			a).-si son iguales entonces el xml es válido, 
+			b).-si son diferentes entonces el sello es inválido. 
+					
+		*/
+		return true;
+	}
+	
 	function libxml_display_errors() { 
 		$errors = libxml_get_errors(); 
 		$errores=array();
@@ -71,6 +88,10 @@ class DefaultController extends Controller
 		//
 		//==================================================	
 		$respuesta=$this->validarEstructura();
+		//$selloValido= $this->validarSello();
+		//$vigente=$this->validarVigencia();
+		//$foliosSat=$this->verificarFolios();
+		
 		if ($respuesta===false){
 			$errores=$this->libxml_display_errors();			
 			
@@ -81,31 +102,39 @@ class DefaultController extends Controller
 				)
 			);
 		}else{			
-			$xsl='../src/Acme/FacturacionBundle/Resources/dtds/cadenaoriginal_2_0.xslt.xml';
+			$xsl='cfd/cadenaoriginal_2_0.xslt.xml';
+			$cadena="";
 			$cadena=$this->transform($_FILES['comprobante']['tmp_name'],$xsl);
 			
 			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig',array(					
 					'notice' => "El comprobante es valido!",
-					'cadena' => $cadena,					
+					'cadena' => $cadena,	
+					'valido' => true
 				));
-		}
-		
-		
-		
-		
+		}		
 	}
+	
 	function transform($xmlPath, $xslPath) {
-	   $xslt = new \XSLTProcessor();
+		
+		//Abrir xslt
 		$xmlstr= file_get_contents($xslPath) ;		
 		$xsl = new \SimpleXMLElement($xmlstr);
+		
+		//Abrir xml
 		$xmlFile=file_get_contents($xmlPath) ;		
 		$xml = new \SimpleXMLElement($xmlFile);
-	   $xslt->importStylesheet($xsl);
-	   return $xslt->transformToXml($xml);
+		
+		//transformar
+		$xslt = new \XSLTProcessor();
+		$xslt->importStylesheet($xsl);
+		//$transformacion="TEST";
+		$transformacion=$xslt->transformToXml($xml);
+		
+		return $transformacion;
 	}
 	public function verpdfAction($factura_id)
     {
-		//====================Trae los datos de la bdd ===============================
+		//==============        Trae los datos de la bdd           =======================
 		//factura_id
 		$facturas = $this->getDoctrine()->getEntityManager()
             ->createQuery('SELECT f FROM AcmeFacturacionBundle:Factura f WHERE f.id=:factura_id')
