@@ -4,78 +4,13 @@ namespace Acme\FacturacionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\FacturacionBundle\Entity\Factura;
+use Acme\FacturacionBundle\Clases\Validador;
 use Symfony\Component\HttpFoundation\Request;
 //use Acme\FacturacionBundle as FB;
 class DefaultController extends Controller
 {
 	
-	function libxml_display_error($error) { 
-		
-		switch ($error->level) { 
-			case LIBXML_ERR_WARNING: 
-				$tipo='WARNING';
-			break; 
-			case LIBXML_ERR_ERROR: 
-				$tipo='ERROR';
-			break; 
-			case LIBXML_ERR_FATAL: 
-				$tipo='FATAL';
-			break; 
-		} 
-		
-		$error_Atribs=array(
-			'tipo'	 =>$tipo,
-			'code'	 =>$error->code,
-			'message'=>$error->message,
-			'line'	 =>$error->line,
-			'column'	 =>$error->column
-		);
-				
-		if ($error->file) { 
-			$error_Atribs['file']=$error->file;		
-		} 
-		
-		return $error_Atribs; 
-	} 
 	
-	function validarCertificado(){
-		/*
-		
-		1.-Obtiene el certificado 
-			a) ubicado dentro del xml.
-			b) desde un archivo. 
-		2.-Con la cadena original y el certificado se genera el sello
-		3.-Se compara el sello del xml y el generado por el sistema, 
-			a).-si son iguales entonces el xml es válido, 
-			b).-si son diferentes entonces el sello es inválido. 
-					
-		*/
-		return true;
-	}
-	
-	function libxml_display_errors() { 
-		$errors = libxml_get_errors(); 
-		$errores=array();
-		foreach ($errors as $error) { 
-			$errores[]=$this->libxml_display_error($error); 
-		} 
-		libxml_clear_errors(); 
-		return $errores;
-	}
-	
-	public function validarEstructura() {
-		$xml_realpath=$_FILES['comprobante']['tmp_name'];
-		libxml_use_internal_errors(true);
-		$domXml=new \DOMDocument();
-		$domXml->load($xml_realpath);
-		$dtd_realpath='../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
-		$valido=@$domXml->schemaValidate($dtd_realpath);
-		if ($valido){
-			return true;
-		}else{
-			return false;
-		}				
-	}
 	
 	public function validarAction(Request $request){
 		//==================================================
@@ -87,14 +22,15 @@ class DefaultController extends Controller
 		//==================================================	
 		//
 		//==================================================	
-		$respuesta=$this->validarEstructura();
+		$validator=new Validador();
+		$respuesta=$validator->validarEstructura($_FILES['comprobante']['tmp_name']);
 		//$selloValido= $this->validarSello();
 		//$vigente=$this->validarVigencia();
 		//$foliosSat=$this->verificarFolios();
 		
-		if ($respuesta===false){
-			$errores=$this->libxml_display_errors();			
-			
+		if ($respuesta['success']===false){
+			//$errores=$this->libxml_display_errors();			
+			$errores=array();
 			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig', 
 				array(
 					'errores' => $errores,			
@@ -102,9 +38,9 @@ class DefaultController extends Controller
 				)
 			);
 		}else{			
-			$xsl='cfd/cadenaoriginal_2_0.xslt.xml';
+			//$xsl='cfd/cadenaoriginal_2_0.xslt.xml';
 			$cadena="";
-			$cadena=$this->transform($_FILES['comprobante']['tmp_name'],$xsl);
+			//$cadena=$this->transform($_FILES['comprobante']['tmp_name'],$xsl);
 			
 			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig',array(					
 					'notice' => "El comprobante es valido!",
@@ -114,24 +50,7 @@ class DefaultController extends Controller
 		}		
 	}
 	
-	function transform($xmlPath, $xslPath) {
-		
-		//Abrir xslt
-		$xmlstr= file_get_contents($xslPath) ;		
-		$xsl = new \SimpleXMLElement($xmlstr);
-		
-		//Abrir xml
-		$xmlFile=file_get_contents($xmlPath) ;		
-		$xml = new \SimpleXMLElement($xmlFile);
-		
-		//transformar
-		$xslt = new \XSLTProcessor();
-		$xslt->importStylesheet($xsl);
-		//$transformacion="TEST";
-		$transformacion=$xslt->transformToXml($xml);
-		
-		return $transformacion;
-	}
+	
 	public function verpdfAction($factura_id)
     {
 		//==============        Trae los datos de la bdd           =======================
