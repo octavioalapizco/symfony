@@ -18,25 +18,32 @@
 			<br>
 			<br>
 			<a href="javascript: submitform()" class="button" style="height:65px;margin-left:107px;" ><span><span>Validar</span></span></a>
-			<br>					
+			<br>				
 		</form>
-		{% if notice is defined %}
-			<div class="flash-notice" style="float:left;">
-				{{ notice }}
-			</div>
-		{% endif %}
 		
-		{% if error is defined %}
-			<div class="flash-error" style="float:left;color:red;">
-				{{ error }}
-			</div>
-		{% endif %}
+		{% if respuesta['success'] %}
+			{% set mensaje = "El comprobante es valido" %}
+			{% set estilo = "float:left;" %}
+		{%  endif %}
+		
+		{% if respuesta['success']==false %}
+			{% set mensaje = "El comprobante es invalido" %}
+			{% set estilo = "float:left;color:red;" %}
+		{%  endif %}
+		
+		<div class="flash-notice" style="{{ estilo }}">
+			{{ mensaje }}
+		</div>
+		
+		
+		
 	</div>
 	<script type="text/javascript">
 		function submitform(){
 		  document.myform.submit();
 		}
 	</script>
+	
 	{% if errores is defined %}
 		<div style="clear:both;margin-top:-10px;margin-left:105px;">
 			<h1 style="margin-left:-142px;">Lista de errores</h1><br>
@@ -47,15 +54,24 @@
 		</div>
 	{% endif %}
 	
-	{% if valido is defined %}
-		<div style="clear:both;margin-top:-10px;margin-left:105px;">
-			<h1 style="margin-left:-142px;">Verificaciones:</h1><br>		
-			Estructura del xml verificada.<br>
-			
-			<br>
-			<br>
-		</div>
+	{% if respuesta['validaciones']['xml']['success'] %}
+		{%	set xmlMsg="Estructura del xml"	%}
+		{% set valXml="OK" %}
+	{% else %}
+		{%	set xmlMsg="Estructura del xml"	%}
+		{% set valXml="INVALID" %}
 	{% endif %}
+	
+	
+	
+	
+	<div style="clear:both;margin-top:-10px;margin-left:105px;">
+		<h1 style="margin-left:-142px;">Verificaciones:</h1><br/>
+		<label>{{ xmlMsg }}</label><label>{{ valXml }}</label>
+		<br/>
+		<br/>
+	</div>
+	
 	
 	{% if cadena is defined %}
 		<div style="clear:both;margin-top:-10px;margin-left:105px;">
@@ -70,6 +86,11 @@
 {% endblock %}
 
 {% block noticia %}
+	{% autoescape true %}
 	<h2>Facturacion Expresso</h2>
-	<a href="#">Contribuir</a>
+	<a href="#">Contribuir</a><br/>
+	<div>
+		Y que pas&oacute; con los acentos.
+	</div>
+	{% endautoescape %}
 {% endblock %}

@@ -23,17 +23,23 @@ class DefaultController extends Controller
 		//
 		//==================================================	
 		$validator=new Validador();
-		$respuesta=$validator->validarEstructura($_FILES['comprobante']['tmp_name']);
+		$respuesta=$validator->validarXML($_FILES['comprobante']['tmp_name']);
 		//$selloValido= $this->validarSello();
 		//$vigente=$this->validarVigencia();
 		//$foliosSat=$this->verificarFolios();
 		
+		return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig', array
+			(
+				'respuesta' => $respuesta				
+			)
+		);
+			
 		if ($respuesta['success']===false){
 			//$errores=$this->libxml_display_errors();			
 			$errores=array();
 			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig', 
 				array(
-					'errores' => $errores,			
+					'respuesta' => $respuesta,			
 					'error' => "El comprobante contiene errores en su estructura!"	
 				)
 			);

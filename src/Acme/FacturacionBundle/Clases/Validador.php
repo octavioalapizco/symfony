@@ -2,19 +2,19 @@
 namespace Acme\FacturacionBundle\Clases;
 
 class Validador{
-	function validarXML($xml_path,$validationParams){
+	function validarXML($xml_path,$validationParams=array())
+	{
 		$validationResults=array();
 		
 		$valResult=$this->validarEstructura($xml_path);
-		$validationResults['xml']=$valResult();
+		$validationResults['success']	=  ($valResult['success']===false)? false:true;
+		$validationResults['validaciones']['xml']		=	$valResult;
 		
-		return array(
-			'isValid'=>false,
-			'validationResults'=>$validationResults
-		);
+		return $validationResults;
 	}
 	
-	public function validarEstructura($xml_realpath) {		
+	public function validarEstructura($xml_realpath) 
+	{		
 		libxml_use_internal_errors(true);
 		$domXml=new \DOMDocument();
 		$domXml->load($xml_realpath);
@@ -23,7 +23,8 @@ class Validador{
 		$valido=@$domXml->schemaValidate($shemaPath);
 		
 		$respuesta=array('success'=>$valido);
-		if (!$valido){
+		if (!$valido)
+		{
 			$respuesta['errores']=$this->getErroresDeEstructura();
 		}
 		return $respuesta;
@@ -33,44 +34,43 @@ class Validador{
 		return '../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
 	}
 	
-	function libxml_display_error($error) { 
-		
-		switch ($error->level) { 
-			case LIBXML_ERR_WARNING: 
-				$tipo='WARNING';
-			break; 
-			case LIBXML_ERR_ERROR: 
-				$tipo='ERROR';
-			break; 
-			case LIBXML_ERR_FATAL: 
-				$tipo='FATAL';
-			break; 
-		} 
-		
-		$error_Atribs=array(
-			'tipo'	 =>$tipo,
-			'code'	 =>$error->code,
-			'message'=>$error->message,
-			'line'	 =>$error->line,
-			'column'	 =>$error->column
-		);
-				
-		if ($error->file) { 
-			$error_Atribs['file']=$error->file;		
-		} 
-		
-		return $error_Atribs; 
-	} 
-	function libxml_display_errors() { 
+	
+	function getErroresDeEstructura() { 
 		$errors = libxml_get_errors(); 
 		$errores=array();
-		foreach ($errors as $error) { 
+		foreach ($errors as $error) 
+		{ 
 			$errores[]=$this->libxml_display_error($error); 
 		} 
 		libxml_clear_errors(); 
 		return $errores;
 	}
 	
+	function libxml_display_error($error) { 
+		
+		switch ($error->level) 
+		{ 
+			case LIBXML_ERR_WARNING	: $tipo='WARNING'; break; 
+			case LIBXML_ERR_ERROR	: $tipo='ERROR';   break; 
+			case LIBXML_ERR_FATAL	: $tipo='FATAL';   break; 
+		} 
+		
+		$error_Atribs=array
+		(
+			'tipo'	 =>$tipo,
+			'code'	 =>$error->code,
+			'message'=>$error->message,
+			'line'	 =>$error->line,
+			'column' =>$error->column
+		);
+				
+		if ($error->file) 
+		{ 
+			$error_Atribs['file']=$error->file;		
+		} 
+		
+		return $error_Atribs; 
+	} 
 	function validarCertificado(){
 		/*
 		
@@ -131,7 +131,8 @@ class Validador{
 	}
 	
 	private function getCadenaOriginal(){
-		if ( !isset($this->cadenaOriginal) ){
+		if ( !isset($this->cadenaOriginal) )
+		{
 			$this->cadenaOriginal=$this->generaCadenaOriginal();
 		}
 		return $this->cadenaOriginal;
