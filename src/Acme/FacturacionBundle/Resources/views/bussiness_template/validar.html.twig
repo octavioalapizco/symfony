@@ -21,19 +21,22 @@
 			<br>				
 		</form>
 		
-		{% if respuesta['success'] %}
-			{% set mensaje = "El comprobante es valido" %}
-			{% set estilo = "float:left;" %}
-		{%  endif %}
+		{% if respuesta is defined %}
+			{% if respuesta['success'] %}
+				{% set mensaje = "El comprobante es valido" %}
+				{% set estilo = "float:left;" %}
+			{%  endif %}
+			
+			{% if respuesta['success']==false %}
+				{% set mensaje = "El comprobante es invalido" %}
+				{% set estilo = "float:left;color:red;" %}
+			{%  endif %}
 		
-		{% if respuesta['success']==false %}
-			{% set mensaje = "El comprobante es invalido" %}
-			{% set estilo = "float:left;color:red;" %}
-		{%  endif %}
 		
-		<div class="flash-notice" style="{{ estilo }}">
-			{{ mensaje }}
-		</div>
+			<div class="flash-notice" style="{{ estilo }}">
+				{{ mensaje }}
+			</div>
+		{%  endif %}
 		
 		
 		
@@ -54,31 +57,30 @@
 		</div>
 	{% endif %}
 	
-	{% if respuesta['validaciones']['xml']['success'] %}
-		{%	set xmlMsg="Estructura del xml"	%}
-		{% set valXml="OK" %}
-	{% else %}
-		{%	set xmlMsg="Estructura del xml"	%}
-		{% set valXml="INVALID" %}
-	{% endif %}
-	
-	
-	
-	
-	<div style="clear:both;margin-top:-10px;margin-left:105px;">
-		<h1 style="margin-left:-142px;">Verificaciones:</h1><br/>
-		<label>{{ xmlMsg }}</label><label>{{ valXml }}</label>
-		<br/>
-		<br/>
-	</div>
-	
-	
-	{% if cadena is defined %}
+	{% if respuesta is defined %}
+		{% if respuesta['validaciones']['xml']['success'] %}
+			{%	set xmlMsg="Estructura del xml"	%}
+			{% set valXml="OK" %}
+		{% else %}
+			{%	set xmlMsg="Estructura del xml"	%}
+			{% set valXml="INVALID" %}
+		{% endif %}
+
 		<div style="clear:both;margin-top:-10px;margin-left:105px;">
-			<h1 style="margin-left:-142px;">Cadena Original:</h1><br>		
-			 {{ cadena	 }}<br>
-			 <br>		
+			<h1 style="margin-left:-142px;">Verificaciones:</h1><br/>
+			<label>{{ xmlMsg }}</label><label>{{ valXml }}</label>
+			<br/>
+			<br/>
 		</div>
+		
+		
+		{% if cadena is defined %}
+			<div style="clear:both;margin-top:-10px;margin-left:105px;">
+				<h1 style="margin-left:-142px;">Cadena Original:</h1><br>		
+				 {{ cadena	 }}<br>
+				 <br>		
+			</div>
+		{% endif %}
 	{% endif %}
 {% endblock %}
 

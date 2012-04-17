@@ -19,6 +19,7 @@ class Validador{
 		$domXml=new \DOMDocument();
 		$domXml->load($xml_realpath);
 		// obtiene la ruta del esquema a partir de la version del cfd 
+		
 		$shemaPath=$this->getShemaPath($domXml);		
 		$valido=@$domXml->schemaValidate($shemaPath);
 		
@@ -31,6 +32,12 @@ class Validador{
 	}
 	
 	private function getShemaPath($domXml){
+		$body = $domXml->getElementsByTagName('Comprobante');
+		foreach ($body  as $book) {
+			echo $book->nodeValue, PHP_EOL;
+		}
+		print_r($body);
+		//echo "VERSION=".$body->version;
 		return '../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
 	}
 	

@@ -24,6 +24,7 @@ class DefaultController extends Controller
 		//==================================================	
 		$validator=new Validador();
 		$respuesta=$validator->validarXML($_FILES['comprobante']['tmp_name']);
+		print_r($respuesta);
 		//$selloValido= $this->validarSello();
 		//$vigente=$this->validarVigencia();
 		//$foliosSat=$this->verificarFolios();
