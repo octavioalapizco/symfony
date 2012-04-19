@@ -1,5 +1,14 @@
 {% extends 'AcmeFacturacionBundle:bussiness_template:_layout.html.twig' %}
 {% block header %}
+	<style type="text/css">
+		.valid{
+			color:green;
+		}
+		.invalid{
+			
+			color:red;
+		}
+	</style>
 	<!--=========	MENSAJES DE SESSION	============	-->
 	
 	<!--========= FIN DE MENSAJES DE SESSION ==========	-->
@@ -61,16 +70,27 @@
 		{% if respuesta['validaciones']['xml']['success'] %}
 			{%	set xmlMsg="Estructura del xml"	%}
 			{% set valXml="OK" %}
+			{% set cssXML="valid" %}
 		{% else %}
 			{%	set xmlMsg="Estructura del xml"	%}
 			{% set valXml="INVALID" %}
+			{% set cssXML="invalid" %}
 		{% endif %}
 
 		<div style="clear:both;margin-top:-10px;margin-left:105px;">
 			<h1 style="margin-left:-142px;">Verificaciones:</h1><br/>
-			<label>{{ xmlMsg }}</label><label>{{ valXml }}</label>
+			<label>{{ xmlMsg }}</label><label style="margin-left:10px;" class="{{ cssXML }}">{{ valXml }}</label>
 			<br/>
 			<br/>
+			{% if respuesta['validaciones']['xml']['success']==false %}
+				<div>Detalle de los errores:</div>
+				{% for error in respuesta['validaciones']['xml']['errores'] %}
+					<br/>
+					<label>Linea:</label> <div style="display:inline;">{{ error.line }},</div><label style='margin-left:10px;'>Columna:</label> <div style="display:inline;">{{ error.column }}.</div><br/>
+					{{ error.message }}		
+					
+				{% endfor %}
+			{% endif  %}
 		</div>
 		
 		

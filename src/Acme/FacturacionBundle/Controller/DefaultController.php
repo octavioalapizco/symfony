@@ -9,9 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 //use Acme\FacturacionBundle as FB;
 class DefaultController extends Controller
 {
-	
-	
-	
+		
 	public function validarAction(Request $request){
 		//==================================================
 		//
@@ -24,7 +22,7 @@ class DefaultController extends Controller
 		//==================================================	
 		$validator=new Validador();
 		$respuesta=$validator->validarXML($_FILES['comprobante']['tmp_name']);
-		print_r($respuesta);
+		
 		//$selloValido= $this->validarSello();
 		//$vigente=$this->validarVigencia();
 		//$foliosSat=$this->verificarFolios();
@@ -50,10 +48,10 @@ class DefaultController extends Controller
 			//$cadena=$this->transform($_FILES['comprobante']['tmp_name'],$xsl);
 			
 			return $this->render('AcmeFacturacionBundle:bussiness_template:validar.html.twig',array(					
-					'notice' => "El comprobante es valido!",
-					'cadena' => $cadena,	
-					'valido' => true
-				));
+				'notice' => "El comprobante es valido!",
+				'cadena' => $cadena,	
+				'valido' => true
+			));
 		}		
 	}
 	

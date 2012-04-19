@@ -32,11 +32,25 @@ class Validador{
 	}
 	
 	private function getShemaPath($domXml){
-		$body = $domXml->getElementsByTagName('Comprobante');
-		foreach ($body  as $book) {
-			echo $book->nodeValue, PHP_EOL;
+		$root 	 = $domXml->getElementsByTagName('Comprobante')->item(0);
+		$version = $root->getAttribute('version');
+		switch($version){
+			case '2.0'
+				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
+			break;
+			case '2.2'
+				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv22.xsd';
+			break;
+			case '3.0'
+				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv22.xsd';
+			case '3.3'
+				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv22.xsd';
+			break;
 		}
-		print_r($body);
+		/*foreach ($body  as $book) {
+			echo $book->nodeValue, PHP_EOL;
+		}*/
+		echo $root->getAttribute('version'); exit;
 		//echo "VERSION=".$body->version;
 		return '../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
 	}
