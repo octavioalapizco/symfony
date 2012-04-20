@@ -24,6 +24,11 @@ class Validador{
 		$valido=@$domXml->schemaValidate($shemaPath);
 		
 		$respuesta=array('success'=>$valido);
+		//-------------------------------------------------------------------
+		$root 	 = $domXml->getElementsByTagName('Comprobante')->item(0);
+		$version = $root->getAttribute('version');
+		$respuesta['version']=$version;
+		//-------------------------------------------------------------------
 		if (!$valido)
 		{
 			$respuesta['errores']=$this->getErroresDeEstructura();
@@ -35,24 +40,26 @@ class Validador{
 		$root 	 = $domXml->getElementsByTagName('Comprobante')->item(0);
 		$version = $root->getAttribute('version');
 		switch($version){
-			case '2.0'
+			case '2.0':
 				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
 			break;
-			case '2.2'
+			case '2.2':
 				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv22.xsd';
 			break;
-			case '3.0'
-				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv22.xsd';
-			case '3.3'
-				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv22.xsd';
+			case '3.0':
+				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv3.xsd.xml';	
+			break;
+			case '3.3':
+				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv32.xsd.xml';
 			break;
 		}
 		/*foreach ($body  as $book) {
 			echo $book->nodeValue, PHP_EOL;
 		}*/
-		echo $root->getAttribute('version'); exit;
+		//echo $root->getAttribute('version'); exit;
 		//echo "VERSION=".$body->version;
-		return '../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
+		echo $ruta;
+		return $ruta;
 	}
 	
 	
