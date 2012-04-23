@@ -51,17 +51,17 @@ XML;
 
 # El emisor no cambia. Si cambiara el codigo sería semejante al de receptor
 $receptor = array ("nombre" => "Juan Perez Galvan",
-		"rfc" => "GAPJ700202XX0",
-		"Domicilio" => array (
-			"codigoPostal" => "53499",
-			"pais" => "México",
-			"estado" => "Nuevo Leon",
-			"municipio" => "Monterrey",
-			"colonia" => "Obispado",
-			"noExterior" => "1660",
-			"calle" => "Venustiano Carroza"
-			)
-		);
+"rfc" => "GAPJ700202XX0",
+"Domicilio" => array (
+	"codigoPostal" => "53499",
+	"pais" => "México",
+	"estado" => "Nuevo Leon",
+	"municipio" => "Monterrey",
+	"colonia" => "Obispado",
+	"noExterior" => "1660",
+	"calle" => "Venustiano Carroza"
+	)
+);
 
 # 10 posibles conceptos
 $concepto[0] = array( "unidad" => "kilo", "valorUnitario" =>  "80.00", "descripcion" => "Arrachera marinada");
@@ -147,7 +147,7 @@ $xml->loadXML($cfdi) or die("\n\n\nXML no valido");
 # Extrae cadena original
 $xslt = new XSLTProcessor();
 $XSL = new DOMDocument();
-$XSL->load( 'cadenaoriginal_3_0.xslt', LIBXML_NOCDATA);
+$XSL->load( 'cadenaoriginal_3_0.xslt.xml', LIBXML_NOCDATA);
 error_reporting(0); # Se deshabilitan los errores pues el xssl de la cadena esta en version 2 y eso genera algunos warnings
 $xslt->importStylesheet( $XSL );
 error_reporting(E_ALL); # Se habilitan de nuevo los errores (se asume que originalmente estaban habilitados)
