@@ -9,7 +9,9 @@ class Validador{
 		$valResult=$this->validarEstructura($xml_path);
 		$validationResults['success']	=  ($valResult['success']===false)? false:true;
 		$validationResults['validaciones']['xml']		=	$valResult;
-		
+		//-------------------------------------------------------------------------------------
+		$validationResults['validaciones']['cadena_original']	=	$this->generaCadenaOriginal($xml_path,$this->dtdCadenaOriginal);
+		//-------------------------------------------------------------------------------------
 		return $validationResults;
 	}
 	
@@ -24,10 +26,8 @@ class Validador{
 		$valido=@$domXml->schemaValidate($shemaPath);
 		
 		$respuesta=array('success'=>$valido);
-		//-------------------------------------------------------------------
-		$root 	 = $domXml->getElementsByTagName('Comprobante')->item(0);
-		$version = $root->getAttribute('version');
-		$respuesta['version']=$version;
+		//-------------------------------------------------------------------		
+		$respuesta['version']=$this->version;		
 		//-------------------------------------------------------------------
 		if (!$valido)
 		{
@@ -35,16 +35,21 @@ class Validador{
 		}
 		return $respuesta;
 	}
-	
+	private function getVersion(){
+		return $this->version;
+	}
 	private function getShemaPath($domXml){
 		$root 	 = $domXml->getElementsByTagName('Comprobante')->item(0);
 		$version = $root->getAttribute('version');
+		$this->version=$version;
 		switch($version){
 			case '2.0':
 				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
+				$this->dtdCadenaOriginal='../src/Acme/FacturacionBundle/Resources/dtds/cadenaoriginal_2_0.xslt.xml';
 			break;
 			case '2.2':
 				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv22.xsd';
+				$this->dtdCadenaOriginal='../src/Acme/FacturacionBundle/Resources/dtds/cadenaoriginal_2_2.xslt.xml';
 			break;
 			case '3.0':
 				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv3.xsd.xml';	
@@ -52,17 +57,10 @@ class Validador{
 			case '3.3':
 				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv32.xsd.xml';
 			break;
-		}
-		/*foreach ($body  as $book) {
-			echo $book->nodeValue, PHP_EOL;
-		}*/
-		//echo $root->getAttribute('version'); exit;
-		//echo "VERSION=".$body->version;
-		echo $ruta;
+		}		
 		return $ruta;
 	}
-	
-	
+		
 	function getErroresDeEstructura() { 
 		$errors = libxml_get_errors(); 
 		$errores=array();
@@ -113,13 +111,12 @@ class Validador{
 		*/
 		return true;
 	}
-	
-	
-	
 
-	function transform($xmlPath, $xslPath) {
+
+	function generaCadenaOriginal($xmlPath, $xslPath) {
 		
 		//Abrir xslt
+		
 		$xmlstr= file_get_contents($xslPath) ;		
 		$xsl = new \SimpleXMLElement($xmlstr);
 		
@@ -131,39 +128,12 @@ class Validador{
 		$xslt = new \XSLTProcessor();
 		$xslt->importStylesheet($xsl);
 		//$transformacion="TEST";
-		$transformacion=$xslt->transformToXml($xml);
-		
-		return $transformacion;
-	}
-	function validarArchivo(){
-		$esquemaValido=$this->validarEsquema();
-		
-		$lista_de_errores_del_esquema=array();
-		if (!$esquemaValido){
-			$lista_de_errores_del_esquema=$this->getListaDeErroresDelEsquema();
+		$cadenaOriginal=$xslt->transformToXml($xml);
+		if ($cadenaOriginal===false){
+			// trigger_error('XSL transformation failed.', E_USER_ERROR);
+			$cadenaOriginal='ERROR OBTENIENDO LA CADENA';
 		}
-		
-		$selloValido=$this->validarSelloDigital();
-		$cadena=$this->getCadenaOriginal();
-		
-	}
-	
-	
-	private  function validarSello(){
-		return false;
-	}
-	
-	private function generaCadenaOriginal(){
-		$this->cadenaOriginal='';
-		
-	}
-	
-	private function getCadenaOriginal(){
-		if ( !isset($this->cadenaOriginal) )
-		{
-			$this->cadenaOriginal=$this->generaCadenaOriginal();
-		}
-		return $this->cadenaOriginal;
+		return $cadenaOriginal;
 	}
 	
 	
