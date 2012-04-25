@@ -11,6 +11,10 @@ class Validador{
 		$validationResults['validaciones']['xml']		=	$valResult;
 		//-------------------------------------------------------------------------------------
 		$validationResults['validaciones']['cadena_original']	=	$this->generaCadenaOriginal($xml_path,$this->dtdCadenaOriginal);
+		$cadena			=$validationResults['validaciones']['cadena_original'];
+		$sello			=$this->sello;
+		$certificado	=$this->certificado;
+		$validationResults['validaciones']['certificado_validez']=$this->validarCertificado($cadena, $sello, $certificado);
 		//-------------------------------------------------------------------------------------
 		return $validationResults;
 	}
@@ -42,6 +46,10 @@ class Validador{
 		$root 	 = $domXml->getElementsByTagName('Comprobante')->item(0);
 		$version = $root->getAttribute('version');
 		$this->version=$version;
+		
+		$this->certificado = $root->getAttribute('certificado');
+		$this->sello = $root->getAttribute('sello');
+		
 		switch($version){
 			case '2.0':
 				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
@@ -97,9 +105,11 @@ class Validador{
 		
 		return $error_Atribs; 
 	} 
-	function validarCertificado(){
-		/*
-		
+	function validarCertificado($cadena,$sello,$certificado){
+		$pkey=openssl_pkey_get_public ( $certificado );
+		return openssl_verify($cadena, $sello, $pkey, OPENSSL_ALGO_SHA1);
+			
+		/*		
 		1.-Obtiene el certificado 
 			a) ubicado dentro del xml.
 			b) desde un archivo. 
@@ -109,7 +119,7 @@ class Validador{
 			b).-si son diferentes entonces el sello es inválido. 
 					
 		*/
-		return true;
+		
 	}
 
 
