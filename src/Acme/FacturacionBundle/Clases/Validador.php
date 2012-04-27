@@ -106,6 +106,7 @@ class Validador{
 		return $error_Atribs; 
 	} 
 	function validarCertificado($cadena,$sello,$certificado){
+		$certificado='-----BEGIN CERTIFICATE-----\n'.$certificado.'\n-----END CERTIFICATE-----';
 		$pkey=openssl_pkey_get_public ( $certificado );
 		return openssl_verify($cadena, $sello, $pkey, OPENSSL_ALGO_SHA1);
 			
