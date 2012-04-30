@@ -61,9 +61,11 @@ class Validador{
 			break;
 			case '3.0':
 				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv3.xsd.xml';	
+				$this->dtdCadenaOriginal='../src/Acme/FacturacionBundle/Resources/dtds/cadenaoriginal_3_0.xslt.xml';
 			break;
 			case '3.3':
 				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv32.xsd.xml';
+				$this->dtdCadenaOriginal='../src/Acme/FacturacionBundle/Resources/dtds/cadenaoriginal_3_2.xslt.xml';
 			break;
 		}		
 		return $ruta;
@@ -106,9 +108,20 @@ class Validador{
 		return $error_Atribs; 
 	} 
 	function validarCertificado($cadena,$sello,$certificado){
-		$certificado='-----BEGIN CERTIFICATE-----\n'.$certificado.'\n-----END CERTIFICATE-----';
-		$pkey=openssl_pkey_get_public ( $certificado );
-		return openssl_verify($cadena, $sello, $pkey, OPENSSL_ALGO_SHA1);
+		//$certificado='-----BEGIN CERTIFICATE-----\n'.$certificado.'\n-----END CERTIFICATE-----';
+		//$pkey=openssl_pkey_get_public ( $certificado );
+		//return openssl_verify($cadena, $sello, $pkey, OPENSSL_ALGO_SHA1);			
+		//======================================================================		
+		//-------------------------------------------------
+		//	CERTIFICADO O LLAVE PUBLICA	
+		$public_key="-----BEGIN CERTIFICATE-----";
+		$public_key.=chr(10).str_replace (" ","\r\n", $certificado);
+		$public_key.=chr(10)."-----END CERTIFICATE-----";
+		//-------------------------------------------------		
+		$binary_signature=base64_decode($sello);
+		$ok = openssl_verify($cadena, $binary_signature, $public_key, OPENSSL_ALGO_SHA1);
+		return $ok;
+		//-------------------------------------------------
 			
 		/*		
 		1.-Obtiene el certificado 
