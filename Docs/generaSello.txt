@@ -1,0 +1,25 @@
+<?php
+private function generaSelloDigital(){
+	if (empty($this->cad_original)){ return $this->setError("Error al generar el sello digital ya que no existe la cadena original."); }
+	
+	// Obtiene datos del certificado
+	$query = "SELECT KeyPemData,CerPemData FROM cat_certificados WHERE KEYEmpCer = ".$this->id_emp." AND StatusCer = 'A' LIMIT 1;";
+	$result = mysqlQuery($query);
+	if (!$result){ return $this->setError("Error al consultar los certificados.",$query); }
+	
+	if (mysql_num_rows($result) < 1){ return $this->setError("No existen certificados para la empresa: ".$this->nombre_emi); }
+	$row = mysql_fetch_object($result);
+	
+	$pkeyid = openssl_get_privatekey($row->KeyPemData); // Llave privada
+	@openssl_sign($this->cad_original, $crypttext, $pkeyid, OPENSSL_ALGO_SHA1); // Firmar la cadena original
+	@openssl_free_key($pkeyid);
+	
+	// Verificar la firma
+	/*if (!@openssl_verify($this->cad_original, $crypttext, $row->CerPemData, OPENSSL_ALGO_SHA1)){
+		return $this->setError("La firma en los certificados es incorrecta.");
+	}*/
+	
+	$this->sello_digital = base64_encode($crypttext); // lo codifica en formato base64
+	return true;
+}
+?>

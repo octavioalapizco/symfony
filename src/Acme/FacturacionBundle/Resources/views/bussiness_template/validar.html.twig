@@ -76,7 +76,17 @@
 			{% set valXml="INVALID" %}
 			{% set cssXML="invalid" %}
 		{% endif %}
-
+		
+		{% if respuesta['validaciones']['certificado_validez'] %}
+			{% set valSello="VALIDO" %}
+			{% set cssSello="valid" %}
+		{% else %}
+			
+			{% set valSello="INVALIDO" %}
+			{% set cssSello="invalid" %}
+		
+		{% endif %}
+		
 		<div style="clear:both;margin-top:-10px;margin-left:105px;">
 			<h1 style="margin-left:-75px;">Verificaciones:</h1><br/>
 			<label>Estructura del XML versi&oacute;n {{ respuesta['validaciones']['xml']['version'] }}</label><label style="margin-left:10px;" class="{{ cssXML }}">{{ valXml }}</label>
@@ -92,17 +102,12 @@
 				{% endfor %}
 			{% endif  %}
 			<br><br>
-			<label>Sello digital:</label><label style="margin-left:10px;" class="invalid">INVALID</label>
-			<br/><br/>			
+			<label>Sello digital:</label><label style="margin-left:10px;" class="{{ cssSello }}">{{ valSello }}</label>
+			<br/>
 			<label>Cadena original generada:</label><br/>
 			<label style="" >{{ respuesta['validaciones']['cadena_original'] }}</label>
 			<br/><br/>
-			<label>Certificado:</label><br/>
-			<label>{{ respuesta['validaciones']['certificado'] }}</label>
-			<br/><br/>
-			<label>Sello generado:</label><br/>
-			<label>{{ respuesta['validaciones']['sello'] }}</label>
-			<br/>
+			
 			<br/>
 			<label>C&aacute;lculo del total:</label><label style="margin-left:10px;" class="invalid">INVALID</label><br/>
 			<label style="" >Operacion realizada</label><label style="margin-left:10px;" >Total = Subtotal - descuento + impuestos</label>
