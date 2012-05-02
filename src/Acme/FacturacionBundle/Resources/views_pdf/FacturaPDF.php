@@ -24,7 +24,7 @@ class FacturaPdf extends fpdf\FPDF{
 		$this->addY(18.3);
 		$this->setFont('Arial','B',10);
 		$this->addX(2);
-		$this->cell(10,4,'www.detallesbravo.com',0,1);
+		$this->cell(10,4,'www.facturacion.expresso.com',0,1);
 		$this->setY($yLogo-6);
 		//$this->imprimeDatosDeLaFactura();		
 		$y=$this->getY()+6;
