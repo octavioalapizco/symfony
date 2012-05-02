@@ -10,9 +10,13 @@
 		}
 		
 		/*   */
-		.custom_file_input .customfile{
+		.customfile {
 			float:left;
 			margin:2px;
+		}
+		
+		.validaciones text2{
+			padding: 0 0 0 12px
 		}
 	</style>
 	<!--=========	MENSAJES DE SESSION	============	-->
@@ -34,52 +38,19 @@
 	<!--========= FIN DE MENSAJES DE SESSION ==========	-->
 	<div>
 		
-		<div class="text1"></div>				
-		<div class="text2">Validar comprobante digital</div>					
+					
+		<div class="text1">Validar comprobante digital</div>					
 		<br>
 		
-		<form name="myform" action="{{ path('AcmeFacturacionBundle_validar')}}" method="POST" enctype="multipart/form-data" style="float:left;margin-left:245px;">
-		<!---->
+		<form name="myform" action="{{ path('AcmeFacturacionBundle_validar')}}" method="POST" enctype="multipart/form-data" style="float:left;margin-left:45px;width:870px;">
 			<fieldset class="custom_file_input">
 				<legend>Seleccione el comprobante digital</legend>				
 				<input type="file" name="comprobante" id="file" />
-				<!--<input type="submit" name="upload" id="upload" value="Upload photo" /> -->
-			<!---->
-			<!--<div class="fileinputs" style="width:200px;float:left;">
-				
-				<input name="comprobante2" type="file" class="file" />
-				<div class="fakefile">
-					<input />			
-					<img src="{{ asset('/bussiness/images/file-explorer.png') }}" style="margin-top:-4px;" />
-				</div>
-			</div>	-->	
-			
-			<div style="width:100px;float:left;">
-			<a href="javascript: submitform()" class="button" style="height:65px;margin-left:0px;" ><span><span>Validar</span></span></a>
-			</fieldset>
-			</div>
-			<br>				
+				<div style="width:100px;float:left; margin-left:10px;">
+					<a href="javascript: submitform()" class="button" style="height:65px;z-index:1000;" ><span><span>Validar</span></span></a>	
+				</div>								
+			</fieldset>					
 		</form>
-		
-		{% if respuesta is defined %}
-			{% if respuesta['success'] %}
-				{% set mensaje = "El comprobante es valido" %}
-				{% set estilo = "float:left;" %}
-			{%  endif %}
-			
-			{% if respuesta['success']==false %}
-				{% set mensaje = "El comprobante es invalido" %}
-				{% set estilo = "float:left;color:red;" %}
-			{%  endif %}
-		
-		
-			<div class="flash-notice" style="{{ estilo }}">
-				{{ mensaje }}
-			</div>
-		{%  endif %}
-		
-		
-		
 	</div>
 	
 	<script type="text/javascript">
@@ -119,11 +90,27 @@
 		
 		{% endif %}
 		
-		<div style="clear:both;margin-top:-10px;margin-left:105px;">
-			<h1 style="margin-left:-75px;">Verificaciones:</h1><br/>
+		<div style="clear:both;margin-top:-10px;margin-left:45px;" class="validaciones">
+			
+			<div class="text2">Resultados de validacion</div>		
+			{% if respuesta['success'] %}
+				{% set mensaje = "El comprobante es valido" %}
+				{% set estilo = "float:left;" %}
+			{%  endif %}
+			
+			{% if respuesta['success']==false %}
+				{% set mensaje = "El comprobante es invalido" %}
+				{% set estilo = "float:left;color:red;" %}
+			{%  endif %}
+		
+		
+			<div class="flash-notice" style="{{ estilo }}">
+				{{ mensaje }}
+				asdasd asd asd as
+			</div>
+			
 			<label>Estructura del XML versi&oacute;n {{ respuesta['validaciones']['xml']['version'] }}</label><label style="margin-left:10px;" class="{{ cssXML }}">{{ valXml }}</label>
-			<br/>
-			<br/>
+
 			{% if respuesta['validaciones']['xml']['success']==false %}
 				<div>Detalle de los errores:</div>
 				{% for error in respuesta['validaciones']['xml']['errores'] %}
@@ -157,7 +144,7 @@
 			
 		</div>
 		<div style="clear:both;"></div>
-		<object type="application/pdf"  width="100%" style="margin-top:20px;" height="400" data="/tmp/AAA010101AAA_A_362_120217.pdf">
+		<object type="application/pdf"  width="100%" style="margin-top:20px;" height="1100px;" data="/tmp/AAA010101AAA_A_362_120217.pdf">
 				 alt : <a href="goodies/pdfs/indice_contenido.pdf"></a> 			
 		</object> 		
 	{% endif %}

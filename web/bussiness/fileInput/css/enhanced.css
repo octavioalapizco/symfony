@@ -1,7 +1,7 @@
-body { font-size: 62.5%; margin: 50px; }
-fieldset { padding: .6em 0;border:0;border-top: 1px dotted #ddd; }
-legend { font-size: 1.5em; font-weight: bold; color: #555; padding: .5em 1em .5em 0;  }
-label { font-size: 1.4em; display: block; margin: .5em 10px .5em 0;  }
+body { /*font-size: 62.5%; margin: 50px;*/ }
+fieldset {font-size: 62.5%; padding: .6em 0;border:0;border-top: 1px dotted #ddd; }
+fieldset legend { font-size: 1.5em; font-weight: bold; color: #555; padding: .5em 1em .5em 0;  }
+fieldset label { font-size: 1.4em; display: block; margin: .5em 10px .5em 0;  }
 input#upload { background: #aaa url(../images/bg-btn.png) bottom repeat-x; padding: .4em 1.2em;border: 1px solid #aaa; color: #222; font-size: 1.2em; font-weight: bold; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; cursor: pointer; margin: 2px 0; float:left;}
 input#upload:hover { background: #eee; color: #111; border-color:#777; }
 
