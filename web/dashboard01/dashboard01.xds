@@ -1,0 +1,264 @@
+{
+    "name": "dashboard01.xds",
+    "projectId": "19CCB574-CB62-49F2-AE31-7FAE150B0632",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "spacesToIndent": 4,
+        "codeGenFormat": "Class",
+        "extPath": "http://extjs.cachefly.net/ext-3.3.1/",
+        "exportPath": ".",
+        "lineEnding": "CRLF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true
+    },
+    "xdsVersion": "1.1.2",
+    "components": [
+        {
+            "id": "MyViewport",
+            "cid": "viewport",
+            "jsClass": "MyViewport",
+            "snapToGrid": 10,
+            "userConfig": {
+                "layout": "border"
+            },
+            "cn": [
+                {
+                    "id": "MyPanel",
+                    "cid": "panel",
+                    "jsClass": "MyPanel5",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "title": "-ext-undefined-",
+                        "layout": "-ext-undefined-",
+                        "region": "north",
+                        "width": 100,
+                        "autoRef": "pnlSuperior",
+                        "height": 100,
+                        "unstyled": true
+                    },
+                    "cn": [
+                        {
+                            "id": "MyToolbar",
+                            "cid": "toolbar",
+                            "jsClass": "MyToolbar",
+                            "dock": "tbar",
+                            "snapToGrid": 10,
+                            "userConfig": {
+                                "cls": "-ext-undefined-",
+                                "ctCls": "-ext-undefined-",
+                                "overCls": "-ext-undefined-",
+                                "style": "-ext-undefined-",
+                                "height": 80
+                            },
+                            "cn": [
+                                {
+                                    "id": "MyButton",
+                                    "cid": "button",
+                                    "jsClass": "MyButton",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "text": "Menú Principal",
+                                        "scale": "large",
+                                        "icon": "http://localhost/dashboard01/imagenes/home.png",
+                                        "iconAlign": "top",
+                                        "height": "-ext-undefined-",
+                                        "style": "-ext-undefined-",
+                                        "tooltip": "Menú principal",
+                                        "width": 70
+                                    }
+                                },
+                                {
+                                    "id": "MySeparator",
+                                    "cid": "tbseparator",
+                                    "jsClass": "MySeparator",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "width": 30
+                                    }
+                                },
+                                {
+                                    "id": "MyButton1",
+                                    "cid": "button",
+                                    "jsClass": "MyButton8",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "text": "Ayuda",
+                                        "scale": "large",
+                                        "icon": "http://localhost/dashboard01/imagenes/help.png",
+                                        "iconAlign": "top"
+                                    }
+                                },
+                                {
+                                    "id": "MyFill",
+                                    "cid": "tbfill",
+                                    "jsClass": "MyFill",
+                                    "snapToGrid": 10
+                                },
+                                {
+                                    "id": "MyButton4",
+                                    "cid": "button",
+                                    "jsClass": "MyButton4",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "text": "Chat&nbsp;&nbsp;",
+                                        "icon": "http://localhost/dashboard01/imagenes/chat_bubble.png",
+                                        "scale": "large",
+                                        "iconAlign": "top",
+                                        "width": 40
+                                    }
+                                },
+                                {
+                                    "id": "MyButton2",
+                                    "cid": "button",
+                                    "jsClass": "MyButton6",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "text": "Preferencias",
+                                        "scale": "large",
+                                        "icon": "http://localhost/dashboard01/imagenes/favorites.png",
+                                        "iconAlign": "top"
+                                    }
+                                },
+                                {
+                                    "id": "MyButton3",
+                                    "cid": "button",
+                                    "jsClass": "MyButton7",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "text": "&nbsp;&nbsp;&nbsp;Salir&nbsp; &nbsp;&nbsp;&nbsp;",
+                                        "scale": "large",
+                                        "iconAlign": "top",
+                                        "icon": "http://localhost/dashboard01/imagenes/logout.png"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "MyTabPanel",
+                    "cid": "tabpanel",
+                    "jsClass": "MyTabPanel",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "activeTab": 0,
+                        "region": "center"
+                    },
+                    "cn": [
+                        {
+                            "id": "MyPanel1",
+                            "cid": "panel",
+                            "jsClass": "MyPanel",
+                            "snapToGrid": 10,
+                            "userConfig": {
+                                "title": "Menu",
+                                "layout": "fit"
+                            },
+                            "cn": [
+                                {
+                                    "id": "MyPanel2",
+                                    "cid": "panel",
+                                    "jsClass": "MyPanel4",
+                                    "snapToGrid": 10,
+                                    "userConfig": {
+                                        "title": "-ext-undefined-",
+                                        "iconCls": "tab_icon_home",
+                                        "layout": "border"
+                                    },
+                                    "cn": [
+                                        {
+                                            "id": "MyPanel6",
+                                            "cid": "panel",
+                                            "jsClass": "MyPanel6",
+                                            "snapToGrid": 10,
+                                            "userConfig": {
+                                                "title": "-ext-undefined-",
+                                                "region": "center",
+                                                "width": 400
+                                            }
+                                        },
+                                        {
+                                            "id": "MyPanel7",
+                                            "cid": "panel",
+                                            "jsClass": "MyPanel7",
+                                            "snapToGrid": 10,
+                                            "userConfig": {
+                                                "title": "-ext-undefined-",
+                                                "region": "west",
+                                                "width": 500,
+                                                "autoScroll": true
+                                            },
+                                            "cn": [
+                                                {
+                                                    "id": "MyDataView",
+                                                    "cid": "dataview",
+                                                    "jsClass": "MyDataView",
+                                                    "snapToGrid": 10,
+                                                    "userConfig": {
+                                                        "itemSelector": "div",
+                                                        "store": "(none)",
+                                                        "tpl": "<tpl for=\".\"><div>Template</div></tpl>",
+                                                        "autoRef": "dtvMenu",
+                                                        "width": 500,
+                                                        "autoScroll": true
+                                                    }
+                                                },
+                                                {
+                                                    "id": "MyToolbar1",
+                                                    "cid": "toolbar",
+                                                    "jsClass": "MyToolbar1",
+                                                    "dock": "tbar",
+                                                    "snapToGrid": 10,
+                                                    "cn": [
+                                                        {
+                                                            "id": "MyButton5",
+                                                            "cid": "button",
+                                                            "jsClass": "MyButton5",
+                                                            "snapToGrid": 10,
+                                                            "userConfig": {
+                                                                "text": "Ver como arbol"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "MyPanel3",
+                            "cid": "panel",
+                            "jsClass": "MyPanel1",
+                            "snapToGrid": 10,
+                            "userConfig": {
+                                "title": "Tab 2"
+                            }
+                        },
+                        {
+                            "id": "MyPanel4",
+                            "cid": "panel",
+                            "jsClass": "MyPanel2",
+                            "snapToGrid": 10,
+                            "userConfig": {
+                                "title": "Tab 3"
+                            }
+                        },
+                        {
+                            "id": "MyPanel5",
+                            "cid": "panel",
+                            "jsClass": "MyPanel3",
+                            "snapToGrid": 10,
+                            "userConfig": {
+                                "title": "My Tab"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "stores": []
+}

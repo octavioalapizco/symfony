@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<!-- Auto Generated with Ext Designer -->
+<!-- Modifications to this file will be overwritten. -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>dashboard01.xds</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost/ext-3.4.0/resources/css/ext-all.css"/>
+    <script type="text/javascript" src="http://localhost/ext-3.4.0/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="http://localhost/ext-3.4.0/ext-all-debug.js"></script>
+	<script type="text/javascript">
+		
+	Ext.override(Ext.Button, {
+		template:  new Ext.Template(
+                    '<table id="{4}" cellspacing="0" class="x-btn {3}"><tbody class="{1}">',
+                    '<tr><td class="x-btn-tl"><i>&#160;</i></td><td class="x-btn-tc"></td><td class="x-btn-tr"><i>&#160;</i></td></tr>',
+                    '<tr><td class="x-btn-ml"><i>&#160;</i></td><td class="x-btn-mc"><em class="{2}" unselectable="on"><button type="{0}"></button><div class="ux-btn-text">type="{0}"</div></em></td><td class="x-btn-mr"><i>&#160;</i></td></tr>',
+                    '<tr><td class="x-btn-bl"><i>&#160;</i></td><td class="x-btn-bc"></td><td class="x-btn-br"><i>&#160;</i></td></tr>',
+                    '</tbody></table>'),
+		initBtnUx:function(){
+		},
+		setText : function(text){
+			if (this.uxBtnEl == undefined){
+				this.uxBtnEl=this.el.child('.ux-btn-text'); 
+			}
+			console.log("this.uxBtnEl");console.log(this.uxBtnEl);
+			this.text = text;
+			if(this.el){
+				this.uxBtnEl.update(text || '&#160;');
+				this.setButtonClass();
+			}
+			//this.doAutoWidth();
+			return this;
+		}
+	});
+	</script>
+    <script type="text/javascript" src="MyViewport.ui.js"></script>
+    <script type="text/javascript" src="MyViewport.js"></script>	
+    <script type="text/javascript" src="xds_index.js"></script>
+	<style type="text/css">
+		button.x-btn-text{
+			height: 47px;
+			width: 52px;	
+		}
+		.menu_wrap{
+			float:left;
+			margin-left:20px;
+			margin-bottom:5px;
+			margin-top:30px;
+		}
+		
+		.menu_wrap span {
+			display: block;
+			//margin-left: 12px;
+			text-align: center;
+		}
+		
+		.tab_icon_home{
+			background-image:src('imagenes/16/home.png');
+		}
+		
+	</style>
+</head>
+<body></body>
+</html>

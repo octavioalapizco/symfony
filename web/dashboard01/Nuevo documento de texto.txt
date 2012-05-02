@@ -1,0 +1,17 @@
+<?php
+$respuesta=array('images');
+for($i=0; $i<20; $i++){
+	$respuesta['images'][]=array(		
+		'icon'=>'imagenes/home.png',		
+		'name'=>'Menu',
+		'shortName'=>'Menu',
+		
+	);
+
+}
+
+echo json_encode($respuesta);
+
+
+
+?>

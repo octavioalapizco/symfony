@@ -93,12 +93,15 @@
 			{% endif  %}
 			<br><br>
 			<label>Sello digital:</label><label style="margin-left:10px;" class="invalid">INVALID</label>
-			<br/>
+			<br/><br/>			
 			<label>Cadena original generada:</label><br/>
 			<label style="" >{{ respuesta['validaciones']['cadena_original'] }}</label>
-			<br/>
+			<br/><br/>
+			<label>Certificado:</label><br/>
+			<label>{{ respuesta['validaciones']['certificado'] }}</label>
+			<br/><br/>
 			<label>Sello generado:</label><br/>
-			<label style="" >AAABBSDsello</label>
+			<label>{{ respuesta['validaciones']['sello'] }}</label>
 			<br/>
 			<br/>
 			<label>C&aacute;lculo del total:</label><label style="margin-left:10px;" class="invalid">INVALID</label><br/>

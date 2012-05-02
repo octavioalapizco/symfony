@@ -2,21 +2,33 @@
 namespace Acme\FacturacionBundle\Clases;
 
 class Validador{
-	function validarXML($xml_path,$validationParams=array())
-	{
+	function validarXML($xml_path,$validationParams=array()){
 		$validationResults=array();
 		
-		$valResult=$this->validarEstructura($xml_path);
+		$valResult=$this->validarEstructura( $xml_path );
 		$validationResults['success']	=  ($valResult['success']===false)? false:true;
 		$validationResults['validaciones']['xml']		=	$valResult;
 		//-------------------------------------------------------------------------------------
-		$validationResults['validaciones']['cadena_original']	=	$this->generaCadenaOriginal($xml_path,$this->dtdCadenaOriginal);
+		$validationResults['validaciones']['cadena_original']	= $this->generaCadenaOriginal( $xml_path, $this->dtdCadenaOriginal );
+		$validationResults['validaciones']['certificado']       = $this->certificado; 
+		$validationResults['validaciones']['sello']       = $this->generarSello($this->certificado,$validationResults['validaciones']['cadena_original']); 
 		//-------------------------------------------------------------------------------------
+		$validationResults['success']	=  false;
 		return $validationResults;
 	}
-	
-	public function validarEstructura($xml_realpath) 
-	{		
+	function generarSello($certificado, $cadena_original){
+		$certificado='-----BEGIN CERTIFICATE-----\n'.$certificado.'\n-----END CERTIFICATE-----';
+		echo "<pre>".$certificado.'</pre>';
+		$pkeyid = openssl_get_privatekey($certificado);
+		print_r($pkeyid);
+		// computar la firma
+		openssl_sign($cadena_original, $signature, $pkeyid);
+
+		// liberar la clave de la memoria
+		openssl_free_key($pkeyid);
+		return $signature;
+	}
+	public function validarEstructura($xml_realpath) {		
 		libxml_use_internal_errors(true);
 		$domXml=new \DOMDocument();
 		$domXml->load($xml_realpath);
@@ -35,13 +47,19 @@ class Validador{
 		}
 		return $respuesta;
 	}
+	
 	private function getVersion(){
 		return $this->version;
 	}
+	
 	private function getShemaPath($domXml){
 		$root 	 = $domXml->getElementsByTagName('Comprobante')->item(0);
 		$version = $root->getAttribute('version');
 		$this->version=$version;
+		//----------------------------
+		//¿Que pasa si no incluyeron el certificado en el xml? Entonces deben incluir otro archivo con el certificado, la contraseña y lo que sea necesario para generar el certificado en base 64.
+		$this->certificado=$root->getAttribute('certificado');
+		
 		switch($version){
 			case '2.0':
 				$ruta= '../src/Acme/FacturacionBundle/Resources/dtds/cfdv2.xsd';
