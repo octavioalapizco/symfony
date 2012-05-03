@@ -15,23 +15,27 @@
 			margin:2px;
 		}
 		
-		.validaciones text2{
-			padding: 0 0 0 12px
+		#page1 .text1{
+			padding: 224px 0 0 47px;
 		}
+		
+		.validaciones .text2{
+			padding: 0 0 0 0px
+		}
+		
 	</style>
 	<!--=========	MENSAJES DE SESSION	============	-->
 	
 	
-		<script type="text/javascript" src="http://filamentgroup.github.com/EnhanceJS/enhance.js"></script>		
+		<script type="text/javascript" src="/bussiness/fileInput/js/enhance.js"></script>		
 		<script type="text/javascript">
 			// Run capabilities test
 			enhance({
 				loadScripts: [
-					'https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js',
+					'/bussiness/fileInput/js/jquery/jquery.min.js',
 					'/bussiness/fileInput/js/jQuery.fileinput.js',
 					'/bussiness/fileInput/js/example.js'
-				],
-				loadStyles: ['/bussiness/fileInput/css/enhanced.css']	
+				] ,loadStyles: ['/bussiness/fileInput/css/enhanced.css']	
 			});   
 		</script>
 	
@@ -39,12 +43,12 @@
 	<div>
 		
 					
-		<div class="text1">Validar comprobante digital</div>					
+		<div class="text1">Comprobaci&oacute;n de Facturas digitales</div>					
 		<br>
 		
 		<form name="myform" action="{{ path('AcmeFacturacionBundle_validar')}}" method="POST" enctype="multipart/form-data" style="float:left;margin-left:45px;width:870px;">
 			<fieldset class="custom_file_input">
-				<legend>Seleccione el comprobante digital</legend>				
+				<legend>Seleccione la factura a validar</legend>				
 				<input type="file" name="comprobante" id="file" />
 				<div style="width:100px;float:left; margin-left:10px;">
 					<a href="javascript: submitform()" class="button" style="height:65px;z-index:1000;" ><span><span>Validar</span></span></a>	
@@ -92,23 +96,23 @@
 		
 		<div style="clear:both;margin-top:-10px;margin-left:45px;" class="validaciones">
 			
-			<div class="text2">Resultados de validacion</div>		
+			<div class="text2">Resultado de las validaciones</div>		
 			{% if respuesta['success'] %}
 				{% set mensaje = "El comprobante es valido" %}
 				{% set estilo = "float:left;" %}
 			{%  endif %}
 			
 			{% if respuesta['success']==false %}
-				{% set mensaje = "El comprobante es invalido" %}
+				{% set mensaje = "El comprobante contiene errores" %}
 				{% set estilo = "float:left;color:red;" %}
 			{%  endif %}
 		
 		
 			<div class="flash-notice" style="{{ estilo }}">
 				{{ mensaje }}
-				asdasd asd asd as
 			</div>
-			
+			<br>
+			<br>
 			<label>Estructura del XML versi&oacute;n {{ respuesta['validaciones']['xml']['version'] }}</label><label style="margin-left:10px;" class="{{ cssXML }}">{{ valXml }}</label>
 
 			{% if respuesta['validaciones']['xml']['success']==false %}
@@ -116,8 +120,7 @@
 				{% for error in respuesta['validaciones']['xml']['errores'] %}
 					<br/>
 					<label>Linea:</label> <div style="display:inline;">{{ error.line }},</div><label style='margin-left:10px;'>Columna:</label> <div style="display:inline;">{{ error.column }}.</div><br/>
-					{{ error.message }}		
-					
+					{{ error.message }}							
 				{% endfor %}
 			{% endif  %}
 			<br><br>
@@ -126,20 +129,28 @@
 			<label>Cadena original generada:</label><br/>
 			<label style="" >{{ respuesta['validaciones']['cadena_original'] }}</label>
 			<br/><br/>
+			<label>Validez del certificado (existencia en el sat):</label><label style="margin-left:10px;" class="sin_validar">Sin Validar</label><br/>
+			<br/>
+			<label>Vigencia del certificado:</label><label style="margin-left:10px;" class="sin_validar">#</label><br/>
+			<br/>
+			<label>Validez del folio:</label><label style="margin-left:10px;" class="sin_validar">#</label><br/>
+			<br/><br/>
+			<label>C&aacute;lculo de Impuestos:</label><label style="margin-left:10px;" class="sin_validar">Sin Validar</label><br/>
+			<label style="" >Operacion realizada</label><label style="margin-left:10px;" >&iquest&iquest??</label>
 			
 			<br/>
 			<label>C&aacute;lculo del total:</label><label style="margin-left:10px;" class="sin_validar">Sin Validar</label><br/>
-			<label style="" >Operacion realizada</label><label style="margin-left:10px;" >Total = Subtotal - descuento + impuestos</label>
+			<label style="" >Operacion realizada (ejem):</label><label style="margin-left:10px;" >Total = Subtotal - descuento + impuestos</label>
 			<br>
-			<label style="" >Operacion realizada</label><label style="margin-left:10px;" >500.00 = 500.00 - 100.00 + 120.00</label>
+			<label style="" >Operacion realizada (ejem):</label><label style="margin-left:10px;" >500.00 = 500.00 - 100.00 + 120.00</label>
 			<br/>
 			<br/>
 			<label>C&aacute;lculo de Impuestos:</label><label style="margin-left:10px;" class="sin_validar">Sin Validar</label><br/>
-			<label style="" >Operacion realizada</label><label style="margin-left:10px;" >¿¿??</label>
+			<label style="" >Operacion realizada</label><label style="margin-left:10px;" >&iquest&iquest??</label>
 			<br/>
 			<br/>
 			<label>C&aacute;lculo del subtotal:</label><label style="margin-left:10px;" class="sin_validar">Sin Validar</label><br/>
-			<label style="" >Operacion realizada:</label><label style="margin-left:10px;" >¿¿??</label>
+			<label style="" >Operacion realizada:</label><label style="margin-left:10px;" >&iquest;&iquest??</label>
 			
 			
 		</div>
@@ -157,10 +168,12 @@
 
 {% block noticia %}
 	{% autoescape true %}
-	<h2>Facturacion Expresso</h2>
-	<a href="#">Contribuir</a><br/>
-	<div>
-		Y que pas&oacute; con los acentos.
+	<h2>Expresso Facturaci&oacute;n</h2>
+	
+	Expresso es una linea de productos de software que en su mayor parte son gratuitos y colaborativos, donde se da gran importancia a la privacidad, seguridad y desempe&ntilde;o.	
+	<br><br>
+	Descarge, colabore, o solo &uacute;se!
+	
 	</div>
 	{% endautoescape %}
 {% endblock %}
