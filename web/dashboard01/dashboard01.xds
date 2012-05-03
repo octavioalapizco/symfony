@@ -60,7 +60,7 @@
                                     "userConfig": {
                                         "text": "Menú Principal",
                                         "scale": "large",
-                                        "icon": "http://localhost/dashboard01/imagenes/home.png",
+                                        "icon": "http://expresso/dashboard01/imagenes/home.png",
                                         "iconAlign": "top",
                                         "height": "-ext-undefined-",
                                         "style": "-ext-undefined-",
@@ -85,7 +85,7 @@
                                     "userConfig": {
                                         "text": "Ayuda",
                                         "scale": "large",
-                                        "icon": "http://localhost/dashboard01/imagenes/help.png",
+                                        "icon": "http://expresso/dashboard01/imagenes/help.png",
                                         "iconAlign": "top"
                                     }
                                 },
@@ -102,7 +102,7 @@
                                     "snapToGrid": 10,
                                     "userConfig": {
                                         "text": "Chat&nbsp;&nbsp;",
-                                        "icon": "http://localhost/dashboard01/imagenes/chat_bubble.png",
+                                        "icon": "http://expresso/dashboard01/imagenes/chat_bubble.png",
                                         "scale": "large",
                                         "iconAlign": "top",
                                         "width": 40
@@ -116,7 +116,7 @@
                                     "userConfig": {
                                         "text": "Preferencias",
                                         "scale": "large",
-                                        "icon": "http://localhost/dashboard01/imagenes/favorites.png",
+                                        "icon": "http://expresso/dashboard01/imagenes/favorites.png",
                                         "iconAlign": "top"
                                     }
                                 },
@@ -129,7 +129,7 @@
                                         "text": "&nbsp;&nbsp;&nbsp;Salir&nbsp; &nbsp;&nbsp;&nbsp;",
                                         "scale": "large",
                                         "iconAlign": "top",
-                                        "icon": "http://localhost/dashboard01/imagenes/logout.png"
+                                        "icon": "http://expresso/dashboard01/imagenes/logout.png"
                                     }
                                 }
                             ]
