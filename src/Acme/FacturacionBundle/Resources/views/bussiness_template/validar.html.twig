@@ -2,7 +2,7 @@
 {% block header %}
 	<style type="text/css">
 		.valid{
-			color:green;
+			color:#00FF33;
 		}
 		.invalid{
 			
@@ -20,7 +20,8 @@
 		}
 		
 		.validaciones .text2{
-			padding: 0 0 0 0px
+			padding: 0 0 0 0px;
+			margin-bottom:10px;
 		}
 		
 	</style>
@@ -94,9 +95,9 @@
 		
 		{% endif %}
 		
-		<div style="clear:both;margin-top:-10px;margin-left:45px;" class="validaciones">
+		<div style="clear:both;margin-left:45px;position: relative;top: 25px;" class="validaciones">
 			
-			<div class="text2">Resultado de las validaciones</div>		
+			<div class="text2" >Resultado de las validaciones</div>		
 			{% if respuesta['success'] %}
 				{% set mensaje = "El comprobante es valido" %}
 				{% set estilo = "float:left;" %}
