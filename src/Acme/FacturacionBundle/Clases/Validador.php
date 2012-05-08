@@ -2,8 +2,7 @@
 namespace Acme\FacturacionBundle\Clases;
 
 class Validador{
-	function validarXML($xml_path,$validationParams=array())
-	{
+	function validarXML($xml_path,$validationParams=array()){
 		$validationResults=array();
 		
 		$valResult=$this->validarEstructura($xml_path);
@@ -20,7 +19,7 @@ class Validador{
 	}
 	
 	public function validarEstructura($xml_realpath) 
-	{		
+	{
 		libxml_use_internal_errors(true);
 		$domXml=new \DOMDocument();
 		$domXml->load($xml_realpath);
@@ -39,9 +38,11 @@ class Validador{
 		}
 		return $respuesta;
 	}
+	
 	private function getVersion(){
 		return $this->version;
 	}
+	
 	private function getShemaPath($domXml){
 		$root 	 = $domXml->getElementsByTagName('Comprobante')->item(0);
 		$version = $root->getAttribute('version');
@@ -130,8 +131,7 @@ class Validador{
 		2.-Con la cadena original y el certificado se genera el sello
 		3.-Se compara el sello del xml y el generado por el sistema, 
 			a).-si son iguales entonces el xml es válido, 
-			b).-si son diferentes entonces el sello es inválido. 
-					
+			b).-si son diferentes entonces el sello es inválido. 		
 		*/
 		
 	}
