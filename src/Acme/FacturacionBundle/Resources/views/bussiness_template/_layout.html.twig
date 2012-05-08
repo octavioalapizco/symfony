@@ -15,6 +15,14 @@
 		<script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
 		<script type="text/javascript" src="js/html5.js"></script>
 	<![endif]-->
+	
+	<style type="text/css">
+		
+		{% block css %}
+		{% endblock %}
+	</style>
+	
+	
 </head>
 <body id="page1">
 <div class="body3" style="background: none;"><div class="body3_img"></div></div>
@@ -35,24 +43,14 @@
 					<li style="background:none;"><a href=#">...   		 </a></li>
 				</ul>
 			</nav>			
-			<div style="clear: both;  color: '#6F6F6F'; font-family: courier; font-size: 18px; font-weight: normal; margin-top: 178px; position: absolute; z-index: 1000;">facturacion/comprobaci&oacute;n</div>
+			<div style="clear: both;  color: '#6F6F6F'; font-family: courier; font-size: 18px; font-weight: normal; margin-top: 178px; position: absolute; z-index: 1000;">
+			{% block breadcum %}
+			{% endblock %}
+			
 			<div class="wrapper">
 					
 				{% block header %}
-				<div class="text1">Servicios de facturaci&oacute;n</div>				
-				<div class="text2">En la nube, instalable, ensamblable!</div>
-					{% if app.session.hasFlash('notice') %}
-						<div class="flash-notice">
-							{{ app.session.flash('notice') }}
-						</div>
-					{% endif %}
 					
-				<ul id="icons">
-					<li><span>Siguenos!</span></li>
-					<li><a href="#"><img src="{{ asset('/bussiness/images/icon1.jpg') }}" alt=""></a></li>
-					<li><a href="#"><img src="{{ asset('/bussiness/images/icon2.jpg') }}" alt=""></a></li>
-					<li><a href="#"><img src="{{ asset('/bussiness/images/icon3.jpg') }}" alt=""></a></li>
-				</ul>			
 				{% endblock %}
 		</header>
 <!-- / header -->
@@ -139,22 +137,7 @@
 				</article>
 				<article class="col2 pad_left1">
 					<div class="pad" STYLE="padding:0;">
-						{% block noticia %}
-						<h2>¿Que es expresso software?</h2>
-						
-						Expresso software es un grupo de servicios y paquetes para empresas.<br> 
-						El proyecto Expresso tiene m&oacute;dulos liberados y en desarrollo, <br><br>Mirar Avances:
-						<br>
-						<br>
-						<ul>
-							<li>Servicios de Facturaci&oacute;n</li>
-							<li>Punto de venta</li>
-							<li>Comercio electr&oacute;nico</li>
-							<li>Motor contable</li>
-							<li></li>
-						</ul>
-						<br>
-							<a href="#">Ver &uacute;ltima noticia</a>
+						{% block noticia %}						
 						{% endblock %}
 						<!--
 						<p><strong>The Art of Business</strong> is a free web template created by TemplateMonster.com team. This website template is optimized for 1024X768 screen resolution. </p>

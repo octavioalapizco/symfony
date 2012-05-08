@@ -1,1 +1,62 @@
 {% extends 'AcmeFacturacionBundle:bussiness_template:_layout.html.twig' %}
+
+
+{% block css %}
+ul.caracteristicas li{
+	margin-bottom:10px;
+}
+{% endblock %}
+
+
+
+
+{% block breadcum %}
+home/facturaci&oacute;n</div>
+{% endblock %}
+
+{% block header %}
+<div class="text1">Facturaci&oacute;n Expresso!</div>				
+<div class="text2">En la nube, instalable, ensamblable!</div>
+	{% if app.session.hasFlash('notice') %}
+		<div class="flash-notice">
+			{{ app.session.flash('notice') }}
+		</div>
+	{% endif %}
+	
+
+	<h2>Caracter&iacute;sticas:</h2>
+	<ul class="caracteristicas">	
+		<li>Permite emitir facturas que cumplen con los requisitos impuestos por el SAT.</li>
+		<li>Emite facturas con los requisitos impuestos por Soriana, Walmart y otras empresas.</li>
+		<li>Las facturas emitidas pueden visualizarse en PDF, en web y ser enviadas por medios como email, rss, sms, redes sociales...</li>
+		<li>Los formatos de visualizacion permiten personalizacion b&aacute;sica, las visualizaciones espec&iacute;ficas pueden llevar un costo impl&iacute;cito.</li>
+		<li>Te facilita comprobar que las facturas emitidas por terceros cumplen con los requisitos del SAT y de otras empresas.</li>
+		<li>Genera el reporte mensual cumpliendo las disposiciones del SAT y te permite verificar ese tipo de archivos.</li>
+		<li>Presenta reportes contables b&aacute;sicos en diferentes formatos.</li>
+		<li>Exporta las facturas emitidas a sistemas como CONTPAQ y otros sistemas WEB.</li>
+		<li>Permite importar facturas digitales para visualizarlas en los formatos de Expresso o manter los originales</li>		
+		<li>Permite busquedas personalizadas para los fines de visualizacion a acciones de envio</li>
+	</ul>		
+	<br>
+	<h3>Ensamblable con:</h3>
+	<br>
+	<ul>		
+		<li>Cadenas de empresas.</li>
+		<li>Socios de Negocio.</li>
+		<li>Motor Contable.	</li>
+		<li>Inventarios.</li>
+		<li>Super Pos.</li>		
+	</ul>
+{% endblock %}
+
+{% block noticia %}
+<h2>¿Que es expresso software?</h2>
+<div>Expresso es una linea de productos de software que en su mayor parte son gratuitos y colaborativos, donde se da gran importancia a la privacidad, seguridad y desempe&ntilde;o.	</div>
+<br>
+
+<br>
+	<br><br>
+	Descarge, colabore, o solo &uacute;se!
+{% endblock %}
+
+	
