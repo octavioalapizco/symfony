@@ -107,7 +107,9 @@ class FacturaAdminController extends Controller
 		//echo "<pre>";print_r($facturaObj);echo "</pre>";exit;
 		//================ VALIDAR CONTRA EL DTD  ===========================================
 				
-		$resp=$this->validate($_FILES['comprobante']['tmp_name']);
+		//$resp=$this->validate($_FILES['comprobante']['tmp_name']);
+		$resp=true;
+		
 		if ($resp===false) return false;
 		
 		//================ Guardar en BDD  ===========================================
@@ -133,8 +135,9 @@ class FacturaAdminController extends Controller
 		}
 		$facturaE->setTipoComprobante($tipo_cd);
 		$em = $this->getDoctrine()->getEntityManager();
+		
 		$em->persist($facturaE);
-		//$em->flush();				
+		$em->flush();				
 		//============================================================================		
 		$ruta="comprobantes/$tipo_cd/".$facturaObj->Emisor['rfc'].'/'.$fecha->format('y').'/'.$fecha->format('m').'/';
 		
