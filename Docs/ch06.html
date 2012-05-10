@@ -1,0 +1,110 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Capítulo 6. Exploración</title><meta content="DocBook XSL Stylesheets V1.66.1" name="generator"><link rel="start" href="http://oness.sourceforge.net/proyecto/html/index.html" title="ONess: un proyecto open source para el negocio
+    textil mayorista desarrollado con tecnologías open
+    source innovadoras."><link rel="up" href="http://oness.sourceforge.net/proyecto/html/pt03.html" title="Parte III. Ciclo de vida"><link rel="prev" href="http://oness.sourceforge.net/proyecto/html/pt03.html" title="Parte III. Ciclo de vida"><link rel="next" href="http://oness.sourceforge.net/proyecto/html/ch06s02.html" title="Herramientas"></head><body link="#0000FF" alink="#0000FF" bgcolor="white" text="black" vlink="#840084"><div class="navheader"><table summary="Navigation header" width="100%"><tbody><tr><th colspan="3" align="center">Capítulo 6. Exploración</th></tr><tr><td align="left" width="20%"><a accesskey="p" href="http://oness.sourceforge.net/proyecto/html/pt03.html">Anterior</a>&nbsp;</td><th align="center" width="60%">Parte III. Ciclo de vida</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="http://oness.sourceforge.net/proyecto/html/ch06s02.html">Siguiente</a></td></tr></tbody></table><hr></div><div class="chapter" lang="es"><div class="titlepage"><div><div><h2 class="title"><a name="exploracion"></a>Capítulo 6. Exploración</h2></div></div></div><div class="toc"><p><b>Tabla de contenidos</b></p><dl><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06.html#N10489">Historias de usuario (<span class="emphasis"><em>user stories</em></span>)</a></span></dt><dd><dl><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06.html#N10493">Funcionalidad general</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06.html#N104A7">Gestión de contactos: clientes y proveedores</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06.html#N10511">Gestión de inventario</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06.html#N10574">Gestión de compras y ventas</a></span></dt></dl></dd><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s02.html">Herramientas</a></span></dt><dd><dl><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s02.html#N105C7">Desarrollo</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s02.html#N105EA">Gestión del proyecto</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s02.html#N105EF">Ejecución</a></span></dt></dl></dd><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html">Tecnologías</a></span></dt><dd><dl><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html#N10639">Maven</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html#N10663">Programación Orientada a Aspectos (AOP)</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html#N106A0">Programación Orientada a Atributos</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html#N106A9">AspectJ</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html#N106EB">Spring Framework</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html#N10736">Acegi Security System for Spring</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html#N107A0">Hibernate</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html#N107E9">XDoclet</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html#N10808">Struts, JSP, JSTL, Tiles, struts-menu, Validator, CSS</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html#N1082A">JUnit, DBUnit, JMock, StrutsTestCase</a></span></dt><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s03.html#N1084A">Jakarta Commons</a></span></dt></dl></dd><dt><span class="section"><a href="http://oness.sourceforge.net/proyecto/html/ch06s04.html">Prototipo</a></span></dt></dl></div><p>Tal y como se ha definido en el ciclo de vida de <span class="emphasis"><em>eXtreme
+  Programming</em></span> la primera fase es la exploración, fase en la que se
+  plantean las historias de usuario (<span class="emphasis"><em>user stories</em></span>) al
+  mismo tiempo que el equipo de desarrollo se familiariza con las
+  herramientas, tecnologías y prácticas que se utilizarán en el proyecto. Se
+  prueba la tecnología y se exploran las posibilidades de la arquitectura del
+  sistema construyendo un prototipo.</p><div class="section" lang="es"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="N10489"></a>Historias de usuario (<span class="emphasis"><em>user stories</em></span>)</h2></div></div></div><p>Las historias de usuario son la técnica utilizada en XP para
+    especificar los requisitos del software, lo que equivaldría a los casos de
+    uso en el proceso unificado.</p><p>Se describen brevemente las características que el sistema debe
+    tener desde la perspectiva del cliente, en este caso hay tres grupos de
+    funcionalidades bien diferenciadas: gestión de clientes y proveedores,
+    gestión de inventario y gestión de compras y ventas.</p><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="N10493"></a>Funcionalidad general</h3></div></div></div><p>Como requisitos generales del sistema se consideran principalmente
+      auditoría, seguridad y la accesibilidad desde dispositivos
+      móviles.</p><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N10498"></a>Auditoría</h4></div></div></div><p>Los cambios realizados al sistema por los usuarios deben ser
+        auditados. Para todas las altas, modificaciones y eliminaciones de
+        datos se debe conocer el qué, quién y cuándo se han realizado.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N1049D"></a>Autenticación y autorización</h4></div></div></div><p>Existirán varios roles de usuarios, y cada uno de ellos sólo
+        podrá acceder a un subconjunto de los datos y las operaciones.
+        Existirá un usuario administrador que tendrá acceso completo a la
+        aplicación.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N104A2"></a>Accesibilidad desde dispositivos móviles</h4></div></div></div><p>El sistema debe ser accesible desde cualquier localización
+        utilizando tanto ordenadores portátiles como dispositivos móviles,
+        principalmente PDAs. La localización puede ser tanto el propio local
+        de la empresa como un lugar exterior.</p></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="N104A7"></a>Gestión de contactos: clientes y proveedores</h3></div></div></div><p>En este apartado se tratará el concepto de contacto
+      (<span class="emphasis"><em>party</em></span>), persona u organización que es la otra
+      parte en una relación comercial.</p><p>Cada uno de estos contactos puede tiene como atributo un nombre
+      interno, que es el utilizado comúnmente para referirse a él, y unos
+      atributos según sea:</p><div class="itemizedlist"><ul type="disc"><li><p>persona</p><div class="itemizedlist"><ul type="circle"><li><p>título (Sr., Sra.)</p></li><li><p>nombre</p></li><li><p>apellidos</p></li></ul></div></li><li><p>organización</p><div class="itemizedlist"><ul type="circle"><li><p>nombre oficial</p></li></ul></div></li></ul></div><p>Además de esto pueden tener información para contactar con ellos,
+      como pueden ser:</p><div class="itemizedlist"><ul type="disc"><li><p>direcciones postales (destinatario, dirección, ciudad, código
+          postal, provincia, país)</p></li><li><p>números de teléfono (país, código de área, teléfono,
+          extensión)</p></li><li><p>direcciones de correo electrónico (e-mail)</p></li><li><p>direcciones web (url)</p></li></ul></div><p>Cada uno de ellos con el propósito de esa información de contacto,
+      por ejemplo</p><div class="itemizedlist"><ul type="disc"><li><p>correo electrónico del departamento de ventas</p></li><li><p>dirección del almacén</p></li><li><p>dirección de las oficinas</p></li><li><p>etc.</p></li></ul></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N104E4"></a>Creación de contactos</h4></div></div></div><p>Para la creación de un contacto el usuario debe seleccionar si
+        es una persona o una organización, y según su elección introducir los
+        atributos correspondientes.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N104E9"></a>Visualización de contactos</h4></div></div></div><p>Al usuario se le muestran los atributos correspondientes al tipo
+        de contacto y la lista con las informaciones de contacto.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N104EE"></a>Modificación de contactos</h4></div></div></div><p>El usuario podrá cambiar los atributos de un contacto.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N104F3"></a>Borrado de contactos</h4></div></div></div><p>Cuando se considere que ya no son de relevancia los clientes o
+        proveedores podrán ser borrados.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N104F8"></a>Búsqueda de contactos</h4></div></div></div><p>Se podrán realizar búsquedas por cualquiera de los atributos,
+        tanto de personas como de organizaciones.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N104FD"></a>Añadir información de contacto a un contacto</h4></div></div></div><p>Desde la visualización de un contacto se podrá añadir
+        información de contacto, seleccionando el tipo de información
+        (dirección postal, número de teléfono, correo electrónico o dirección
+        web) se permitirá que el usuario introduzca los atributos
+        correspondientes.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N10502"></a>Visualización de información de contacto</h4></div></div></div><p>Se mostrará el tipo de información, sus atributos y los
+        propósitos de ella.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N10507"></a>Modificación de información de contacto</h4></div></div></div><p>Se podrán cambiar los atributos de cualquier tipo de información
+        de contacto.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N1050C"></a>Borrado de información de contacto</h4></div></div></div><p>Cuando ya no sea relevante para al negocio se podrá borrar la
+        información de contacto.</p></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="N10511"></a>Gestión de inventario</h3></div></div></div><p>La gestión de inventario se centra en las operaciones con modelos
+      (<span class="emphasis"><em>models</em></span>) y productos
+      (<span class="emphasis"><em>products</em></span>). Esta es una de las partes más
+      complicadas en cualquier empresa, ya que se tiene que tratar con
+      productos procedentes de diversos proveedores, que llaman de distintas
+      formas a la misma cosa, que tienen unos procesos muy distintos unos a
+      otros,...</p><p>En el negocio textil esto es más complicado si cabe, donde apenas
+      se utilizan los pocos estándares que existen, no se utiliza la misma
+      nomenclatura para los tallajes ni los colores y el uso de códigos de
+      barras es inferior al 50%, por lo que aproximaciones que habitualmente
+      son usadas en otro tipo de negocios no son aplicables.</p><p>Volviendo a modelos y productos, los modelos representan un diseño
+      concreto, del que pueden existir distintas tallas y colores. Los modelos
+      son exclusivos de cada proveedor, es decir dos proveedores nunca hacen
+      un mismo modelo, siempre hay alguna diferencia como puede ser la calidad
+      del tejido. Los modelos tienen los siguientes atributos:</p><div class="itemizedlist"><ul type="disc"><li><p>código de modelo del proveedor</p></li><li><p>nombre, asignado por la empresa, que normalmente será el
+          código asignado por el proveedor, pero que podría ser cambiado si ya
+          existiese ese código anteriormente o el proveedor no asignara
+          ninguno.</p></li><li><p>descripción</p></li><li><p>año</p></li><li><p>temporada, principalmente</p><div class="itemizedlist"><ul type="circle"><li><p>permanente</p></li><li><p>primavera-verano</p></li><li><p>otoño-invierno</p></li></ul></div></li><li><p>tallaje</p><div class="itemizedlist"><ul type="circle"><li><p>recién nacido (000, 00, ..., 30, 36)</p></li><li><p>niño (1, 2, ..., 8, 10)</p></li><li><p>niño mayor (4, 6, ..., 16, 18)</p></li><li><p>caballero (48, 50, ..., 58, 60)</p></li><li><p>señora (5, 6, 7, 8)</p></li></ul></div></li></ul></div><p>Cada modelo tiene productos, que son la representación de cada
+      talla y color, con su SKU (<span class="emphasis"><em>Stock Keeping Unit</em></span>) que
+      es el identificador que se utilizará para referirse a ellos dentro de la
+      empresa, y la posibilidad de tener un número ilimitado de códigos de
+      barras, para evitar los problemas causados por la posible gestión
+      incorrecta de los proveedores.</p><p>Se considera la posibilidad de que la empresa tenga más de un
+      almacén, si bien esto no es lo habitual, con lo que en cada uno de ellos
+      podría existir stock de los productos.</p><p>También se considera que pueden existir varias tarifas, cada una
+      con un precio distinto para cada producto.</p><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N10556"></a>Creación de modelos</h4></div></div></div><p>Par crear un modelo el usuario debe seleccionar el proveedor al
+        que pertenece, introducir el código del modelo del proveedor, el
+        nombre, la descripción, el año, la temporada, el tallaje al que
+        pertenece y seleccionar los colores en los que lo habrá.
+        Automáticamente se crearán los productos correspondientes a cada talla
+        del tallaje y a cada color seleccionado.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N1055B"></a>Visualización de modelos</h4></div></div></div><p>La visualización de un modelo consistirá en mostrar sus
+        atributos así como cada uno de sus productos, con su talla, color,
+        stock en cada uno de los almacenes, precio en cada tarifa y sus
+        códigos de barras.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N10560"></a>Modificación de modelos</h4></div></div></div><p>Una vez creado, los atributos del modelo pueden ser
+        modificados.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N10565"></a>Borrado de modelos</h4></div></div></div><p>Borrar un modelo equivale a darlo de baja porque ni se dispone
+        de stock ni se dispondrá en el futuro.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N1056A"></a>Búsqueda de modelos</h4></div></div></div><p>Se podrá buscar un modelo por cualquiera de sus atributos, cuyo
+        resultado será una lista de modelos desde la que poder ir a la
+        visualización de cada uno de ellos.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N1056F"></a>Creación y modificación de precios</h4></div></div></div><p>Desde la visualización de un modelo se podrá ir a la
+        creación/modificación de sus precios, que consistirá en poder asignar
+        un precio o cambiar el ya existente para cada una de las tarifas y
+        para todas las tallas.</p></div></div><div class="section" lang="es"><div class="titlepage"><div><div><h3 class="title"><a name="N10574"></a>Gestión de compras y ventas</h3></div></div></div><p>Dentro de esta funcionalidad se engloba el proceso de creación
+      de</p><div class="itemizedlist"><ul type="disc"><li><p>pedidos (<span class="emphasis"><em>orders</em></span>)</p></li><li><p>albaranes (<span class="emphasis"><em>delivery dockets</em></span>)</p></li><li><p>facturas (<span class="emphasis"><em>invoices</em></span>)</p></li></ul></div><p>tanto para compras como para ventas.</p><p>El proceso de ventas comienza cuando un representante visita a un
+      cliente en su lugar de negocio. Este cliente escoge una serie de
+      productos y cantidades que se formalizan en un pedido.</p><p>Posteriormente los pedidos son servidos según se considere
+      oportuno. Se podrán servir en su totalidad o parcialmente, quedando
+      pendientes las cantidades no servidas para posteriores ocasiones,
+      pudiendo también servir en un único envío mercancía de más de un pedido.
+      Se generará un albarán con la mercancía enviada, corresponda a uno o
+      varios pedidos, es decir si se sirve mercancía de dos pedidos en un
+      único envío se generará un único albarán.</p><p>Finalmente se generarán las facturas a partir de los albaranes,
+      pudiendo una factura incluir varios albaranes. Normalmente estas
+      facturas se incluyen en los envíos por lo que sólo se incluirá el
+      albarán correspondiente.</p><p>El proceso de compra es exactamente el mismo.</p><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N10596"></a>Creación de pedidos</h4></div></div></div><p>A partir de un cliente o proveedor se podrá crear un nuevo
+        pedido, seleccionando si se trata de un pedido de compra o de venta.
+        El único dato necesario será la fecha del pedido, que normalmente será
+        el mismo día, y se podrán anotar cualquier tipo de comentarios.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N1059B"></a>Añadir productos a un pedido</h4></div></div></div><p>Se podrán buscar los productos para añadirlos al pedido en
+        curso, en la cantidad deseada.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N105A0"></a>Visualización de pedidos</h4></div></div></div><p>Al visualizar un pedido se mostrarán los datos del cliente o
+        proveedor y la lista de productos.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N105A5"></a>Modificación de pedidos</h4></div></div></div><p>La fecha o los comentarios del pedido pueden ser modificados,
+        así como la lista de productos, pudiendo añadir, quitar o modificar
+        las cantidades de éstos.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N105AA"></a>Borrado de pedidos</h4></div></div></div><p>Si un pedido es anulado se podrá borrar.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N105AF"></a>Listado de pedidos pendientes</h4></div></div></div><p>La lista de pedidos pendientes debe estar accesible,
+        preferiblemente con un indicador sobre la posibilidad de ser servido
+        parcial o totalmente.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N105B4"></a>Creación de albaranes</h4></div></div></div><p>Crear un albarán implica seleccionar de entre los pedidos
+        pendientes de un cliente o proveedor la mercancía que es servida,
+        seleccionando las cantidades que se servirán de cada producto,
+        normalmente el total.</p></div><div class="section" lang="es"><div class="titlepage"><div><div><h4 class="title"><a name="N105B9"></a>Creación de facturas</h4></div></div></div><p>Un proceso equivalente al de creación de albaranes,
+        seleccionando de entre los albaranes no facturados de un cliente o
+        proveedor aquellos que se facturarán, siempre en su totalidad.</p></div></div></div></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tbody><tr><td align="left" width="40%"><a accesskey="p" href="http://oness.sourceforge.net/proyecto/html/pt03.html">Anterior</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="http://oness.sourceforge.net/proyecto/html/pt03.html">Subir</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="http://oness.sourceforge.net/proyecto/html/ch06s02.html">Siguiente</a></td></tr><tr><td align="left" valign="top" width="40%">Parte III. Ciclo de vida&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="http://oness.sourceforge.net/proyecto/html/index.html">Inicio</a></td><td align="right" valign="top" width="40%">&nbsp;Herramientas</td></tr></tbody></table></div></body></html>
