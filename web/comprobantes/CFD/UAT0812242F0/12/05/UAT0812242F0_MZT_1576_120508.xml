@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" serie="MZT" folio="1576" fecha="2012-05-08T00:00:00" sello="NxbHWPNZz47Ypjf5uWR0FqUHqpsI9gMVFIXjiS+ix4zZL1HLzMKTE0+hriDI3s9pHiJE7VG8diE4XAGhPcDbtUiirhmGNyLpIdlzvDnWbfcrJrI+m5rEqj0j82GtsZfXG9FUXwzuU8d51v4EW9iFcX0I01AYD62Pcjkee9ISbwU=" noAprobacion="245401" anoAprobacion="2011" formaDePago="Pago en una Sola Exhibición" noCertificado="00001000000102212003" certificado="MIIEGDCCAwCgAwIBAgIUMDAwMDEwMDAwMDAxMDIyMTIwMDMwDQYJKoZIhvcNAQEFBQAwggE2MTgwNgYDVQQDDC9BLkMuIGRlbCBTZXJ2aWNpbyBkZSBBZG1pbmlzdHJhY2nDs24gVHJpYnV0YXJpYTEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3RyYWNpw7NuIFRyaWJ1dGFyaWExHzAdBgkqhkiG9w0BCQEWEGFjb2RzQHNhdC5nb2IubXgxJjAkBgNVBAkMHUF2LiBIaWRhbGdvIDc3LCBDb2wuIEd1ZXJyZXJvMQ4wDAYDVQQRDAUwNjMwMDELMAkGA1UEBhMCTVgxGTAXBgNVBAgMEERpc3RyaXRvIEZlZGVyYWwxEzARBgNVBAcMCkN1YXVodGVtb2MxMzAxBgkqhkiG9w0BCQIMJFJlc3BvbnNhYmxlOiBGZXJuYW5kbyBNYXJ0w61uZXogQ29zczAeFw0xMDExMTkxNjQ1NTVaFw0xMjExMTgxNjQ1NTVaMIG4MR4wHAYDVQQDFBVVUEMgJiBURUNITk9MT0dJRVMgU0MxHjAcBgNVBCkUFVVQQyAmIFRFQ0hOT0xPR0lFUyBTQzEeMBwGA1UEChQVVVBDICYgVEVDSE5PTE9HSUVTIFNDMSUwIwYDVQQtExxVQVQwODEyMjQyRjAgLyBBSUxINzUwNzA4QTQ2MR4wHAYDVQQFExUgLyBBSUxINzUwNzA4SFNMUk1SMDQxDzANBgNVBAsTBk1BVFJJWjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAozE74TzM4jRZ4mbBH4XZUbfjqXY0syObRUnZcG1DjNHmxxAGfMdxzizZyyGOSe1Q1tM8O5otFX7cmnqzBHYOK80HPri9x2O7BJXhNT9m1QylYXtfH+e9kpEJBQNvdtQ4t5DW1gy/lgJqlQ+odZJyMd/JUQAKSQ0G7TKbMZb7XXkCAwEAAaMdMBswDAYDVR0TAQH/BAIwADALBgNVHQ8EBAMCBsAwDQYJKoZIhvcNAQEFBQADggEBAKUBd8AfmUjgxcX2SKH4SBKNYlUgCpeZBysX/2u/ZnXWGqhbZfqIOyimFD82lTkmF65uzpwNG2QC962ns5c7rH5CcBmmp9f9zxeJZELy/Ir3dp8dh5Lunsa2r/Dy/H45JwLFxfcqze1i997/Fe0JkvTzlJfI3zrgQf47aHtBi9feKm9QS0NGILwgpaELLNiXoQYDkvNALMrRfYNVhruZq5NtC8/HARvJHUU9MAgn9cxWY5uYNyZY+dwqs/cLtiT/j23rQ9D0gXA/Mzf+iuLY/DC/4xnaSKTG5XkZkt8hE4vReDdWDDfb8Y8WYs5k5Duxe7X/YD/etZ77LHz5Scp9tuw=" condicionesDePago="CRÉDITO" subTotal="3240.00" total="3758.40" tipoDeComprobante="ingreso" xsi:schemaLocation="http://www.sat.gob.mx/cfd/2 http://www.sat.gob.mx/sitio_internet/cfd/2/cfdv2.xsd" xmlns="http://www.sat.gob.mx/cfd/2">
+  <Emisor rfc="UAT0812242F0" nombre="UPC &amp; TECHNOLOGIES, SC">
+    <DomicilioFiscal calle="Sierra Rumorosa" noExterior="321" colonia="LOMAS DE MAZATLAN" localidad="MAZATLAN" municipio="MAZATLAN" estado="Sinaloa" pais="Mexico" codigoPostal="82110" />
+    <ExpedidoEn calle="Sierra Rumorosa" noExterior="321" colonia="LOMAS DE MAZATLAN" localidad="MAZATLAN" municipio="MAZATLAN" estado="Sinaloa" pais="Mexico" codigoPostal="82110" />
+  </Emisor>
+  <Receptor rfc="HUCJ580928M53" nombre="HUMARAN CASTELLANOS JESUS ALBERTO">
+    <Domicilio calle="DOCTOR RAFAEL DOMINGUEZ" noExterior="308A" colonia="PALOS PRIETOS" localidad="MAZATLAN" municipio="MAZATLAN" estado="Sinaloa" pais="Mexico" codigoPostal="82010" />
+  </Receptor>
+  <Conceptos>
+    <Concepto cantidad="1.0000" descripcion="POLIZA DE SERVICIO BASICO" valorUnitario="3240.000000" importe="3240.00" />
+  </Conceptos>
+  <Impuestos totalImpuestosTrasladados="518.40">
+    <Traslados>
+      <Traslado impuesto="IVA" tasa="16.0000" importe="518.40" />
+    </Traslados>
+  </Impuestos>
+</Comprobante>
