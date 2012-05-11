@@ -1,0 +1,143 @@
+{
+    "name": "administrador_aires.xds",
+    "projectId": "D31D792C-FCDF-4B26-8656-77D6C8E0E447",
+    "settings": {
+        "urlPrefix": "http://localhost/",
+        "spacesToIndent": 4,
+        "codeGenFormat": "Class",
+        "extPath": "http://extjs.cachefly.net/ext-3.3.1/",
+        "exportPath": ".",
+        "lineEnding": "CRLF",
+        "instantiateStore": true,
+        "exportXDSFiles": true,
+        "genTimestamps": true
+    },
+    "xdsVersion": "1.1.2",
+    "components": [
+        {
+            "id": "MyGrid",
+            "cid": "grid",
+            "jsClass": "MyGrid",
+            "snapToGrid": 10,
+            "userConfig": {
+                "title": "My Grid",
+                "store": "(none)",
+                "width": 400,
+                "height": 250
+            },
+            "cn": [
+                {
+                    "id": "MyColumn",
+                    "cid": "gridcolumn",
+                    "jsClass": "MyColumn",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "string",
+                        "header": "Column",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "MyColumn1",
+                    "cid": "numbercolumn",
+                    "jsClass": "MyColumn1",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "number",
+                        "header": "Column",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100,
+                        "align": "right"
+                    }
+                },
+                {
+                    "id": "MyColumn2",
+                    "cid": "datecolumn",
+                    "jsClass": "MyColumn2",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "date",
+                        "header": "Column",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "MyColumn3",
+                    "cid": "booleancolumn",
+                    "jsClass": "MyColumn3",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "dataIndex": "bool",
+                        "header": "Column",
+                        "sortable": true,
+                        "resizable": "-ext-undefined-",
+                        "width": 100
+                    }
+                }
+            ]
+        }
+    ],
+    "stores": [
+        {
+            "id": "MyStore",
+            "cid": "jsonstore",
+            "jsClass": "stoHorarios",
+            "snapToGrid": 10,
+            "userConfig": {
+                "storeId": "MyStore"
+            },
+            "cn": [
+                {
+                    "id": "MyField",
+                    "cid": "datafield",
+                    "jsClass": "MyField",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "field"
+                    }
+                },
+                {
+                    "id": "MyField1",
+                    "cid": "datafield",
+                    "jsClass": "MyField1",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "field"
+                    }
+                },
+                {
+                    "id": "MyField2",
+                    "cid": "datafield",
+                    "jsClass": "MyField2",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "field"
+                    }
+                },
+                {
+                    "id": "MyField3",
+                    "cid": "datafield",
+                    "jsClass": "MyField3",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "field"
+                    }
+                },
+                {
+                    "id": "MyField4",
+                    "cid": "datafield",
+                    "jsClass": "MyField4",
+                    "snapToGrid": 10,
+                    "userConfig": {
+                        "name": "field"
+                    }
+                }
+            ]
+        }
+    ]
+}
