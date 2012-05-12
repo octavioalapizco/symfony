@@ -49,31 +49,7 @@ border: none;
       <th colspan="3" scope="col">Horarios</th>
     </tr>
     <tr>
-      <td colspan="3"><select name="lstDiashor"  onchange="document.form2.submit();">
-        <?
-			$sql="select * from dias";
-			$res2=mysql_query($sql,$link);
-			while($reg2=mysql_fetch_object($res2)){
-			//echo "DIA:".$_SESSION['dia'];
-			if ( isset($_POST['lstDiashor']) ){
-				$lstDiashor=$_POST['lstDiashor'] ;
-			}else{
-				if ( isset($_SESSION['dia']) ){
-					$lstDiashor=$_SESSION['dia'] ;
-				}else{
-					$lstDiashor=2;
-				}
-			}
-			//$lstDiashor=(isset($_POST['lstDiashor']) )? $_POST['lstDiashor'] : 0;			
-		?>
-		
-        <option value="<?=$reg2->id ?>" <? if($lstDiashor==$reg2->id) echo "selected";?> >
-          <?=$reg2->dia ?>
-          </option>
-        <? 
-			}
-		?>
-      </select></td>
+      <td colspan="3"></td>
     </tr>
     <tr>
       <td height="32" colspan="3">&nbsp;</td>

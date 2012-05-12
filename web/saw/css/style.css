@@ -1,3 +1,28 @@
+
+		.logo{
+			margin-top:-5px;
+			display:inline-block;
+		}
+		.text1 {
+			color: #545454;
+			font-size: 60px;
+			letter-spacing: -2px;
+			line-height: 55px;
+			display:inline-block;
+			font-weight:bold;
+			color:#5E5E5E;
+		}
+		.text2 {
+			color: #545454;
+			font-size: 36px;
+			letter-spacing: -2px;
+			line-height: 48px;
+			display:inline-block;
+			font-weight:bold;
+			color:#5E5E5E;
+		}
+	
+
 /* Website template by freewebsitetemplates.com */
 /*------------------------- Layout styles ------------------------*/ 
 body{
