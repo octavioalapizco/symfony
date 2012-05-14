@@ -27,7 +27,13 @@
 				<div id="featured">
 					<div style="">
 						<form name="formConfig" id="formConfig" action="configuracion/confi.php">
-							<h3 style="width:auto;display:inline-block;padding:0;">Aula <?php echo $_SESSION['aula']; ?></h3>
+							<h3 style="width:auto;display:inline-block;padding:0;">Aula</h3>
+							<select name='aula' onchange="document.formConfig.submit();">
+							  <option value="1">1</option>
+							  <option value="2">2</option>
+							  <option value="3">3</option>
+							  <option value="4">4</option>
+							</select>
 							<h3 style="width:auto;display:inline-block;padding:0;">Dia: <?php echo $_SESSION['dia']; ?></h3>
 							<select name='lstDias' onchange="document.formConfig.submit();">
 							  <option value="1">Lunes</option>
