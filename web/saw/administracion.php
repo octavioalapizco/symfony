@@ -26,10 +26,10 @@
 			<div class="body">
 				<div id="featured">
 					<div style="">
-						<form>
+						<form name="formConfig" id="formConfig" action="configuracion/confi.php">
 							<h3 style="width:auto;display:inline-block;padding:0;">Aula <?php echo $_SESSION['aula']; ?></h3>
 							<h3 style="width:auto;display:inline-block;padding:0;">Dia: <?php echo $_SESSION['dia']; ?></h3>
-							<select>
+							<select name='lstDias' onchange="document.formConfig.submit();">
 							  <option value="1">Lunes</option>
 							  <option value="2">Martes</option>
 							  <option value="3">Miercoles</option>
@@ -37,6 +37,7 @@
 							  <option value="5">Viernes</option>
 							  <option value="6">Sabado</option>
 							</select>
+						</form>
 						
 					</div>
 					<iframe width="80%" frameborder="0" height="350" width="600" src="confdia.php"></iframe>
