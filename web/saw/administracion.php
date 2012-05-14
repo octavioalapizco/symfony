@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<title>Xayona Website Template</title>
+		<title>SAW - Administracion</title>
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
 		<!--[if IE 7]>
 			<link rel="stylesheet" href="css/ie7.css" type="text/css" />
@@ -25,9 +25,19 @@
 			</div>
 			<div class="body">
 				<div id="featured">
-					<div style="display:inline-block;">
-						<h3 style="width:auto;display:inline-block;padding:0;">Aula 2</h3>
-						<h3 style="width:auto;display:inline-block;padding:0;">Dia: <?php echo $_SESSION['dia'];?></h3>
+					<div style="">
+						<form>
+							<h3 style="width:auto;display:inline-block;padding:0;">Aula <?php echo $_SESSION['aula']; ?></h3>
+							<h3 style="width:auto;display:inline-block;padding:0;">Dia: <?php echo $_SESSION['dia']; ?></h3>
+							<select>
+							  <option value="1">Lunes</option>
+							  <option value="2">Martes</option>
+							  <option value="3">Miercoles</option>
+							  <option value="4">Jueves</option>
+							  <option value="5">Viernes</option>
+							  <option value="6">Sabado</option>
+							</select>
+						
 					</div>
 					<iframe width="80%" frameborder="0" height="350" width="600" src="confdia.php"></iframe>
 				</div>
