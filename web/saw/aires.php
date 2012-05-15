@@ -30,12 +30,12 @@ if($dia==1){
  $res1=mysql_query($sql,$link);
  $reg1=mysql_fetch_object($res1);
  
- if($_SESSION["band11"]==0){
+ if(isset($_SESSION["band11"]) && $_SESSION["band11"]==0){
  	if($hora==$reg1->Hora_Inicio){
 		$_SESSION["band11"]=1;
 		}
  }else{
-	if($hora==$reg1->Hora_Final){
+	if(is_object($reg1) && $hora==$reg1->Hora_Final){
 		$_SESSION["band11"]=0;
 		}
 	}
@@ -45,7 +45,7 @@ if($dia==1){
  $res2=mysql_query($sql,$link);
  $reg2=mysql_fetch_object($res2);
  
- if($_SESSION["band21"]==0){
+ if(isset($_SESSION["band21"]) && $_SESSION["band21"]==0){
  	if($hora==$reg2->Hora_Inicio){
 		$_SESSION["band21"]=1;
 		}
@@ -60,7 +60,7 @@ if($dia==1){
  $res3=mysql_query($sql,$link);
  $reg3=mysql_fetch_object($res3);
  
- if($_SESSION["band31"]==0){
+ if(isset($_SESSION["band31"]) && $_SESSION["band31"]==0){
  	if($hora==$reg3->Hora_Inicio){
 		$_SESSION["band31"]=1;
 		}
@@ -75,12 +75,12 @@ if($dia==1){
  $res4=mysql_query($sql,$link);
  $reg4=mysql_fetch_object($res4);
  
- if($_SESSION["band41"]==0){
+ if(isset($_SESSION["band41"]) && $_SESSION["band41"]==0){
  	if($hora==$reg4->Hora_Inicio){
 		$_SESSION["band41"]=1;
 		}
  }else{
-	if($hora==$reg4->Hora_Final){
+	if(is_object($reg4) && $hora==$reg4->Hora_Final){
 		$_SESSION["band41"]=0;
 		}
 	}		
@@ -412,7 +412,15 @@ if($dia==6){
 -->
 </style>
 
+<script type="text/javascript">
+configurarAula=function(aula){
+	console.log(this);
+	//alert("Configurar Aula: "+aula);
+	top.location='configuracion/confi.php?aula='+aula;
+	//window.open();
+}
 
+</script>
 <style type="text/css">
 table, th, td
 {
@@ -614,7 +622,7 @@ if(isset($_POST['btnEncendido1'])){
         <tr>
           <td><input name="BtnEncendido1" type="submit" id="BtnEncendido1" value="On">
             <input name="BtnApagado1" type="submit" id="BtnApagado1" value="Off"></td>
-          <td><input name="BConfig1" type="button" id="BConfig1" value="Configuracion" onClick=window.open('confi.php?aula=1')></td>
+          <td><input name="BConfig1" type="button" id="BConfig1" value="Configuracion" onClick= configurarAula(1)></td>
         </tr>
         <tr>
           <td colspan="2">&nbsp;</td>
@@ -631,13 +639,13 @@ if(isset($_POST['btnEncendido1'])){
                 <input name="txthoraini2" type="text" id="txthoraini22" value="<? if(is_object($reg2) && $hora==$reg2->Hora_Inicio) echo $reg2->Hora_Inicio ?>">
                 <span class="Estilo4">Hora Final </span></p>
               <p>
-                <input name="txthorafin2" type="text" id="txthorafin22" value="<? if(is_object($reg2) && $hora==$reg->Hora_Final) echo $reg2->Hora_Final ?>">
+                <input name="txthorafin2" type="text" id="txthorafin22" value="<? if(is_object($reg2) && $hora==$reg2->Hora_Final) echo $reg2->Hora_Final ?>">
             </p></td>
         </tr>
         <tr>
           <td><input name="BtnEncendido2" type="submit" id="BtnEncendido2" value="On">
             <input name="BtnApagado2" type="submit" id="BtnApagado2" value="Off"></td>
-          <td><input name="BConfig2" type="button" id="BConfig2" value="Configuracion" onClick=window.open('confi.php?aula=2')></td>
+          <td><input name="BConfig2" type="button" id="BConfig2" value="Configuracion" onClick= configurarAula(2)></td>
         </tr>
         <tr>
           <td height="26" colspan="2">&nbsp;</td>
@@ -662,7 +670,7 @@ if(isset($_POST['btnEncendido1'])){
         <tr>
           <td><input name="BtnEncendido3" type="submit" id="BtnEncendido3" value="On">
             <input name="BtnApagado3" type="submit" id="BtnApagado3" value="Off"></td>
-          <td><input name="BConfig3" type="button" id="BConfig3" value="Configuracion" onClick=window.open('confi.php?aula=3')></td>
+          <td><input name="BConfig3" type="button" id="BConfig3" value="Configuracion" onClick= configurarAula(3)></td>
         </tr>
         <tr>
           <td colspan="2">&nbsp;</td>
@@ -686,7 +694,7 @@ if(isset($_POST['btnEncendido1'])){
         <tr>
           <td><input name="BtnEncendido4" type="submit" id="BtnEncendido4" value="On">
             <input name="BtnApagado4" type="submit" id="BtnApagado4" value="Off"></td>
-          <td><input name="BConfig4" type="button" id="BConfig4" value="Configuracion" onClick=window.open('confi.php?aula=4')></td>
+          <td><input name="BConfig4" type="button" id="BConfig4" value="Configuracion" onClick= configurarAula(4)></td>
         </tr>
         <tr>
           <td colspan="2">&nbsp;</td>
