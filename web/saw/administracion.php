@@ -29,7 +29,7 @@
 						<h3 style="width:auto;display:inline-block;padding:0;">Aula 2</h3>
 						<h3 style="width:auto;display:inline-block;padding:0;">Dia: <?php echo $_SESSION['dia'];?></h3>
 					</div>
-					<iframe width="80%" frameborder="0" height="350" width="600" src="confdia.php"></iframe>
+					<?php include 'configuracion/confi.php'; ?>
 				</div>
 				
 			</div>

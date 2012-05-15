@@ -3,12 +3,13 @@
     "projectId": "D31D792C-FCDF-4B26-8656-77D6C8E0E447",
     "settings": {
         "urlPrefix": "http://localhost/",
-        "spacesToIndent": 4,
+        "directAPI": "",
+        "spacesToIndent": "4",
         "codeGenFormat": "Class",
         "extPath": "http://extjs.cachefly.net/ext-3.3.1/",
         "exportPath": ".",
         "lineEnding": "CRLF",
-        "instantiateStore": true,
+        "instantiateStore": false,
         "exportXDSFiles": true,
         "genTimestamps": true
     },
@@ -21,7 +22,7 @@
             "snapToGrid": 10,
             "userConfig": {
                 "title": "My Grid",
-                "store": "(none)",
+                "store": "-ext-undefined-",
                 "width": 400,
                 "height": 250
             },
@@ -89,7 +90,9 @@
             "jsClass": "stoHorarios",
             "snapToGrid": 10,
             "userConfig": {
-                "storeId": "MyStore"
+                "storeId": "-ext-undefined-",
+                "idProperty": "idHora",
+                "root": "horario"
             },
             "cn": [
                 {
@@ -98,7 +101,7 @@
                     "jsClass": "MyField",
                     "snapToGrid": 10,
                     "userConfig": {
-                        "name": "field"
+                        "name": "idHora"
                     }
                 },
                 {
@@ -107,7 +110,7 @@
                     "jsClass": "MyField1",
                     "snapToGrid": 10,
                     "userConfig": {
-                        "name": "field"
+                        "name": "horaInicio"
                     }
                 },
                 {
@@ -116,25 +119,7 @@
                     "jsClass": "MyField2",
                     "snapToGrid": 10,
                     "userConfig": {
-                        "name": "field"
-                    }
-                },
-                {
-                    "id": "MyField3",
-                    "cid": "datafield",
-                    "jsClass": "MyField3",
-                    "snapToGrid": 10,
-                    "userConfig": {
-                        "name": "field"
-                    }
-                },
-                {
-                    "id": "MyField4",
-                    "cid": "datafield",
-                    "jsClass": "MyField4",
-                    "snapToGrid": 10,
-                    "userConfig": {
-                        "name": "field"
+                        "name": "horaFin"
                     }
                 }
             ]

@@ -1,0 +1,3 @@
+<script type="text/javascript" src="gridEdicionHorarios.ui.js"></script>
+<script type="text/javascript" src="gridEdicionHorarios.js"></script>
+<script type="text/javascript" src="stoHorarios.js"></script>
